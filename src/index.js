@@ -2,17 +2,17 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './styles/main.css'
 import Button from './components/Button'
+import Header from './components/Header'
 
 const App = () => {
     
-    // const testClick = () => {
-    //     console.log('clicked')
-    // }
+    const testClick = () => {
+        console.log('clicked')
+    }
 
     return (
     <div>
-        <div className='text-3xl underline leading-6 font-black'>do some ish</div>
-        <Button text='Click Here' theme='primary'/>
+        <Button text='Click Here' theme='primary' handleClick={testClick}/>
     </div>
     )
 }

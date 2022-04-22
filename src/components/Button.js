@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Button = ({text = 'Button Text', theme= 'primary'}) => {
+const Button = ({text = 'Button Text', theme= 'primary', handleClick}) => {
 
     const primaryTheme = `rounded-full bg-rose-400 px-8 py-2 text-white 
     transition ease-in-out delay-100 font-bold
@@ -14,6 +14,7 @@ const Button = ({text = 'Button Text', theme= 'primary'}) => {
 
     return ( <div> 
         <button 
+        onClick={handleClick}
         className={theme==='primary' ? primaryTheme : secondaryTheme}>
             {text}
         </button>
