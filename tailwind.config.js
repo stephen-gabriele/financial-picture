@@ -3,7 +3,8 @@ module.exports = {
   theme: {
     extend: {},
     fontFamily: {
-        'sans': ['Plus Jakarta Sans', 'Helvetica', 'Arial', 'sans-serif']
+        'sans': ['Plus Jakarta Sans', 'Helvetica', 'Arial', 'sans-serif'],
+        'logo' : ['Orelega One', 'sans-serif'],
     }
   },
   plugins: []

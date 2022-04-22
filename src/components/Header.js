@@ -3,11 +3,19 @@ import Button from './Button'
 
 const Header = () => {
     return ( 
-        <header className='flex justify-between items-center p-5'>
+        <header className='flex justify-between items-center px-6 py-3 border-b'>
             <div className='flex justify-between items-center'>
-                <h2 className=''>Monarch</h2>
+                <h2 className='font-logo text-3xl text-rose-400 mr-2'>$</h2>
+                <h2 className='font-logo text-3xl text-blue-900'>Monarch</h2>
             </div>
-            <Button text='Sign up' className=''/>
+            <div className='flex justify-between items-center'>
+                <Button text='Sign up'/>
+                <div className='ml-3 h-1/2 flex-col'>
+                    <div className='w-5 h-0.5 bg-blue-900'></div>
+                    <div className='w-5 h-0.5 bg-blue-900 my-1'></div>
+                    <div className='w-5 h-0.5 bg-blue-900'></div>
+                </div>
+            </div>
         </header>
     );
 }
