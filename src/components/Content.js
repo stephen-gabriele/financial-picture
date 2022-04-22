@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from './Button'
+import Card from './Card'
 
 const Content = () => {
     return (
@@ -9,6 +10,12 @@ const Content = () => {
             collaborate with a partner, and create a long term plan to achieve your goals. 
             Get personalized advice along the way.</p>
         <Button text='Sign up now'/>
+
+        <h2 className='text-3xl font-logo mt-20'>What people are saying about Monarch</h2>
+        <Card />
+        <Card />
+        <Card />
+        <Card />
     </div> );
 }
  
