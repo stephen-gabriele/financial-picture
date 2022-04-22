@@ -9,7 +9,7 @@ const Header = () => {
                 <h2 className='font-logo text-3xl text-blue-900'>Monarch</h2>
             </div>
             <div className='flex justify-between items-center'>
-                <Button text='Sign up'/>
+                <Button text='Sign up' />
                 <div className='ml-3 h-1/2 flex-col'>
                     <div className='w-5 h-0.5 bg-blue-900'></div>
                     <div className='w-5 h-0.5 bg-blue-900 my-1'></div>

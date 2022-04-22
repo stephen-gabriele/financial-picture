@@ -1,24 +1,25 @@
 import React from 'react'
 
-const Button = ({text = 'Button Text', theme= 'primary', handleClick}) => {
+const Button = ({className = '', text = 'Button Text', theme= '', handleClick}) => {
 
-    const primaryTheme = `rounded-full bg-rose-400 px-8 py-2 text-white 
+    const themeDefaults = `rounded-full px-8 py-2
     transition ease-in-out delay-100 font-bold
-    hover:bg-rose-500 hover:scale-105
+    hover:scale-105
     hover:drop-shadow-md`
 
-    const secondaryTheme = `rounded-full bg-slate-50 px-8 py-2 text-black 
-    transition ease-in-out delay-100 border drop-shadow font-bold
-    hover:bg-white hover:scale-105
-    hover:drop-shadow-md`
+    const primaryTheme = ` bg-rose-400 text-white 
+    hover:bg-rose-500`
 
-    return ( <div> 
+    const secondaryTheme = `bg-slate-50 text-black drop-shadow
+    hover:bg-white`
+
+    return (
         <button 
         onClick={handleClick}
-        className={theme==='primary' ? primaryTheme : secondaryTheme}>
+        className={`${themeDefaults} ${theme==='secondary' ? secondaryTheme : primaryTheme} ${className}`}>
             {text}
         </button>
-    </div> );
+    );
 }
  
 export default Button;
