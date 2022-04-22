@@ -12,7 +12,15 @@ const Content = () => {
         <Button text='Sign up now'/>
 
         <h2 className='text-3xl font-logo mt-20'>What people are saying about Monarch</h2>
-        <Card />
+        <div className='flex justify-between items-center mt-9 font-bold text-xs'>
+            <div className='bg-amber-300 px-4 py-1 mr-3 rounded-full'>★ 4.8</div>
+            <div>ON THE APP STORE</div>
+        </div>
+        <div className='flex justify-between items-center mt-5 font-bold text-xs'>
+            <div className='bg-amber-300 px-4 py-1 mr-3 rounded-full'>★ 4.8</div>
+            <div>ON GOOGLE PLAY</div>
+        </div>
+        <Card name='Andy P.' review='This is the best app i have ever used and I want to marry the devs'/>
         <Card />
         <Card />
         <Card />
