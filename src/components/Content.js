@@ -48,9 +48,22 @@ const Content = () => {
       <div>ON GOOGLE PLAY</div>
     </div>
     <Card name='Andy P.' review='This is the best app i have ever used and I want to marry the devs'/>
-    <Card />
-    <Card />
-    <Card />
+    <Card name='Joshua W.' review='I tried YNAB, I tried Mint, I use Monarch. Soooo much more intuitive and the UI/UX is delightful.'/>
+    <Card name='Stephen C.' review='Its beautifully designed and it just works, as advertised; Significantly fewer syncing issues than its competitors.'/>
+    <Card name='Aaron V.' review='Makes it easy to see all my spending across accounts, with no ads and no unwanted advisors calling me.'/>
+
+    <div className='flex-col my-16'>
+      <img src={FintechImg} className='w-3/4'/>
+      <img src={TechCrunchImg} className='w-3/4'/>
+      <div className='flex w-full justify-center mb-8'>
+        <img src={BusinessInsiderImg} className='w-1/2'/>
+        <img src={FastCompanyImg} className='w-1/2'/>
+      </div>
+      <div className='flex justify-center'>
+        <img src={AppstoreImg} className='w-1/3 mr-4'/>
+        <img src={GooglePlayImg} className='w-1/3'/>
+      </div>
+    </div>
 
     <Section title='Understand and grow your net worth' image={UnderstandAndGrowImg}>
       The first step to financial health is knowing where you stand. 
