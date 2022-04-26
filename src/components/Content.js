@@ -124,6 +124,15 @@ const Content = () => {
       ads, and we'll never sell your financial data to third parties.
     </Section>
 
+    <div className='bg-slate-800 text-white mt-32 pb-32'>
+      <Subtitle>The modern way to manage your money</Subtitle>
+        <ParagraphText>Managing money can be complicated. Track all of your 
+          accounts in one place, collaborate with a partner, and create a 
+          long term plan to achieve your goals. Get personalized advice 
+          along the way.</ParagraphText>
+      <Button text='Sign up now'/>
+    </div>
+
   </div> );
 }
  
