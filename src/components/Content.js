@@ -4,7 +4,8 @@ import Card from './Card'
 import Subtitle from './Subtitle'
 import Title from './Title'
 import ParagraphText from './ParagraphText'
-import MyImage from '../../asset/resource/unknown.png'
+import Laptop from '../images/unknown.png'
+import Section from './Section'
 
 const Content = () => {
     return (
@@ -16,7 +17,7 @@ const Content = () => {
             along the way.</ParagraphText>
         <Button text='Sign up now'/>
         
-        <img src={MyImage}/>
+        <img src={Laptop}/>
 
         <Subtitle>What people are saying about Monarch</Subtitle>
         <div className='flex justify-between items-center mt-9 font-bold text-xs'>
@@ -31,6 +32,64 @@ const Content = () => {
         <Card />
         <Card />
         <Card />
+
+            <Section title='Understand and grow your net worth'>
+                The first step to financial health is knowing where you stand. 
+                Monarch syncs with 11,200+ financial institutions, so you'll always have 
+                a complete and up-to-date view of your assets, liabilities, and 
+                spending.</Section>
+
+            <Section title='Collaborate with a partner securely'>
+                Invite a partner to join your finances without the hassle of 
+                switching banks. They'll get their own login, and you'll both get a 
+                shared view of what's happening with your money.</Section>
+
+            <Section title='Get personalized advice'>
+                Answer a few key questions about yourself to get advice on how 
+                to build financial resilience and make progress toward your goals.
+            </Section>
+
+            <Section title='Track all of your investments in one place'>
+                Know exactly what you're invested in and how your portfolio is 
+                performing by syncing your investment holdings into one central view.
+            </Section>
+
+            <Section title='Fully customize your dashboard and charts'>
+                Use our beautiful reports, charts, and visualizations to identify 
+                trends in your finances, like how you much you’re saving and spending each month. 
+                Customize the layout to focus on what matters to you.
+            </Section>
+
+            <Section title='Budget the way you want and stay on track'>
+                Setup a budget to automatically monitor your spending and stay on 
+                track with your goals. We'll notify you when you go over budget and help you 
+                get back on track.
+            </Section>
+
+            <Section title='Stay on top of your spending'>
+                See a breakdown of where your money is going so you know how to 
+                improve. Easily identify subscriptions you no longer want, and catch fraud 
+                quickly with transaction notifications.
+            </Section>
+
+           <Section title='Create a plan to achieve your financial goals'>
+                Track all of your financial goals and create a plan to achieve 
+                them. If you get off track, no problem! We'll always help you get back on 
+                track when life happens.
+           </Section>
+
+           <Section title='Security you can trust'>
+                Monarch protects your data with bank-level security. Your login details are 
+                never stored and access to your accounts is limited to read-only, we cannot 
+                move your money.
+           </Section>
+
+           <Section title='Focus on your financial health, not on ads'>
+                At Monarch, we're committed to building the best product to improve your 
+                financial life. That means an uncluttered experience with no distracting 
+                ads, and we'll never sell your financial data to third parties.
+           </Section>
+
     </div> );
 }
  
