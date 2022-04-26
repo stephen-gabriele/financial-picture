@@ -2,7 +2,7 @@ import React from 'react'
 
 const Title = (props) => {
     return ( 
-        <div className='text-5xl font-logo mt-20'>
+        <div className='text-5xl font-logo'>
             {props.children}
         </div>
      );
