@@ -88,7 +88,7 @@ const Content = () => {
       to build financial resilience and make progress toward your goals.
     </Section>
 
-    <Section title='Track all of your investments in one place' image={InvestmentsImg}>
+    <Section title='Track all of your investments in one place' image={InvestmentsImg} isReversed={true}>
       Know exactly what you're invested in and how your portfolio is 
       performing by syncing your investment holdings into one central view.
     </Section>
@@ -99,7 +99,7 @@ const Content = () => {
       Customize the layout to focus on what matters to you.
     </Section>
 
-    <Section title='Budget the way you want and stay on track' image={BudgetImg}>
+    <Section title='Budget the way you want and stay on track' image={BudgetImg} isReversed={true}>
       Setup a budget to automatically monitor your spending and stay on 
       track with your goals. We'll notify you when you go over budget and help you 
       get back on track.
@@ -111,7 +111,7 @@ const Content = () => {
       quickly with transaction notifications.
     </Section>
 
-    <Section title='Create a plan to achieve your financial goals' image={PlanImg}>
+    <Section title='Create a plan to achieve your financial goals' image={PlanImg} isReversed={true}>
       Track all of your financial goals and create a plan to achieve 
       them. If you get off track, no problem! We'll always help you get back on 
       track when life happens.
@@ -123,7 +123,7 @@ const Content = () => {
       move your money.
     </Section>
 
-    <Section title='Focus on your financial health, not on ads' image={AdsImg}>
+    <Section title='Focus on your financial health, not on ads' image={AdsImg} isReversed={true}>
       At Monarch, we're committed to building the best product to improve your 
       financial life. That means an uncluttered experience with no distracting 
       ads, and we'll never sell your financial data to third parties.

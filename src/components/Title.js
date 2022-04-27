@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Title = (props) => {
+const Title = ({className='', children}) => {
     return ( 
-        <div className='text-5xl font-logo'>
-            {props.children}
+        <div className={`text-5xl font-logo ${className}`}>
+            {children}
         </div>
      );
 }

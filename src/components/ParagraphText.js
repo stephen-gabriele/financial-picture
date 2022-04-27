@@ -1,9 +1,9 @@
 import React from 'react'
 
-const ParagraphText = (props) => {
+const ParagraphText = ({className='', children}) => {
     return ( 
-    <p className='text-lg my-6 leading-loose'>
-        {props.children}
+    <p className={`text-lg my-6 leading-loose ${className}`}>
+        {children}
     </p> );
 }
  
