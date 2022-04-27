@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from './Button'
-import Card from './Card'
+import ReviewCard from './ReviewCard'
 import Subtitle from './Subtitle'
 import Title from './Title'
 import ParagraphText from './ParagraphText'
@@ -28,7 +28,7 @@ import {
 
 const Content = () => {
   return (
-  <div className='flex flex-col text-center items-center mx-10 mt-20'>
+  <div className='flex flex-col text-center items-center mx-10 md:mx-auto lg:mx-auto mt-20 md:max-w-screen-md lg:max-w-screen-lg'>
     <Title>The modern way to manage your money</Title>
     <ParagraphText>Managing money can be complicated. Track all of your 
       accounts in one place, collaborate with a partner, and create a 
@@ -47,23 +47,41 @@ const Content = () => {
       <div className='bg-amber-300 px-4 py-1 mr-3 rounded-full'>★ 4.8</div>
       <div>ON GOOGLE PLAY</div>
     </div>
-    <Card name='Andy P.' review='This is the best app i have ever used and I want to marry the devs'/>
-    <Card name='Joshua W.' review='I tried YNAB, I tried Mint, I use Monarch. Soooo much more intuitive and the UI/UX is delightful.'/>
-    <Card name='Stephen C.' review='Its beautifully designed and it just works, as advertised; Significantly fewer syncing issues than its competitors.'/>
-    <Card name='Aaron V.' review='Makes it easy to see all my spending across accounts, with no ads and no unwanted advisors calling me.'/>
 
-    <div className='flex-col my-16'>
-      <img src={FintechImg} className='w-3/4'/>
-      <img src={TechCrunchImg} className='w-3/4'/>
-      <div className='flex w-full justify-center mb-8'>
-        <img src={BusinessInsiderImg} className='w-1/2'/>
-        <img src={FastCompanyImg} className='w-1/2'/>
-      </div>
-      <div className='flex justify-center'>
+    <ReviewCard name='Andy P.' 
+    review='This is the best app i have ever used and I want to marry the devs'/>
+    <ReviewCard name='Joshua W.' 
+    review='I tried YNAB, I tried Mint, I use Monarch. Soooo much more intuitive and the UI/UX is delightful.'/>
+    <ReviewCard name='Stephen C.' 
+    review='Its beautifully designed and it just works, as advertised; Significantly fewer syncing issues than its competitors.'/>
+    <ReviewCard name='Aaron V.' 
+    review='Makes it easy to see all my spending across accounts, with no ads and no unwanted advisors calling me.'/>
+
+    <div className='mt-16 grid grid-rows-3 md:grid-rows-2 lg:grid-rows-1 grid-cols-2 lg:grid-cols-4 gap-y-5 gap-x-2 grid-flow-row items-center justify-items-center'>
+      <img src={FintechImg} className='col-span-2 w-3/4 md:col-span-1'/>
+      <img src={TechCrunchImg} className='col-span-2 w-3/4 md:col-span-1'/>
+      <img src={BusinessInsiderImg} className='col-span-1 md:w-3/4'/>
+      <img src={FastCompanyImg} className='col-span-1 md:w-3/4'/>
+    </div>
+    <div className='flex justify-center'>
         <img src={AppstoreImg} className='w-1/3 mr-4'/>
         <img src={GooglePlayImg} className='w-1/3'/>
+    </div>
+
+    {/* <div className='flex flex-col lg:flex-row my-16'>
+      <div className='flex justify-center flex-col md:flex-row lg:mx-0'>
+        <img src={FintechImg} className='w-3/4 md:w-2/5 lg:w-2/5 mx-auto md:mx-0 lg:mx-0'/>
+        <img src={TechCrunchImg} className='w-3/4 md:w-2/5 lg:w-2/5 mx-auto md:mx-0 lg:mx-0'/>
+      </div>
+      <div className='flex justify-center mb-8'>
+        <img src={BusinessInsiderImg} className='w-1/2 md:w-1/4 lg:w-2/5'/>
+        <img src={FastCompanyImg} className='w-1/2 md:w-1/4 lg:w-2/5'/>
       </div>
     </div>
+    <div className='flex justify-center'>
+        <img src={AppstoreImg} className='w-1/3 mr-4'/>
+        <img src={GooglePlayImg} className='w-1/3'/>
+    </div> */}
 
     <Section title='Understand and grow your net worth' image={UnderstandAndGrowImg}>
       The first step to financial health is knowing where you stand. 

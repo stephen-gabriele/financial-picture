@@ -4,11 +4,12 @@ import './styles/main.css'
 import Header from './components/Header'
 import Content from './components/Content'
 import Footer from './components/Footer'
+import Navbar from './components/Navbar'
 
 const App = () => {
     return (
     <div>
-        <Header />
+        <Navbar />
         <Content />
         <Footer />
     </div>
