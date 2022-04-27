@@ -48,49 +48,36 @@ const Content = () => {
       <div>ON GOOGLE PLAY</div>
     </div>
 
-    <ReviewCard name='Andy P.' 
-    review='This is the best app i have ever used and I want to marry the devs'/>
-    <ReviewCard name='Joshua W.' 
-    review='I tried YNAB, I tried Mint, I use Monarch. Soooo much more intuitive and the UI/UX is delightful.'/>
-    <ReviewCard name='Stephen C.' 
-    review='Its beautifully designed and it just works, as advertised; Significantly fewer syncing issues than its competitors.'/>
-    <ReviewCard name='Aaron V.' 
-    review='Makes it easy to see all my spending across accounts, with no ads and no unwanted advisors calling me.'/>
-
-    <div className='mt-16 grid grid-rows-3 md:grid-rows-2 lg:grid-rows-1 grid-cols-2 lg:grid-cols-4 gap-y-5 gap-x-2 grid-flow-row items-center justify-items-center'>
-      <img src={FintechImg} className='col-span-2 w-3/4 md:col-span-1'/>
-      <img src={TechCrunchImg} className='col-span-2 w-3/4 md:col-span-1'/>
-      <img src={BusinessInsiderImg} className='col-span-1 md:w-3/4'/>
-      <img src={FastCompanyImg} className='col-span-1 md:w-3/4'/>
-    </div>
-    <div className='flex justify-center'>
-        <img src={AppstoreImg} className='w-1/3 mr-4'/>
-        <img src={GooglePlayImg} className='w-1/3'/>
+    <div className='grid md:grid-cols-2 grid-flow-row gap-6 mt-16'>
+      <ReviewCard name='Andy P.' 
+      review='This is the best app i have ever used and I want to marry the devs'/>
+      <ReviewCard name='Joshua W.' 
+      review='I tried YNAB, I tried Mint, I use Monarch. Soooo much more intuitive and the UI/UX is delightful.'/>
+      <ReviewCard name='Stephen C.' 
+      review='Its beautifully designed and it just works, as advertised; Significantly fewer syncing issues than its competitors.'/>
+      <ReviewCard name='Aaron V.' 
+      review='Makes it easy to see all my spending across accounts, with no ads and no unwanted advisors calling me.'/>
     </div>
 
-    {/* <div className='flex flex-col lg:flex-row my-16'>
-      <div className='flex justify-center flex-col md:flex-row lg:mx-0'>
-        <img src={FintechImg} className='w-3/4 md:w-2/5 lg:w-2/5 mx-auto md:mx-0 lg:mx-0'/>
-        <img src={TechCrunchImg} className='w-3/4 md:w-2/5 lg:w-2/5 mx-auto md:mx-0 lg:mx-0'/>
-      </div>
-      <div className='flex justify-center mb-8'>
-        <img src={BusinessInsiderImg} className='w-1/2 md:w-1/4 lg:w-2/5'/>
-        <img src={FastCompanyImg} className='w-1/2 md:w-1/4 lg:w-2/5'/>
-      </div>
+    <div className='mt-16 grid grid-rows-3 md:grid-rows-2 lg:grid-rows-1 grid-cols-2 lg:grid-cols-4 gap-y-5 gap-x-2 grid-flow-row items-center justify-items-center w-96 md:w-auto'>
+      <img src={FintechImg} className='col-span-2 w-3/4 md:col-span-1 lg:w-full md:justify-self-end lg:justify-self-auto '/>
+      <img src={TechCrunchImg} className='col-span-2 w-3/4 md:col-span-1 lg:w-full md:justify-self-start lg:justify-self-auto '/>
+      <img src={BusinessInsiderImg} className='col-span-1 md:w-1/2 lg:w-full md:justify-self-end lg:justify-self-auto '/>
+      <img src={FastCompanyImg} className='col-span-1 md:w-1/2 lg:w-full md:justify-self-start lg:justify-self-auto '/>
     </div>
-    <div className='flex justify-center'>
-        <img src={AppstoreImg} className='w-1/3 mr-4'/>
-        <img src={GooglePlayImg} className='w-1/3'/>
-    </div> */}
+    <div className='flex justify-center mt-16 scale-125'>
+        <img src={AppstoreImg} className= 'mr-4'/>
+        <img src={GooglePlayImg} className=''/>
+    </div>
 
-    <Section title='Understand and grow your net worth' image={UnderstandAndGrowImg}>
+    <Section title='Understand and grow your net worth' image={UnderstandAndGrowImg} >
       The first step to financial health is knowing where you stand. 
       Monarch syncs with 11,200+ financial institutions, so you'll always have 
       a complete and up-to-date view of your assets, liabilities, and 
       spending.
     </Section>
 
-    <Section title='Collaborate with a partner securely' image={CollaborateImg}>
+    <Section title='Collaborate with a partner securely' image={CollaborateImg} isReversed={true}>
       Invite a partner to join your finances without the hassle of 
       switching banks. They'll get their own login, and you'll both get a 
       shared view of what's happening with your money.
