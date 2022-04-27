@@ -6,6 +6,6 @@
     
 }
 body {
-    background-color: rgb(248 250 252);
+    background: linear-gradient(white, rgb(248 250 252));
     color: rgb(30 58 138);
 }

@@ -3,7 +3,7 @@ import Button from './Button'
 
 const Header = () => {
   return ( 
-    <header className='flex justify-between items-center px-6 py-3 border-b sticky top-0 bg-slate-50 opacity-95'>
+    <header className='flex justify-between items-center px-6 py-3 border-b sticky top-0 bg-slate-50 opacity-95 z-50'>
       <div className='flex justify-between items-center'>
         <h2 className='font-logo text-3xl text-rose-400 mr-2'>$</h2>
         <h2 className='font-logo text-3xl text-blue-900'>Monarch</h2>
