@@ -37,6 +37,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/plugin-transform-runtime", "virtual:445f54bb33022b97c7500c3547b58c18091fe8fc79c4abb5d481972ee17a1270cab9ea3bef3b9bd10d0a2b6e69431cd6b5f6bd809bc65331d7eff002a831da9c#npm:7.17.0"],\
             ["@babel/preset-env", "virtual:445f54bb33022b97c7500c3547b58c18091fe8fc79c4abb5d481972ee17a1270cab9ea3bef3b9bd10d0a2b6e69431cd6b5f6bd809bc65331d7eff002a831da9c#npm:7.16.11"],\
             ["@babel/preset-react", "virtual:445f54bb33022b97c7500c3547b58c18091fe8fc79c4abb5d481972ee17a1270cab9ea3bef3b9bd10d0a2b6e69431cd6b5f6bd809bc65331d7eff002a831da9c#npm:7.16.7"],\
+            ["@babel/runtime", "npm:7.17.9"],\
             ["@fortawesome/fontawesome-svg-core", "npm:6.1.1"],\
             ["@fortawesome/free-regular-svg-icons", "npm:6.1.1"],\
             ["@fortawesome/free-solid-svg-icons", "npm:6.1.1"],\
@@ -5528,6 +5529,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/plugin-transform-runtime", "virtual:445f54bb33022b97c7500c3547b58c18091fe8fc79c4abb5d481972ee17a1270cab9ea3bef3b9bd10d0a2b6e69431cd6b5f6bd809bc65331d7eff002a831da9c#npm:7.17.0"],\
             ["@babel/preset-env", "virtual:445f54bb33022b97c7500c3547b58c18091fe8fc79c4abb5d481972ee17a1270cab9ea3bef3b9bd10d0a2b6e69431cd6b5f6bd809bc65331d7eff002a831da9c#npm:7.16.11"],\
             ["@babel/preset-react", "virtual:445f54bb33022b97c7500c3547b58c18091fe8fc79c4abb5d481972ee17a1270cab9ea3bef3b9bd10d0a2b6e69431cd6b5f6bd809bc65331d7eff002a831da9c#npm:7.16.7"],\
+            ["@babel/runtime", "npm:7.17.9"],\
             ["@fortawesome/fontawesome-svg-core", "npm:6.1.1"],\
             ["@fortawesome/free-regular-svg-icons", "npm:6.1.1"],\
             ["@fortawesome/free-solid-svg-icons", "npm:6.1.1"],\

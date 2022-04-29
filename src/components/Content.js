@@ -70,60 +70,60 @@ const Content = () => {
         <img src={GooglePlayImg} className=''/>
     </div>
 
-    <Section title='Understand and grow your net worth' image={UnderstandAndGrowImg} >
+    <Section title='Understand and grow your net worth' image={UnderstandAndGrowImg} svg={<i className="fa-solid fa-layer-group"></i>}>
       The first step to financial health is knowing where you stand. 
       Monarch syncs with 11,200+ financial institutions, so you'll always have 
       a complete and up-to-date view of your assets, liabilities, and 
       spending.
     </Section>
 
-    <Section title='Collaborate with a partner securely' image={CollaborateImg} isReversed={true}>
+    <Section title='Collaborate with a partner securely' image={CollaborateImg} svg={<i className="fa-solid fa-user-group"></i>} isReversed={true}>
       Invite a partner to join your finances without the hassle of 
       switching banks. They'll get their own login, and you'll both get a 
       shared view of what's happening with your money.
     </Section>
 
-    <Section title='Get personalized advice' image={PersonalizedImg}>
+    <Section title='Get personalized advice' image={PersonalizedImg} svg={<i className="fa-solid fa-thumbs-up"></i>}>
       Answer a few key questions about yourself to get advice on how 
       to build financial resilience and make progress toward your goals.
     </Section>
 
-    <Section title='Track all of your investments in one place' image={InvestmentsImg} isReversed={true}>
+    <Section title='Track all of your investments in one place' image={InvestmentsImg} svg={<i className="fa-solid fa-arrow-trend-up"></i>} isReversed={true}>
       Know exactly what you're invested in and how your portfolio is 
       performing by syncing your investment holdings into one central view.
     </Section>
 
-    <Section title='Fully customize your dashboard and charts' image={CustomizeImg}>
+    <Section title='Fully customize your dashboard and charts' image={CustomizeImg} svg={<i className="fa-solid fa-table-cells-large"></i>}>
       Use our beautiful reports, charts, and visualizations to identify 
       trends in your finances, like how you much you’re saving and spending each month. 
       Customize the layout to focus on what matters to you.
     </Section>
 
-    <Section title='Budget the way you want and stay on track' image={BudgetImg} isReversed={true}>
+    <Section title='Budget the way you want and stay on track' image={BudgetImg} svg={<i className="fa-solid fa-map"></i>} isReversed={true}>
       Setup a budget to automatically monitor your spending and stay on 
       track with your goals. We'll notify you when you go over budget and help you 
       get back on track.
     </Section>
 
-    <Section title='Stay on top of your spending' image={SpendingImg}>
+    <Section title='Stay on top of your spending' image={SpendingImg} svg={<i className="fa-solid fa-chart-column"></i>}>
       See a breakdown of where your money is going so you know how to 
       improve. Easily identify subscriptions you no longer want, and catch fraud 
       quickly with transaction notifications.
     </Section>
 
-    <Section title='Create a plan to achieve your financial goals' image={PlanImg} isReversed={true}>
+    <Section title='Create a plan to achieve your financial goals' image={PlanImg} svg={<i className="fa-solid fa-bullseye"></i>} isReversed={true}>
       Track all of your financial goals and create a plan to achieve 
       them. If you get off track, no problem! We'll always help you get back on 
       track when life happens.
     </Section>
 
-    <Section title='Security you can trust' image={SecurityImg}>
+    <Section title='Security you can trust' image={SecurityImg} svg={<i class="fa-solid fa-lock"></i>}>
       Monarch protects your data with bank-level security. Your login details are 
       never stored and access to your accounts is limited to read-only, we cannot 
       move your money.
     </Section>
 
-    <Section title='Focus on your financial health, not on ads' image={AdsImg} isReversed={true}>
+    <Section title='Focus on your financial health, not on ads' image={AdsImg} svg={<i className="fa-solid fa-ban"></i>} isReversed={true}>
       At Monarch, we're committed to building the best product to improve your 
       financial life. That means an uncluttered experience with no distracting 
       ads, and we'll never sell your financial data to third parties.

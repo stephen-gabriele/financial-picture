@@ -7,16 +7,16 @@ import Footer from './components/Footer'
 import MobileMenu from './components/MobileMenu'
 
 const App = () => {
-  //const [menuIsOpen, setMenuIsOpen] = React.useState(false)
+  const [menuIsOpen, setMenuIsOpen] = React.useState(false)
 
   const toggleMenu = () => {
-    //setMenuIsOpen(prevMenu => !prevMenu)
-    console.log('toggled!')
+    setMenuIsOpen(prevMenu => !prevMenu)
+    console.log(menuIsOpen)
   }
 
     return (
     <div>
-        {/* <MobileMenu /> */}
+        {menuIsOpen ? <MobileMenu toggleMenu={toggleMenu}/> : ''}
         <Header toggleMenu={toggleMenu}/>
         <Content />
     </div>
