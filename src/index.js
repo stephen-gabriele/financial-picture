@@ -20,6 +20,7 @@ const App = () => {
         <Header toggleMenu={toggleMenu}/>
         <Content />
         <Subfooter />
+        <Footer />
     </div>
     )
 }
