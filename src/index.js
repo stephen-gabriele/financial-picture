@@ -4,12 +4,20 @@ import './styles/main.css'
 import Header from './components/Header'
 import Content from './components/Content'
 import Footer from './components/Footer'
-import Navbar from './components/Navbar'
+import MobileMenu from './components/MobileMenu'
 
 const App = () => {
+  //const [menuIsOpen, setMenuIsOpen] = React.useState(false)
+
+  const toggleMenu = () => {
+    //setMenuIsOpen(prevMenu => !prevMenu)
+    console.log('toggled!')
+  }
+
     return (
     <div>
-        <Header />
+        {/* <MobileMenu /> */}
+        <Header toggleMenu={toggleMenu}/>
         <Content />
     </div>
     )
