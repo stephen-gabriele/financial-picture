@@ -28,7 +28,7 @@ import {
 
 const Content = () => {
   return (
-  <div className='flex flex-col text-center items-center mx-10 md:mx-auto lg:mx-auto mt-20 md:max-w-screen-md lg:max-w-screen-lg mb-32'>
+  <div className='flex flex-col text-center items-center mx-10 md:mx-auto mt-20 md:max-w-screen-md lg:max-w-screen-lg mb-32'>
     <Title>The modern way to manage your money</Title>
     <ParagraphText>Managing money can be complicated. Track all of your 
       accounts in one place, collaborate with a partner, and create a 

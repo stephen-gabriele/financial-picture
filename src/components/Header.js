@@ -7,8 +7,8 @@ const Header = ({toggleMenu}) => {
   return ( 
     <header className=' px-6 py-3 border-b sticky top-0 bg-slate-50 opacity-95 z-10'>
       <div className='mx-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg flex justify-between items-center'>
-        <div className='flex justify-between items-center'>
-        <i className="fa-solid fa-user-astronaut text-3xl text-rose-400 mr-2"></i>
+        <div className='flex justify-between items-center hover:cursor-pointer'>
+          <i className="fa-solid fa-user-astronaut text-3xl text-rose-400 mr-2"></i>
           <h2 className='font-logo text-3xl text-blue-900'>Monarch</h2>
         </div>
         <ul className='hidden md:flex'>
