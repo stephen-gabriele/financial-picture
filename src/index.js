@@ -5,13 +5,13 @@ import Header from './components/Header'
 import Content from './components/Content'
 import Footer from './components/Footer'
 import MobileMenu from './components/MobileMenu'
+import Subfooter from './components/Subfooter'
 
 const App = () => {
   const [menuIsOpen, setMenuIsOpen] = React.useState(false)
 
   const toggleMenu = () => {
     setMenuIsOpen(prevMenu => !prevMenu)
-    console.log(menuIsOpen)
   }
 
     return (
@@ -19,6 +19,7 @@ const App = () => {
         {menuIsOpen ? <MobileMenu toggleMenu={toggleMenu}/> : ''}
         <Header toggleMenu={toggleMenu}/>
         <Content />
+        <Subfooter />
     </div>
     )
 }

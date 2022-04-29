@@ -28,7 +28,7 @@ import {
 
 const Content = () => {
   return (
-  <div className='flex flex-col text-center items-center mx-10 md:mx-auto lg:mx-auto mt-20 md:max-w-screen-md lg:max-w-screen-lg'>
+  <div className='flex flex-col text-center items-center mx-10 md:mx-auto lg:mx-auto mt-20 md:max-w-screen-md lg:max-w-screen-lg mb-32'>
     <Title>The modern way to manage your money</Title>
     <ParagraphText>Managing money can be complicated. Track all of your 
       accounts in one place, collaborate with a partner, and create a 
@@ -128,18 +128,6 @@ const Content = () => {
       financial life. That means an uncluttered experience with no distracting 
       ads, and we'll never sell your financial data to third parties.
     </Section>
-
-    <div className='bg-slate-800 text-white py-32 '>
-      <div className='md:max-w-screen-md mx-auto'>
-        <Title>The modern way to manage your money</Title>
-          <ParagraphText>Monarch is an all-in-one platform that brings together 
-            everything you need to optimize your finances. Join thousands of 
-            families using Monarch to achieve financial resilience.</ParagraphText>
-        <Button text='Sign up now'/>
-        <Button className='ml-8' text='Browse features' theme='secondary'/>
-      </div>
-    </div>
-
   </div> );
 }
  
