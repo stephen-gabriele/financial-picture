@@ -11,17 +11,17 @@ const App = () => {
   const [menuIsOpen, setMenuIsOpen] = React.useState(false)
 
   const toggleMenu = () => {
-    setMenuIsOpen(prevMenu => !prevMenu)
+    setMenuIsOpen((prevMenu) => !prevMenu)
   }
 
-    return (
+  return (
     <div>
-        {menuIsOpen ? <MobileMenu toggleMenu={toggleMenu}/> : ''}
-        <Header toggleMenu={toggleMenu}/>
-        <Content />
-        <Subfooter />
-        <Footer />
+      {menuIsOpen ? <MobileMenu toggleMenu={toggleMenu} /> : ''}
+      <Header toggleMenu={toggleMenu} />
+      <Content />
+      <Subfooter />
+      <Footer />
     </div>
-    )
+  )
 }
 ReactDOM.render(<App />, document.getElementById('root'))
