@@ -27,6 +27,19 @@ import {
 } from '../images'
 
 const Content = () => {
+
+  const reviews = {
+    'Andy P' : 'This is the best app i have ever used and I want to marry the devs',
+    'Joshua W.' : 'I tried YNAB, I tried Mint, I use Monarch. Soooo much more intuitive and the UI/UX is delightful.',
+    'Stephen C.' : 'Its beautifully designed and it just works, as advertised; Significantly fewer syncing issues than its competitors.',
+    'Aaron V.' : 'Makes it easy to see all my spending across accounts, with no ads and no unwanted advisors calling me.'
+  }
+
+  const reviewCards = []
+  for (const name in reviews) {
+    reviewCards.push(<ReviewCard name={name} review={reviews[name]} />)
+  }
+
   return (
     <div className='flex flex-col text-center items-center mx-10 md:mx-auto mt-20 md:max-w-screen-md lg:max-w-screen-lg mb-32'>
       <Title className='mt-6'>The modern way to manage your money</Title>
@@ -50,7 +63,9 @@ const Content = () => {
       </div>
 
       <div className='grid md:grid-cols-2 grid-flow-row gap-6 mt-16'>
-        <ReviewCard
+        {reviewCards}
+        
+        {/* <ReviewCard
           name='Andy P.'
           review='This is the best app i have ever used and I want to marry the devs'
         />
@@ -65,7 +80,7 @@ const Content = () => {
         <ReviewCard
           name='Aaron V.'
           review='Makes it easy to see all my spending across accounts, with no ads and no unwanted advisors calling me.'
-        />
+        /> */}
       </div>
 
       <div className='mt-16 grid grid-rows-3 md:grid-rows-2 lg:grid-rows-1 grid-cols-2 lg:grid-cols-4 gap-y-5 gap-x-2 grid-flow-row items-center justify-items-center w-96 md:w-auto'>
