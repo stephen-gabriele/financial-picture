@@ -12,7 +12,7 @@ const Subfooter = () => {
           Monarch is an all-in-one platform that brings together everything you need to optimize
           your finances. Join thousands of families using Monarch to achieve financial resilience.
         </ParagraphText>
-        <div className='mx-auto mt-4'>
+        <div className='mx-auto mt-8'>
           <Button text='Sign up now' />
           <Button className='ml-4' text='Browse features' theme='secondary' />
         </div>

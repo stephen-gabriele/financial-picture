@@ -29,17 +29,17 @@ import {
 const Content = () => {
   return (
     <div className='flex flex-col text-center items-center mx-10 md:mx-auto mt-20 md:max-w-screen-md lg:max-w-screen-lg mb-32'>
-      <Title>The modern way to manage your money</Title>
-      <ParagraphText>
+      <Title className='mt-6'>The modern way to manage your money</Title>
+      <ParagraphText className='mt-6'>
         Managing money can be complicated. Track all of your accounts in one place, collaborate with
         a partner, and create a long term plan to achieve your goals. Get personalized advice along
         the way.
       </ParagraphText>
-      <Button text='Sign up now' />
+      <Button text='Sign up now' className='mt-6'/>
 
-      <img src={LaptopImg} />
+      <img src={LaptopImg} className='mt-6' />
 
-      <Subtitle>What people are saying about Monarch</Subtitle>
+      <Subtitle className='mt-6'>What people are saying about Monarch</Subtitle>
       <div className='flex justify-between items-center mt-9 font-bold text-xs'>
         <div className='bg-amber-300 px-4 py-1 mr-3 rounded-full'>★ 4.8</div>
         <div>ON THE APP STORE</div>

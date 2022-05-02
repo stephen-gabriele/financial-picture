@@ -20,17 +20,17 @@ const Section = ({
       />
       <div>
         <div
-          className={`flex bg-rose-100 text-red-500 text-2xl w-16 h-16 mr-auto ml-auto rounded-full mb-8 mt-16 justify-center items-center ${
+          className={`flex bg-rose-100 text-red-500 text-2xl w-16 h-16 mr-auto ml-auto rounded-full mt-12 justify-center items-center ${
             isReversed ? 'lg:mr-0' : 'lg:ml-0'
           }`}
         >
           {svg}
         </div>
-        <Title className={isReversed ? 'lg:text-right' : 'lg:text-left'}>{title}</Title>
-        <ParagraphText className={isReversed ? 'lg:text-right' : 'lg:text-left'}>
+        <Title className={`mt-8 ${isReversed ? 'lg:text-right' : 'lg:text-left'}`}>{title}</Title>
+        <ParagraphText className={`mt-6 ${isReversed ? 'lg:text-right' : 'lg:text-left'}`}>
           {children}
         </ParagraphText>
-        <div className='flex space-x-5 justify-center lg:justify-start'>
+        <div className='flex space-x-5 justify-center lg:justify-start mt-6'>
           <Button text='Sign up now' />
           <Button theme='secondary' text='Learn more' />
         </div>
