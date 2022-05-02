@@ -54,11 +54,11 @@ const Content = () => {
 
       <Subtitle className='mt-6'>What people are saying about Monarch</Subtitle>
       <div className='flex justify-between items-center mt-9 font-bold text-xs'>
-        <div className='bg-amber-300 px-4 py-1 mr-3 rounded-full'>★ 4.8</div>
+        <div className='bg-amber-300 px-4 py-1 mr-3 rounded-full'>★ 6.9</div>
         <div>ON THE APP STORE</div>
       </div>
       <div className='flex justify-between items-center mt-5 font-bold text-xs'>
-        <div className='bg-amber-300 px-4 py-1 mr-3 rounded-full'>★ 4.8</div>
+        <div className='bg-amber-300 px-4 py-1 mr-3 rounded-full'>★ 4.2</div>
         <div>ON GOOGLE PLAY</div>
       </div>
 

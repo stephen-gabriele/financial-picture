@@ -2,7 +2,7 @@ import React from 'react'
 
 const FooterElement = ({ className = '', children }) => {
   return ( 
-    <p className={`text-lg leading-loose hover:text-orange-500 hover:cursor-pointer ${className}`}>
+    <p className={`mt-2 text-lg leading-loose transition ease-in-out delay-100 hover:text-orange-500 hover:cursor-pointer ${className}`}>
       {children}
     </p>
    );
