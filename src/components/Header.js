@@ -18,8 +18,8 @@ const Header = ({ toggleMenu }) => {
           <HeaderMenuItem>Company</HeaderMenuItem>
         </ul>
         <div className='flex justify-between items-center'>
-          <Button size='small' text='Log in' theme='secondary' className='hidden lg:block mr-2' />
-          <Button size='small' text='Sign up' />
+          <Button size='sm' text='Log in' theme='secondary' className='hidden lg:block mr-2' />
+          <Button size='sm' text='Sign up' />
           <div
             className='flex ml-3 h-1/2 flex-col hover:cursor-pointer md:hidden'
             onClick={toggleMenu}
