@@ -14,6 +14,10 @@ const App = () => {
     setMenuIsOpen((prevMenu) => !prevMenu)
   }
 
+  React.useEffect(() => {
+    document.documentElement.style.overflow= menuIsOpen ? 'hidden' : 'visible'
+  }, [menuIsOpen])
+
   return (
     <div>
       {menuIsOpen ? <MobileMenu toggleMenu={toggleMenu} /> : ''}

@@ -37,7 +37,7 @@ const Content = () => {
 
   const reviewCards = []
   for (const name in reviews) {
-    reviewCards.push(<ReviewCard name={name} review={reviews[name]} />)
+    reviewCards.push(<ReviewCard key={name} name={name} review={reviews[name]} />)
   }
 
   return (
