@@ -1,11 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Button from './Button'
 import HeaderMenuItem from './HeaderMenuItem'
 import Modal from './Modal'
 
 const Header = ({ toggleMenu }) => {
-  const [loginModalIsOpen, setLoginModalIsOpen] = React.useState(false)
-  const [signUpModalIsOpen, setSignUpModalIsOpen] = React.useState(false)
+  const [loginModalIsOpen, setLoginModalIsOpen] = useState(false)
+  const [signUpModalIsOpen, setSignUpModalIsOpen] = useState(false)
 
   return (
     <header className=' px-6 py-3 border-b sticky top-0 bg-slate-50 opacity-95 z-10'>
