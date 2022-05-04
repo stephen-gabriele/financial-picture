@@ -1,10 +1,14 @@
 import React from 'react'
 import Button from './Button'
 import HeaderMenuItem from './HeaderMenuItem'
+import Modal from './Modal'
 
 const Header = ({ toggleMenu }) => {
+  const [loginModalIsOpen, setLoginModalIsOpen] = React.useState(false)
+
   return (
     <header className=' px-6 py-3 border-b sticky top-0 bg-slate-50 opacity-95 z-10'>
+      <Modal modalIsOpen={loginModalIsOpen} onClose={() => setLoginModalIsOpen(false)}>Login Modal</Modal>
       <div className='mx-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg flex justify-between items-center'>
         <div className='flex justify-between items-center hover:cursor-pointer'>
           <i className='fa-solid fa-user-astronaut text-3xl text-rose-400 mr-2'></i>
@@ -18,7 +22,7 @@ const Header = ({ toggleMenu }) => {
           <HeaderMenuItem>Company</HeaderMenuItem>
         </ul>
         <div className='flex justify-between items-center'>
-          <Button size='sm' text='Log in' theme='secondary' className='hidden lg:block mr-2' />
+          <Button size='sm' text='Log in' theme='secondary' className='hidden lg:block mr-2' handleClick={() => setLoginModalIsOpen(true)}/>
           <Button size='sm' text='Sign up' />
           <div
             className='flex ml-3 h-1/2 flex-col hover:cursor-pointer md:hidden'

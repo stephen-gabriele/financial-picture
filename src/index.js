@@ -10,7 +10,6 @@ import Modal from './components/Modal'
 
 const App = () => {
   const [menuIsOpen, setMenuIsOpen] = React.useState(false)
-  const [modalIsOpen, setModalIsOpen] = React.useState(false)
 
   const toggleMenu = () => {
     setMenuIsOpen((prevMenu) => !prevMenu)
@@ -24,7 +23,6 @@ const App = () => {
     <div>
       {menuIsOpen ? <MobileMenu toggleMenu={toggleMenu} /> : ''}
       <Header toggleMenu={toggleMenu} />
-      <Modal modalIsOpen={modalIsOpen} onClose={() => setModalIsOpen(false)}>Waddup boys</Modal>
       <Content />
       <Subfooter />
       <Footer />
