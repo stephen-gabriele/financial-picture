@@ -7,7 +7,6 @@ const Modal = ({onClose, modalIsOpen, children}) => {
   let menuRef = useRef()
 
   // handleOutsideClick = (event) => {
-  //     console.log('looping?')
   //     if (!menuRef.current.contains(event.target)) console.log('')//onClose()
   //   }
 
