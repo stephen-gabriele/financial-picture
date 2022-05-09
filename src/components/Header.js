@@ -4,10 +4,15 @@ import HeaderMenuItem from './HeaderMenuItem'
 import { ModalContext } from '../Contexts/ModalContext'
 
 const Header = ({ toggleMenu }) => {
-  const {modalContent, modalIsOpen, setModal, openModal, closeModal} = useContext(ModalContext)
+  const {setModal, openModal} = useContext(ModalContext)
   
   const openSignUpModal = () => {
     setModal(<div>Sign Up Modal</div>)
+    openModal()
+  }
+
+  const openLogInModal = () => {
+    setModal(<div>Log In Modal</div>)
     openModal()
   }
 
@@ -26,7 +31,7 @@ const Header = ({ toggleMenu }) => {
           <HeaderMenuItem>Company</HeaderMenuItem>
         </ul>
         <div className='flex justify-between items-center'>
-          <Button size='sm' text='Log in' theme='secondary' className='hidden lg:block mr-2'/>
+          <Button size='sm' text='Log in' theme='secondary' className='hidden lg:block mr-2' onClick={openLogInModal}/>
           <Button size='sm' text='Sign up' onClick={openSignUpModal}/>
           <div
             className='flex ml-3 h-1/2 flex-col hover:cursor-pointer md:hidden'

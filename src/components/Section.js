@@ -1,7 +1,9 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Title from './Title'
 import ParagraphText from './ParagraphText'
 import Button from './Button'
+import { ModalContext } from '../Contexts/ModalContext'
+import SignUpModalContent from './SignUpModalContent'
 
 const Section = ({
   title = 'Section Title',
@@ -10,6 +12,13 @@ const Section = ({
   svg = <i className='fa-solid fa-layer-group'></i>,
   children
 }) => {
+  const {setModal, openModal} = useContext(ModalContext)
+  
+  const openSignUpModal = () => {
+    setModal(<SignUpModalContent />)
+    openModal()
+  }
+
   return (
     <div className='flex flex-col lg:flex-row justify-center content-center mt-16'>
       <img
@@ -31,7 +40,7 @@ const Section = ({
           {children}
         </ParagraphText>
         <div className='flex space-x-5 justify-center lg:justify-start mt-6'>
-          <Button text='Sign up now' />
+          <Button text='Sign up now' onClick={openSignUpModal}/>
           <Button theme='secondary' text='Learn more' />
         </div>
       </div>

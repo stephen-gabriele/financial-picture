@@ -5,7 +5,7 @@ const Button = ({
   text = 'Button Text',
   theme = 'primary',
   size = 'md',
-  handleClick
+  onClick
 }) => {
   const defaults = 'rounded-full transition ease-in-out delay-50 font-bold hover:scale-105 hover:drop-shadow-md'
 
@@ -22,7 +22,7 @@ const Button = ({
 
   return (
     <button
-      onClick={handleClick}
+      onClick={onClick}
       className={`${defaults} ${themes[theme]} ${sizes[size]} ${className}`}
     >
       {text}

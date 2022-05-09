@@ -1,10 +1,12 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Button from './Button'
 import ReviewCard from './ReviewCard'
 import Subtitle from './Subtitle'
 import Title from './Title'
 import ParagraphText from './ParagraphText'
 import Section from './Section'
+import { ModalContext } from '../Contexts/ModalContext'
+import SignUpModalContent from './SignUpModalContent'
 
 import {
   AdsImg,
@@ -28,6 +30,13 @@ import {
 
 const Content = () => {
 
+  const {setModal, openModal} = useContext(ModalContext)
+  
+  const openSignUpModal = () => {
+    setModal(<SignUpModalContent />)
+    openModal()
+  }
+
   const reviews = {
     'Andy P' : 'This is the best app i have ever used and I want to marry the devs',
     'Joshua W.' : 'I tried YNAB, I tried Mint, I use Monarch. Soooo much more intuitive and the UI/UX is delightful.',
@@ -48,7 +57,7 @@ const Content = () => {
         a partner, and create a long term plan to achieve your goals. Get personalized advice along
         the way.
       </ParagraphText>
-      <Button text='Sign up now' className='mt-6'/>
+      <Button text='Sign up now' className='mt-6' onClick={openSignUpModal}/>
 
       <img src={LaptopImg} className='mt-6' />
 
