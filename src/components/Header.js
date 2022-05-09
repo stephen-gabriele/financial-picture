@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect} from 'react'
 import Button from './Button'
 import HeaderMenuItem from './HeaderMenuItem'
 import { ModalContext } from '../Contexts/ModalContext'
@@ -6,7 +6,10 @@ import { ModalContext } from '../Contexts/ModalContext'
 const Header = ({ toggleMenu }) => {
   const {modalContent, modalIsOpen, setModal, openModal, closeModal} = useContext(ModalContext)
   
-  console.log(openModal)
+  const openSignUpModal = () => {
+    setModal(<div>Sign Up Modal</div>)
+    openModal()
+  }
 
   return (
     <header className=' px-6 py-3 border-b sticky top-0 bg-slate-50 opacity-95 z-10'>
@@ -24,7 +27,7 @@ const Header = ({ toggleMenu }) => {
         </ul>
         <div className='flex justify-between items-center'>
           <Button size='sm' text='Log in' theme='secondary' className='hidden lg:block mr-2'/>
-          <Button size='sm' text='Sign up'/>
+          <Button size='sm' text='Sign up' onClick={openSignUpModal}/>
           <div
             className='flex ml-3 h-1/2 flex-col hover:cursor-pointer md:hidden'
             onClick={toggleMenu}
