@@ -2,17 +2,19 @@ import React, {useContext, useEffect} from 'react'
 import Button from './Button'
 import HeaderMenuItem from './HeaderMenuItem'
 import { ModalContext } from '../Contexts/ModalContext'
+import SignUpModalContent from './SignUpModalContent'
+import LogInModalContent from './LogInModalContent'
 
 const Header = ({ toggleMenu }) => {
   const {setModal, openModal} = useContext(ModalContext)
   
   const openSignUpModal = () => {
-    setModal(<div>Sign Up Modal</div>)
+    setModal(<SignUpModalContent />)
     openModal()
   }
 
   const openLogInModal = () => {
-    setModal(<div>Log In Modal</div>)
+    setModal(<LogInModalContent/>)
     openModal()
   }
 

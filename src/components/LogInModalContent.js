@@ -2,10 +2,10 @@ import React, {useState} from 'react'
 import Button from './Button'
 import Subtitle from './Subtitle'
 
-const SignUpModalContent = () => {
+const LogInModalContent = () => {
 
   const [formData, setFormData] = useState(
-    {firstName: "", lastName: "", email: "", password: '', isSubmitted:false}
+    {email: "", password: '', isSubmitted:false}
   )
   function handleChange(event) {
     setFormData(prevFormData => {
@@ -31,22 +31,6 @@ const SignUpModalContent = () => {
     {!formData.isSubmitted && <div className='flex flex-col'>
       <form className='flex flex-col items-center'>
         <input
-          className='px-1 py-2 rounded-md'
-          type="text"
-          placeholder="First Name"
-          onChange={handleChange}
-          name="firstName"
-          value={formData.firstName}
-        />
-        <input
-          className='mt-4 px-1 py-2 rounded-md'
-          type="text"
-          placeholder="Last Name"
-          onChange={handleChange}
-          name="lastName"
-          value={formData.lastName}
-        />
-        <input
           className='mt-4 px-1 py-2 rounded-md'
           type="email"
           placeholder="Email"
@@ -63,11 +47,11 @@ const SignUpModalContent = () => {
           value={formData.password}
         />
       </form>
-        <Button text='Sign Up' size='sm' onClick={submit} className='mt-8'/>
+        <Button text='Log In' size='sm' onClick={submit} className='mt-8'/>
     </div> }
-    {formData.isSubmitted && <Subtitle>Sucessfully Signed Up, {formData.firstName}!</Subtitle>}
+    {formData.isSubmitted && <Subtitle>Sucessfully Logged In!</Subtitle>}
   </div>
   );
 }
  
-export default SignUpModalContent
+export default LogInModalContent
