@@ -16,5 +16,12 @@ export const ModalProvider = props => {
     setModalIsOpen(false)
   }
 
-  return <ModalContext.Provider value={{modalContent, modalIsOpen, setModal, openModal, closeModal}}>{props.children}</ModalContext.Provider>
+  return <ModalContext.Provider 
+    value={{modalContent, 
+      modalIsOpen, 
+      setModal, 
+      openModal, 
+      closeModal
+    }}>{props.children}
+    </ModalContext.Provider>
 }
