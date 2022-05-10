@@ -4,13 +4,14 @@ import { ModalContext } from '../Contexts/ModalContext'
 
 const Modal = () => {
   const {modalContent, modalIsOpen, setModal, openModal, closeModal} = useContext(ModalContext)
-  if (!modalIsOpen) return null
-
+  
   let menuRef = useRef()
 
   const handleOutsideClick = (event) => {
     if (!menuRef.current.contains(event.target)) closeModal()
   }
+
+  if (!modalIsOpen) return null
 
   return ReactDOM.createPortal( 
     <div onClick={(e) => handleOutsideClick(e)} className='fixed top-0 left-0 right-0 bottom-0 bg-white/75 z-20'>
