@@ -11,7 +11,7 @@ export const AppProvider = props => {
   )
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  return ( <AppContext.Provider value={{userInfo, setUserInfo, isLoggedIn}}>
+  return ( <AppContext.Provider value={{userInfo, setUserInfo, isLoggedIn, setIsLoggedIn}}>
     {props.children}
   </AppContext.Provider> )
 }
