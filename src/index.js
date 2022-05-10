@@ -9,6 +9,7 @@ import Subfooter from './components/Subfooter'
 import Modal from './components/Modal'
 import { ModalProvider } from './Contexts/ModalContext'
 import { AppProvider } from './Contexts/AppContext'
+import { BrowserRouter as Router} from 'react-router-dom'
 
 const App = () => {
   const [menuIsOpen, setMenuIsOpen] = React.useState(false)

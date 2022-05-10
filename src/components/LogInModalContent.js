@@ -17,7 +17,6 @@ const LogInModalContent = () => {
           [event.target.name]: event.target.value
         }
     })
-    setIsLoggedIn(true)
   }
 
   const submit = () => {
@@ -28,6 +27,7 @@ const LogInModalContent = () => {
       }
     })
     console.log(formData)
+    setIsLoggedIn(true)
   }
 
   return ( 

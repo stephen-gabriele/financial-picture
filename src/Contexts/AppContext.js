@@ -6,7 +6,7 @@ export const AppProvider = props => {
   const [userInfo, setUserInfo] = useState(
     {firstName: '',
     lastName: '',
-    userName: '',
+    email: '',
     password: ''}
   )
   const [isLoggedIn, setIsLoggedIn] = useState(false)
