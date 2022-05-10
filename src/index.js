@@ -8,6 +8,7 @@ import MobileMenu from './components/MobileMenu'
 import Subfooter from './components/Subfooter'
 import Modal from './components/Modal'
 import { ModalProvider } from './Contexts/ModalContext'
+import { AppProvider } from './Contexts/AppContext'
 
 const App = () => {
   const [menuIsOpen, setMenuIsOpen] = React.useState(false)
@@ -22,6 +23,7 @@ const App = () => {
 
   return (
     <div>
+      <AppProvider>
       <ModalProvider>
         <Modal />
         {menuIsOpen ? <MobileMenu toggleMenu={toggleMenu} /> : ''}
@@ -30,6 +32,7 @@ const App = () => {
         <Subfooter />
         <Footer />
       </ModalProvider>
+      </AppProvider>
     </div>
   )
 }

@@ -2,11 +2,13 @@ import React, {useContext, useEffect} from 'react'
 import Button from './Button'
 import HeaderMenuItem from './HeaderMenuItem'
 import { ModalContext } from '../Contexts/ModalContext'
+import { AppContext } from '../Contexts/AppContext'
 import SignUpModalContent from './SignUpModalContent'
 import LogInModalContent from './LogInModalContent'
 
 const Header = ({ toggleMenu }) => {
   const {setModal, openModal} = useContext(ModalContext)
+  const {isLoggedIn} = useContext(AppContext)
   
   const openSignUpModal = () => {
     setModal(<SignUpModalContent />)
@@ -33,8 +35,9 @@ const Header = ({ toggleMenu }) => {
           <HeaderMenuItem>Company</HeaderMenuItem>
         </ul>
         <div className='flex justify-between items-center'>
-          <Button size='sm' text='Log in' theme='secondary' className='hidden lg:block mr-2' onClick={openLogInModal}/>
-          <Button size='sm' text='Sign up' onClick={openSignUpModal}/>
+          {!isLoggedIn && <Button size='sm' text='Log in' theme='secondary' className='hidden lg:block mr-2' onClick={openLogInModal}/>}
+          {!isLoggedIn && <Button size='sm' text='Sign up' onClick={openSignUpModal}/>}
+          {isLoggedIn && <Button size='sm' text='Your account'/>}
           <div
             className='flex ml-3 h-1/2 flex-col hover:cursor-pointer md:hidden'
             onClick={toggleMenu}

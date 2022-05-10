@@ -1,8 +1,11 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import Button from './Button'
 import Subtitle from './Subtitle'
+import { AppContext } from '../Contexts/AppContext'
 
 const LogInModalContent = () => {
+
+  const {setIsLoggedIn} = useContext(AppContext)
 
   const [formData, setFormData] = useState(
     {email: "", password: '', isSubmitted:false}
@@ -14,6 +17,7 @@ const LogInModalContent = () => {
           [event.target.name]: event.target.value
         }
     })
+    setIsLoggedIn(true)
   }
 
   const submit = () => {
