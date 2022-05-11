@@ -36,7 +36,6 @@ const LogInModalContent = () => {
         isSubmitted:true
       }
       })
-      console.log(formData)
       setIsLoggedIn(true)
       setUserInfo(expectedLogin)
       navigate('/dashboard')
@@ -44,6 +43,8 @@ const LogInModalContent = () => {
     }
     else setLoginValid(false)
   }
+
+
 
   return ( 
   <div className='w-72 h-fit'>
