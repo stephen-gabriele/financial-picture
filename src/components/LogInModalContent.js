@@ -5,11 +5,14 @@ import { AppContext } from '../Contexts/AppContext'
 
 const LogInModalContent = () => {
 
-  const {setIsLoggedIn} = useContext(AppContext)
+  const {setIsLoggedIn, expectedLogin, setUserInfo} = useContext(AppContext)
 
   const [formData, setFormData] = useState(
     {email: "", password: '', isSubmitted:false}
   )
+
+  const [loginValid, setLoginValid] = useState(true)
+
   function handleChange(event) {
     setFormData(prevFormData => {
       return {
@@ -17,33 +20,39 @@ const LogInModalContent = () => {
           [event.target.name]: event.target.value
         }
     })
+    setLoginValid(true)
   }
 
   const submit = () => {
-    setFormData(prevFormData => {
+    if (formData.email == expectedLogin.email && formData.password == expectedLogin.password) {
+      setFormData(prevFormData => {
       return {
         ...prevFormData,
         isSubmitted:true
       }
-    })
-    console.log(formData)
-    setIsLoggedIn(true)
+      })
+      console.log(formData)
+      setIsLoggedIn(true)
+      setUserInfo(expectedLogin)
+    }
+    else setLoginValid(false)
   }
 
   return ( 
-  <div className=''>
+  <div className='w-72 h-fit'>
+    <Subtitle>Log In</Subtitle>
     {!formData.isSubmitted && <div className='flex flex-col'>
-      <form className='flex flex-col items-center'>
+      <form className='flex flex-col mt-4'>
         <input
-          className='mt-4 px-1 py-2 rounded-md'
+          className={`mt-4 px-1 py-2 rounded-md border-2 outline-0 ${loginValid ? 'border-white' : 'border-rose-600'}`}
           type="email"
-          placeholder="Email"
+          placeholder="Email Address"
           onChange={handleChange}
           name="email"
           value={formData.email}
         />
         <input 
-          className='mt-4 px-1 py-2 rounded-md'
+          className={`mt-4 px-1 py-2 rounded-md border-2 outline-0 ${loginValid ? 'border-white' : 'border-rose-600'}`}
           type="password"
           placeholder="Password"
           onChange={handleChange}
