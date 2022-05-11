@@ -32,10 +32,9 @@ const App = () => {
           {menuIsOpen ? <MobileMenu toggleMenu={toggleMenu} /> : ''}
           <Header toggleMenu={toggleMenu} />
           <Routes>
-            <Route exact path='/' element={<Content />}></Route>
+            <Route exact path='/' element={<div><Content /><Subfooter /></div>}></Route>
             <Route path='/dashboard' element={<Dashboard />}></Route>
           </Routes>
-          <Subfooter />
           <Footer />
         </ModalProvider>
         </AppProvider>

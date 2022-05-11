@@ -10,10 +10,10 @@ const Dashboard = () => {
     console.log(userInfo)
   }
 
-  return ( <div className="my-6 text-center">
+  return ( <div className="pt-6 pb-64 bg-slate-100 text-center">
     <Title className="mt-6">Dashboard</Title>
     <Subtitle className="mt-6">Successfully Logged In, {userInfo.firstName}!</Subtitle>
-    <Button className="mt-6" onClick={logUserInfo} text="Log User Info"/>
+    <Button className="mt-12" onClick={logUserInfo} text="Log User Info"/>
   </div> );
 }
  
