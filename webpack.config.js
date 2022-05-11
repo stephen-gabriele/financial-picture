@@ -26,6 +26,7 @@ module.exports = {
     ]
   },
   devServer: {
+    // historyApiFallback: true,
     port: 8001
   },
   plugins: [

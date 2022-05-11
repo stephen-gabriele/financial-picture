@@ -2,8 +2,13 @@ import React, {useState, useContext} from 'react'
 import Button from './Button'
 import Subtitle from './Subtitle'
 import { AppContext } from '../Contexts/AppContext'
+import { useNavigate } from 'react-router-dom'
+import { ModalContext } from '../Contexts/ModalContext'
 
 const LogInModalContent = () => {
+
+  let navigate = useNavigate()
+  const {closeModal} = useContext(ModalContext)
 
   const {setIsLoggedIn, expectedLogin, setUserInfo} = useContext(AppContext)
 
@@ -34,6 +39,8 @@ const LogInModalContent = () => {
       console.log(formData)
       setIsLoggedIn(true)
       setUserInfo(expectedLogin)
+      navigate('/dashboard')
+      closeModal()
     }
     else setLoginValid(false)
   }

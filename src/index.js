@@ -9,7 +9,8 @@ import Subfooter from './components/Subfooter'
 import Modal from './components/Modal'
 import { ModalProvider } from './Contexts/ModalContext'
 import { AppProvider } from './Contexts/AppContext'
-import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+import Dashboard from './components/Dashboard'
 
 const App = () => {
   const [menuIsOpen, setMenuIsOpen] = React.useState(false)
@@ -30,7 +31,10 @@ const App = () => {
           <Modal />
           {menuIsOpen ? <MobileMenu toggleMenu={toggleMenu} /> : ''}
           <Header toggleMenu={toggleMenu} />
-          <Content />
+          <Routes>
+            <Route exact path='/' element={<Content />}></Route>
+            <Route path='/dashboard' element={<Dashboard />}></Route>
+          </Routes>
           <Subfooter />
           <Footer />
         </ModalProvider>

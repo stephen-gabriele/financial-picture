@@ -1,12 +1,19 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import Button from './Button'
 import Subtitle from './Subtitle'
+import { useNavigate } from 'react-router-dom'
+import { ModalContext } from '../Contexts/ModalContext'
+import { AppContext } from '../Contexts/AppContext'
 
 const SignUpModalContent = () => {
+
+  let navigate = useNavigate()
 
   const [formData, setFormData] = useState(
     {firstName: "", lastName: "", email: "", password: '', confirmPassword: '', isSubmitted:false}
   )
+  const {setIsLoggedIn} = useContext(AppContext)
+  const {closeModal} = useContext(ModalContext)
 
   const [emailValid, setEmailValid] = useState(true)
   const [firstNameValid, setFirstNameValid] = useState(true)
@@ -64,6 +71,9 @@ const SignUpModalContent = () => {
         }
       })
       console.log(formData)
+      setIsLoggedIn(true)
+      navigate('dashboard')
+      closeModal()
     }
   }
 
@@ -119,7 +129,6 @@ const SignUpModalContent = () => {
       </form>
         <Button text='Sign Up' size='sm' onClick={submit} className='mt-8'/>
     </div> }
-    {formData.isSubmitted && <Subtitle>Sucessfully Signed Up, {formData.firstName}!</Subtitle>}
   </div>
   );
 }
