@@ -10,7 +10,7 @@ const LogInModalContent = () => {
   let navigate = useNavigate()
   const {closeModal} = useContext(ModalContext)
 
-  const {setIsLoggedIn, expectedLogin, setUserInfo} = useContext(AppContext)
+  const {globalState, dispatch} = useContext(AppContext)
 
   const [formData, setFormData] = useState(
     {email: "", password: '', isSubmitted:false}
@@ -29,15 +29,16 @@ const LogInModalContent = () => {
   }
 
   const submit = () => {
-    if (formData.email == expectedLogin.email && formData.password == expectedLogin.password) {
+    if (formData.email == globalState.expectedLogin.email && formData.password == globalState.expectedLogin.password) {
       setFormData(prevFormData => {
       return {
         ...prevFormData,
         isSubmitted:true
       }
       })
-      setIsLoggedIn(true)
-      setUserInfo(expectedLogin)
+      dispatch({type: 'setIsLoggedIn', isLoggedIn: true})
+      dispatch({type: 'setUserInfo', userInfo: globalState.expectedLogin})
+      console.log(globalState)
       navigate('/dashboard')
       closeModal()
     }
@@ -70,7 +71,6 @@ const LogInModalContent = () => {
       </form>
         <Button text='Log In' size='sm' onClick={submit} className='mt-8'/>
     </div> }
-    {formData.isSubmitted && <Subtitle>Sucessfully Logged In!</Subtitle>}
   </div>
   );
 }

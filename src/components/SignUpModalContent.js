@@ -10,9 +10,9 @@ const SignUpModalContent = () => {
   let navigate = useNavigate()
 
   const [formData, setFormData] = useState(
-    {firstName: "", lastName: "", email: "", password: '', confirmPassword: '', isSubmitted:false}
+    {firstName: '', lastName: '', email: '', password: '', confirmPassword: '', isSubmitted:false}
   )
-  const {setIsLoggedIn} = useContext(AppContext)
+  const {globalState, dispatch} = useContext(AppContext)
   const {closeModal} = useContext(ModalContext)
 
   const [emailValid, setEmailValid] = useState(true)
@@ -70,12 +70,19 @@ const SignUpModalContent = () => {
           isSubmitted:true
         }
       })
-      console.log(formData)
-      setIsLoggedIn(true)
+      dispatch({type: 'setIsLoggedIn', isLoggedIn: true})
+      dispatch({type: 'setUserInfo', userInfo: {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        password: formData.password
+      }})
       navigate('dashboard')
       closeModal()
     }
   }
+
+  if (globalState.isLoggedIn) return null
 
   return ( 
   <div className='w-72 h-fit'>

@@ -1,25 +1,39 @@
-import React, { useState, createContext } from "react"
+import React, { createContext, useReducer } from "react"
 
 export const AppContext = createContext()
 
 export const AppProvider = props => {
-  const [userInfo, setUserInfo] = useState(
-    {firstName: '',
-    lastName: '',
-    email: '',
-    password: ''}
+
+  const reducer = (state, action) => {
+      switch (action.type) {
+        case 'setUserInfo':
+          return {...state, 
+            userInfo: action.userInfo}
+        case 'setIsLoggedIn':
+          return {...state,
+            isLoggedIn: action.isLoggedIn}
+      }
+  }
+
+  const [globalState, dispatch] = useReducer(reducer,
+    {
+      userInfo: 
+        {firstName: '',
+        lastName: '',
+        email: '',
+        password: ''},
+
+      expectedLogin: 
+        {firstName: 'Andrew',
+        lastName: 'Paynter',
+        email: 't@t.com',
+        password: 'testpass'},
+
+        isLoggedIn: false
+    }
   )
 
-  const [expectedLogin, setExpectedLogin] = useState(
-    {firstName: 'Andrew',
-    lastName: 'Paynter',
-    email: 'andrewpaynter97@gmail.com',
-    password: 'testpass'}
-  )
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-
-  return ( <AppContext.Provider value={{userInfo, setUserInfo, isLoggedIn, setIsLoggedIn, expectedLogin}}>
+  return ( <AppContext.Provider value={{globalState, dispatch}}>
     {props.children}
   </AppContext.Provider> )
 }

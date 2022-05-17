@@ -4,7 +4,7 @@ import MobileMenuItem from './MobileMenuItem'
 
 const MobileMenu = ({ toggleMenu }) => {
   return (
-    <div className='z-20 bg-white w-full h-full fixed top-0 left-0'>
+    <div className='z-20 bg-white w-full h-full fixed top-0 left-0 overflow-y-auto'>
       <div className=' px-8 py-4 border-b top-0 bg-white z-10 flex justify-between items-center drop-shadow-lg'>
         <div className='flex items-center content-center'>
           <i className='fa-solid fa-user-astronaut text-3xl text-rose-400 mr-2'></i>
