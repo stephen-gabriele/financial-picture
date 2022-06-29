@@ -50,10 +50,8 @@ const Footer = () => {
           <FooterElement>Thing</FooterElement>
           <FooterElement>Other Thing</FooterElement>
           <FooterElement>Thing</FooterElement>
-          <FooterElement>French Fry</FooterElement>
-          <FooterElement>Thing</FooterElement>
-          <FooterElement>Quadruple</FooterElement>
-          <FooterElement>Thing</FooterElement>
+          <FooterElement>Terms of Service</FooterElement>
+
         </div>
         <div className='lg:ml-16 mt-6'>
           <ParagraphText className='font-bold'>Category 1</ParagraphText>
@@ -62,20 +60,10 @@ const Footer = () => {
           <FooterElement>Pricing</FooterElement>
           <FooterElement>Thing</FooterElement>
           <FooterElement>Help</FooterElement>
-          <ParagraphText className='font-bold mt-4'>Category 1</ParagraphText>
-          <FooterElement>Someone Please Help</FooterElement>
-          <FooterElement>Thing</FooterElement>
-          <ParagraphText className='font-bold mt-4'>Category 1</ParagraphText>
-          <FooterElement>Thing</FooterElement>
-          <FooterElement>About</FooterElement>
-          <FooterElement>Help Me God</FooterElement>
-          <FooterElement>Thing</FooterElement>
         </div>
         <div className='lg:ml-16 mt-6'>
           <ParagraphText className='font-bold'>Category 1</ParagraphText>
           <FooterElement>About</FooterElement>
-          <FooterElement>Thing</FooterElement>
-          <FooterElement>Blog</FooterElement>
           <FooterElement>Contact Us</FooterElement>
           <ParagraphText className='font-bold mt-4'>Category 1</ParagraphText>
           <FooterElement>Thing</FooterElement>
