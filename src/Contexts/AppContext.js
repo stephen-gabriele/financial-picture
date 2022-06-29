@@ -29,7 +29,7 @@ export const AppProvider = props => {
         email: 't@t.com',
         password: 'testpass'},
 
-        isLoggedIn: false
+      isLoggedIn: true
     }
   )
 

@@ -12,6 +12,7 @@ import { AppProvider } from './Contexts/AppContext'
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import Dashboard from './components/Dashboard'
 import Features from './components/Features'
+import Transactions from './components/Transactions'
 
 const App = () => {
   const [menuIsOpen, setMenuIsOpen] = React.useState(false)
@@ -35,6 +36,7 @@ const App = () => {
           <Routes>
             <Route exact path='/' element={<div><Content /><Subfooter /></div>}></Route>
             <Route path='/dashboard' element={<Dashboard />}></Route>
+            <Route path='/transactions' element={<Transactions />}></Route>
             <Route path='/features' element={<Features />}></Route>
           </Routes>
           <Footer />
