@@ -80,7 +80,13 @@ const Transactions = () => {
   ])
 
   const transactionChart = transactionData.filter(transaction => {
-    return (formData.query.length === 0 || transaction.title.toLowerCase().includes(formData.query))
+    return (formData.query.length === 0 || 
+      ((formData.query.length <= 2 && 
+        transaction.title.toLowerCase().startsWith(formData.query)) 
+        || 
+      (formData.query.length > 2 && 
+        transaction.title.toLowerCase().includes(formData.query)))
+      )
   }).map((transaction) => {
     return (<tr className='p-4 border-b border-slate-200 grid grid-cols-5 items-center'>
         <td>{transaction.title}</td>
@@ -90,8 +96,6 @@ const Transactions = () => {
         <td>${transaction.amount}</td>
       </tr>)
   })
-
-  console.log(transactionChart)
 
     function handleChange(event) {
       setFormData(prevFormData => {
