@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import Title from './Title'
 // import {transactionData} from '../transactions.json'
 
@@ -110,7 +110,57 @@ const Transactions = () => {
           }
       })
     }
-    
+
+    function sortArray(category, inverse) {
+      console.log('sorting')
+      const sortedArray = transactionData
+      switch (category) {
+        case 'title' : {
+          sortedArray.sort((a, b) => {
+            if (a.title < b.title) return -1
+            if (a.title > b.title) return 1
+            return 0
+          })
+        }
+        break
+        case 'date' : {
+          sortedArray.sort((a, b) => {
+            if (a.date < b.date) return -1
+            if (a.date > b.date) return 1
+            return 0
+          })
+        }
+        break
+        case 'location' : {
+          sortedArray.sort((a, b) => {
+            if (a.location.city < b.location.city) return -1
+            if (a.location.city > b.location.city) return 1
+            return 0
+          })
+        }
+        break
+        case 'category' : {
+          sortedArray.sort((a, b) => {
+            if (a.category < b.category) return -1
+            if (a.category > b.category) return 1
+            return 0
+          })
+        }
+        break
+        case 'amount' : {
+          sortedArray.sort((a, b) => {
+            if (a.amount < b.amount) return -1
+            if (a.amount > b.amount) return 1
+            return 0
+          })
+        }
+      }
+      if (inverse) sortedArray.reverse()
+      console.log(sortedArray)
+      console.log(transactionData)
+      setTransactionData(sortedArray)
+    }
+
   return ( 
     <div className="py-32 bg-slate-100">
       <div className = 'flex flex-col w-2/3 mx-auto'>
@@ -128,7 +178,7 @@ const Transactions = () => {
         <table className='table-auto border border-slate-400 bg-slate-50 mt-4 text-center'>
           <thead>
             <tr className='py-2 px-4 bg-white border-b border-slate-300 grid grid-cols-5 items-center'>
-              <th>Title</th>
+              <th onClick={() => sortArray('title', false)}>Title</th>
               <th>Date</th>
               <th>Location</th>
               <th>Category</th>
