@@ -1,9 +1,12 @@
-import React from 'react'
-// import transactionData from '../transactions.json'
+import React, {useState} from 'react'
+// import {transactionData} from '../transactions.json'
 
 const Transactions = () => {
-  
-  const transactionData = [
+  const [formData, setFormData] = useState(
+    {query: "", queryValid: true}
+  )
+
+  const [transactionData, setTransactionData] = useState([
     {
     "title" : "LNO MANGMT COMPANY",
     "amount" : 1000,
@@ -74,35 +77,58 @@ const Transactions = () => {
     "category" : "Food and Drink",
     "location" : { "_id": 1, "city": "Sparta", "loc": { "x": -73.974, "y": 40.764 }}
   }
-  ]
+  ])
 
-  const transactionChart = transactionData.map((transaction) => {
-    return (<tr className='contents'>
-        <td className='py-4 border-b border-slate-200'>{transaction.title}</td>
-        <td className='py-4 border-b border-slate-200'>{transaction.date.toDateString()}</td>
-        <td className='py-4 border-b border-slate-200'>{transaction.category}</td>
-        <td className='py-4 border-b border-slate-200'>{transaction.location.city}</td>
-        <td className='py-4 border-b border-slate-200'>${transaction.amount}</td>
+  const transactionChart = transactionData.filter(transaction => {
+    return (formData.query.length === 0 || transaction.title.toLowerCase().includes(formData.query))
+  }).map((transaction) => {
+    return (<tr className='p-4 border-b border-slate-200 grid grid-cols-5 items-center'>
+        <td>{transaction.title}</td>
+        <td>{transaction.date.toDateString()}</td>
+        <td>{transaction.category}</td>
+        <td>{transaction.location.city}</td>
+        <td>${transaction.amount}</td>
       </tr>)
   })
-  return ( <div className="py-32 bg-slate-100 text-center">
-    <div class="flex flex-col px-96 mx-auto">
-      <table className='table-auto border border-slate-400 grid grid-cols-5 items-center bg-slate-50 '>
-        <thead className='contents'>
-          <tr className='contents'>
-            <th className='py-2 bg-white border-b border-slate-300'>Title</th>
-            <th className='py-2 bg-white border-b border-slate-300'>Date</th>
-            <th className='py-2 bg-white border-b border-slate-300'>Category</th>
-            <th className='py-2 bg-white border-b border-slate-300'>Location</th>
-            <th className='py-2 bg-white border-b border-slate-300'>Amount</th>
-          </tr>
-        </thead>
-        <tbody className='contents'>
-          {transactionChart}
-        </tbody>
-      </table>
-    </div>
-  </div> );
+
+  console.log(transactionChart)
+
+    function handleChange(event) {
+      setFormData(prevFormData => {
+        return {
+            ...prevFormData,
+            [event.target.name]: event.target.value
+          }
+      })
+    }
+    
+  return ( 
+    <div className="py-32 bg-slate-100">
+      <div className = 'flex flex-col w-2/3 mx-auto'>
+        <input
+            className={`text-right self-end w-1/5 px-1 py-2 rounded-md border-2 outline-0 ${formData.queryValid ? 'border-white' : 'border-rose-600'}`}
+            type="search"
+            placeholder="Search"
+            onChange={handleChange}
+            name="query"
+            value={formData.query}
+          />
+        <table className='table-auto border border-slate-400 bg-slate-50 mt-2 text-center'>
+          <thead>
+            <tr className='py-2 px-4 bg-white border-b border-slate-300 grid grid-cols-5 items-center'>
+              <th>Title</th>
+              <th>Date</th>
+              <th>Category</th>
+              <th>Location</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody className='flex flex-col'>
+            {transactionChart}
+          </tbody>
+        </table>
+      </div>
+    </div> );
 }
  
 export default Transactions;
