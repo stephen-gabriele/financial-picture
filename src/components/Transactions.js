@@ -80,6 +80,10 @@ const Transactions = () => {
   }
   ])
 
+  useEffect(() => {
+    sortArray('date', false)
+  }, [])
+
   const transactionChart = transactionData.filter(transaction => {
     return (formData.query.length === 0 || 
       ((formData.query.length <= 2 && 
@@ -90,12 +94,12 @@ const Transactions = () => {
       )
   }).map((transaction) => {
     return (<tr className='p-4 border-b border-slate-200 grid grid-cols-5 items-center'>
-        <td>{transaction.title}</td>
         <td>{
           `${transaction.date.getMonth()
           }/${transaction.date.getDate()
           }/${transaction.date.getFullYear()
           }`}</td>
+        <td>{transaction.title}</td>
         <td>{transaction.location.city}</td>
         <td>{transaction.category}</td>
         <td>${transaction.amount}</td>
@@ -111,53 +115,65 @@ const Transactions = () => {
       })
     }
 
-    function sortArray(category, inverse) {
-      console.log('sorting')
-      const sortedArray = transactionData
-      switch (category) {
-        case 'title' : {
-          sortedArray.sort((a, b) => {
-            if (a.title < b.title) return -1
-            if (a.title > b.title) return 1
-            return 0
-          })
-        }
-        break
-        case 'date' : {
-          sortedArray.sort((a, b) => {
-            if (a.date < b.date) return -1
-            if (a.date > b.date) return 1
-            return 0
-          })
-        }
-        break
-        case 'location' : {
-          sortedArray.sort((a, b) => {
-            if (a.location.city < b.location.city) return -1
-            if (a.location.city > b.location.city) return 1
-            return 0
-          })
-        }
-        break
-        case 'category' : {
-          sortedArray.sort((a, b) => {
-            if (a.category < b.category) return -1
-            if (a.category > b.category) return 1
-            return 0
-          })
-        }
-        break
-        case 'amount' : {
-          sortedArray.sort((a, b) => {
-            if (a.amount < b.amount) return -1
-            if (a.amount > b.amount) return 1
-            return 0
-          })
-        }
+    const [activeSort, setActiveSort] = useState({category: '', inverse: false})
+
+    function sortArray(category) {
+      const sortedArray = [...transactionData]
+      if (category === activeSort.category) {
+        sortedArray.reverse()
+        setActiveSort((prevActiveSort) => {
+          return {...prevActiveSort,
+          inverse: !prevActiveSort.inverse}
+        })
       }
-      if (inverse) sortedArray.reverse()
-      console.log(sortedArray)
-      console.log(transactionData)
+      else {
+        switch (category) {
+          case 'title' : {
+            sortedArray.sort((a, b) => {
+              if (a.title < b.title) return -1
+              if (a.title > b.title) return 1
+              return 0
+            })
+          }
+          break
+          case 'date' : {
+            sortedArray.sort((a, b) => {
+              if (a.date < b.date) return -1
+              if (a.date > b.date) return 1
+              return 0
+            })
+          }
+          break
+          case 'location' : {
+            sortedArray.sort((a, b) => {
+              if (a.location.city < b.location.city) return -1
+              if (a.location.city > b.location.city) return 1
+              return 0
+            })
+          }
+          break
+          case 'category' : {
+            sortedArray.sort((a, b) => {
+              if (a.category < b.category) return -1
+              if (a.category > b.category) return 1
+              return 0
+            })
+          }
+          break
+          case 'amount' : {
+            sortedArray.sort((a, b) => {
+              if (a.amount < b.amount) return -1
+              if (a.amount > b.amount) return 1
+              return 0
+            })
+          }
+        }
+        setActiveSort((prevActiveSort) => {
+          return {...prevActiveSort,
+          category: category,
+          inverse: false}
+        })
+      }
       setTransactionData(sortedArray)
     }
 
@@ -178,11 +194,21 @@ const Transactions = () => {
         <table className='table-auto border border-slate-400 bg-slate-50 mt-4 text-center'>
           <thead>
             <tr className='py-2 px-4 bg-white border-b border-slate-300 grid grid-cols-5 items-center'>
-              <th onClick={() => sortArray('title', false)}>Title</th>
-              <th>Date</th>
-              <th>Location</th>
-              <th>Category</th>
-              <th>Amount</th>
+              <th className='cursor-pointer' onClick={() => sortArray('date')}>Date
+                <span className={`${(activeSort.category !== 'date') && 'hidden'}`}>{!activeSort.inverse ? '▼' : '▲'}</span> 
+              </th>
+              <th className='cursor-pointer' onClick={() => sortArray('title')}>Title
+                <span className={`${(activeSort.category !== 'title') && 'hidden'}`}>{!activeSort.inverse ? '▼' : '▲'}</span> 
+              </th>
+              <th className='cursor-pointer' onClick={() => sortArray('location')}>Location
+                <span className={`${(activeSort.category !== 'location') && 'hidden'}`}>{!activeSort.inverse ? '▼' : '▲'}</span> 
+              </th>
+              <th className='cursor-pointer' onClick={() => sortArray('category')}>Category
+                <span className={`${(activeSort.category !== 'category') && 'hidden'}`}>{!activeSort.inverse ? '▼' : '▲'}</span> 
+              </th>
+              <th className='cursor-pointer' onClick={() => sortArray('amount')}>Amount
+                <span className={`${(activeSort.category !== 'amount') && 'hidden'}`}>{!activeSort.inverse ? '▼' : '▲'}</span> 
+              </th>
             </tr>
           </thead>
           <tbody className='flex flex-col'>
