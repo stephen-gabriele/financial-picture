@@ -13,6 +13,7 @@ const Transactions = () => {
 
   const [transactionData, setTransactionData] = useState([
     {
+      "id" : 1,
       "title" : "LNO MANGMT COMPANY",
       "amount" : 1000,
       "date" : new Date(2011,10,1),
@@ -20,6 +21,7 @@ const Transactions = () => {
       "location" : { "_id": 1, "city": "San Francisco", "loc": { "x": -73.974, "y": 40.764 } }
     },
     {
+      "id" : 2,
       "title" : "Joe's Grocery",
       "amount" : 42.16,
       "date" : new Date(2011,10,2),
@@ -27,6 +29,7 @@ const Transactions = () => {
       "location" : { "_id": 1, "city": "Nevada", "loc": { "x": -73.974, "y": 40.764 }}
     },
     {
+      "id" : 3,
       "title" : "Alley Cat Bar and Tavern",
       "amount" : 112.96,
       "date" : new Date(2011,10,3),
@@ -34,6 +37,7 @@ const Transactions = () => {
       "location" : { "_id": 1, "city": "Albuquerque", "loc": { "x": -73.974, "y": 40.764 }}
     },
     {
+      "id" : 4,
       "title" : "Marathon",
       "amount" : 83.14,
       "date" : new Date(2011,10,4),
@@ -41,6 +45,7 @@ const Transactions = () => {
       "location" : { "_id": 1, "city": "New York", "loc": { "x": -73.974, "y": 40.764 }}
     },
     {
+      "id" : 5,
       "title" : "Blue Bean",
       "amount" : 6.45,
       "date" : new Date(2011,10,5),
@@ -48,6 +53,7 @@ const Transactions = () => {
       "location" : { "_id": 1, "city": "San Diego", "loc": { "x": -73.974, "y": 40.764 }}
     },
     {
+      "id" : 6,
       "title" : "LNO MANGMT COMPANY",
       "amount" : 1000,
       "date" : new Date(2011,10,6),
@@ -55,6 +61,7 @@ const Transactions = () => {
       "location" : { "_id": 1, "city": "Austin", "loc": { "x": -73.974, "y": 40.764 } }
     },
     {
+      "id" : 7,
       "title" : "Joe's Grocery",
       "amount" : 42.16,
       "date" : new Date(2011,10,7),
@@ -62,6 +69,7 @@ const Transactions = () => {
       "location" : { "_id": 1, "city": "Quebec", "loc": { "x": -73.974, "y": 40.764 }}
     },
     {
+      "id" : 8,
       "title" : "Alley Cat Bar and Tavern",
       "amount" : 112.96,
       "date" : new Date(2011,10,8),
@@ -69,6 +77,7 @@ const Transactions = () => {
       "location" : { "_id": 1, "city": "Des Moines", "loc": { "x": -73.974, "y": 40.764 }}
     },
     {
+      "id" : 9,
       "title" : "Marathon",
       "amount" : 83.14,
       "date" : new Date(2011,10,9),
@@ -76,6 +85,7 @@ const Transactions = () => {
       "location" : { "_id": 1, "city": "St. Louis", "loc": { "x": -73.974, "y": 40.764 }}
     },
     {
+      "id" : 10,
       "title" : "Blue Bean",
       "amount" : 6.45,
       "date" : new Date(2011,10,10),
@@ -106,7 +116,8 @@ const Transactions = () => {
         <td>{transaction.title}</td>
         <td>{transaction.location.city}</td>
         <td>
-          <select defaultValue={transaction.category} onChange={handleCategoryChange}>
+          <select id={transaction.id} defaultValue={transaction.category} onChange={handleCategoryChange} 
+          className='bg-slate-50'>
             {
               globalState.transactionCategories.map(category => {
                 return (
@@ -122,7 +133,15 @@ const Transactions = () => {
 
   function handleCategoryChange(event) {
     setTransactionData(prevTransactionData => {
-      prevTransactionData
+      return prevTransactionData.map(transaction => {
+        if (transaction.id == event.target.id) {
+          return {
+            ...transaction,
+            category: event.target.value
+          }
+        }
+        else return transaction
+      })
     })
   }
 
