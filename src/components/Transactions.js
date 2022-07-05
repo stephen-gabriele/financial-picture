@@ -10,6 +10,8 @@ const Transactions = () => {
   const [formData, setFormData] = useState(
     {query: "", queryValid: true}
   )
+  
+  const [activeSort, setActiveSort] = useState({sortBy: '', inverse: false})
 
   const [transactionData, setTransactionData] = useState([
     {
@@ -98,38 +100,46 @@ const Transactions = () => {
     sortArray('date', false)
   }, [])
 
-  const transactionChart = transactionData.filter(transaction => {
-    return (formData.query.length === 0 || 
-      ((formData.query.length <= 2 && 
-        transaction.title.toLowerCase().startsWith(formData.query)) 
-        || 
-      (formData.query.length > 2 && 
-        transaction.title.toLowerCase().includes(formData.query)))
-      )
-  }).map((transaction) => {
-    return (<tr className='p-4 border-b border-slate-200 grid grid-cols-5 items-center'>
-        <td>{
-          `${transaction.date.getMonth()
-          }/${transaction.date.getDate()
-          }/${transaction.date.getFullYear()
-          }`}</td>
-        <td>{transaction.title}</td>
-        <td>{transaction.location.city}</td>
-        <td>
-          <select id={transaction.id} defaultValue={transaction.category} onChange={handleCategoryChange} 
-          className='bg-slate-50'>
-            {
-              globalState.transactionCategories.map(category => {
-                return (
-                  <option value={category}>{category}</option>
-                )
-              })
-            }
-          </select>
-          </td>
-        <td>${transaction.amount}</td>
-      </tr>)
-  })
+  const transactionChart = mapTransactionChart(search(transactionData))
+
+  function mapTransactionChart(transactionData) {
+    return transactionData.map((transaction) => {
+      return (<tr className='p-4 border-b border-slate-200 grid grid-cols-5 items-center'>
+          <td>{
+            `${transaction.date.getMonth()
+            }/${transaction.date.getDate()
+            }/${transaction.date.getFullYear()
+            }`}</td>
+          <td>{transaction.title}</td>
+          <td>{transaction.location.city}</td>
+          <td>
+            <select id={transaction.id} defaultValue={transaction.category} onChange={handleCategoryChange} 
+            className='bg-slate-50'>
+              {
+                globalState.transactionCategories.map(category => {
+                  return (
+                    <option value={category}>{category}</option>
+                  )
+                })
+              }
+            </select>
+            </td>
+          <td>${transaction.amount}</td>
+        </tr>)
+    })
+  }
+
+  function search(arr) {
+    return arr.filter(transaction => {
+      return (formData.query.length === 0 || 
+        ((formData.query.length <= 2 && 
+          transaction.title.toLowerCase().startsWith(formData.query)) 
+          || 
+        (formData.query.length > 2 && 
+          transaction.title.toLowerCase().includes(formData.query)))
+        )
+    })
+  }
 
   function handleCategoryChange(event) {
     setTransactionData(prevTransactionData => {
@@ -154,11 +164,9 @@ const Transactions = () => {
     })
   }
 
-  const [activeSort, setActiveSort] = useState({category: '', inverse: false})
-
-  function sortArray(category) {
+  function sortArray(sortBy) {
     const sortedArray = [...transactionData]
-    if (category === activeSort.category) {
+    if (sortBy === activeSort.sortBy) {
       sortedArray.reverse()
       setActiveSort((prevActiveSort) => {
         return {...prevActiveSort,
@@ -166,7 +174,7 @@ const Transactions = () => {
       })
     }
     else {
-      switch (category) {
+      switch (sortBy) {
         case 'title' : {
           sortedArray.sort((a, b) => {
             if (a.title < b.title) return -1
@@ -209,7 +217,7 @@ const Transactions = () => {
       }
       setActiveSort((prevActiveSort) => {
         return {...prevActiveSort,
-        category: category,
+        sortBy: sortBy,
         inverse: false}
       })
     }
@@ -235,23 +243,23 @@ const Transactions = () => {
             <tr className='py-2 px-4 bg-white border-b border-slate-300 grid grid-cols-5 items-center'>
               <th className='cursor-pointer' onClick={() => sortArray('date')}>
                 Date
-                <span className={`${(activeSort.category !== 'date') && 'hidden'}`}>{!activeSort.inverse ? '▼' : '▲'}</span> 
+                <span className={`${(activeSort.sortBy !== 'date') && 'hidden'}`}>{!activeSort.inverse ? '▼' : '▲'}</span> 
               </th>
               <th className='cursor-pointer' onClick={() => sortArray('title')}>
                 Title
-                <span className={`${(activeSort.category !== 'title') && 'hidden'}`}>{!activeSort.inverse ? '▼' : '▲'}</span> 
+                <span className={`${(activeSort.sortBy !== 'title') && 'hidden'}`}>{!activeSort.inverse ? '▼' : '▲'}</span> 
               </th>
               <th className='cursor-pointer' onClick={() => sortArray('location')}>
                 Location
-                <span className={`${(activeSort.category !== 'location') && 'hidden'}`}>{!activeSort.inverse ? '▼' : '▲'}</span> 
+                <span className={`${(activeSort.sortBy !== 'location') && 'hidden'}`}>{!activeSort.inverse ? '▼' : '▲'}</span> 
               </th>
               <th className='cursor-pointer' onClick={() => sortArray('category')}>
                 Category
-                <span className={`${(activeSort.category !== 'category') && 'hidden'}`}>{!activeSort.inverse ? '▼' : '▲'}</span> 
+                <span className={`${(activeSort.sortBy !== 'category') && 'hidden'}`}>{!activeSort.inverse ? '▼' : '▲'}</span> 
               </th>
               <th className='cursor-pointer' onClick={() => sortArray('amount')}>
                 Amount
-                <span className={`${(activeSort.category !== 'amount') && 'hidden'}`}>{!activeSort.inverse ? '▼' : '▲'}</span> 
+                <span className={`${(activeSort.sortBy !== 'amount') && 'hidden'}`}>{!activeSort.inverse ? '▼' : '▲'}</span> 
               </th>
             </tr>
           </thead>
