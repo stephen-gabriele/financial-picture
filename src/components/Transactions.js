@@ -20,7 +20,8 @@ const Transactions = () => {
       "amount" : 1000,
       "date" : new Date(2011,10,1),
       "category" : "Rent",
-      "location" : { "_id": 1, "city": "San Francisco", "loc": { "x": -73.974, "y": 40.764 } }
+      "location" : { "_id": 1, "city": "San Francisco", "loc": { "x": -73.974, "y": 40.764 } },
+      "tags" : [],
     },
     {
       "id" : 2,
@@ -28,7 +29,8 @@ const Transactions = () => {
       "amount" : 42.16,
       "date" : new Date(2011,10,2),
       "category" : "Grocery",
-      "location" : { "_id": 1, "city": "Nevada", "loc": { "x": -73.974, "y": 40.764 }}
+      "location" : { "_id": 1, "city": "Nevada", "loc": { "x": -73.974, "y": 40.764 }},
+      "tags" : [],
     },
     {
       "id" : 3,
@@ -36,7 +38,8 @@ const Transactions = () => {
       "amount" : 112.96,
       "date" : new Date(2011,10,3),
       "category" : "Food and Drink",
-      "location" : { "_id": 1, "city": "Albuquerque", "loc": { "x": -73.974, "y": 40.764 }}
+      "location" : { "_id": 1, "city": "Albuquerque", "loc": { "x": -73.974, "y": 40.764 }},
+      "tags" : [],
     },
     {
       "id" : 4,
@@ -44,7 +47,8 @@ const Transactions = () => {
       "amount" : 83.14,
       "date" : new Date(2011,10,4),
       "category" : "Gas",
-      "location" : { "_id": 1, "city": "New York", "loc": { "x": -73.974, "y": 40.764 }}
+      "location" : { "_id": 1, "city": "New York", "loc": { "x": -73.974, "y": 40.764 }},
+      "tags" : [],
     },
     {
       "id" : 5,
@@ -52,7 +56,8 @@ const Transactions = () => {
       "amount" : 6.45,
       "date" : new Date(2011,10,5),
       "category" : "Food and Drink",
-      "location" : { "_id": 1, "city": "San Diego", "loc": { "x": -73.974, "y": 40.764 }}
+      "location" : { "_id": 1, "city": "San Diego", "loc": { "x": -73.974, "y": 40.764 }},
+      "tags" : [],
     },
     {
       "id" : 6,
@@ -60,7 +65,8 @@ const Transactions = () => {
       "amount" : 1000,
       "date" : new Date(2011,10,6),
       "category" : "Rent",
-      "location" : { "_id": 1, "city": "Austin", "loc": { "x": -73.974, "y": 40.764 } }
+      "location" : { "_id": 1, "city": "Austin", "loc": { "x": -73.974, "y": 40.764 } },
+      "tags" : [],
     },
     {
       "id" : 7,
@@ -68,7 +74,8 @@ const Transactions = () => {
       "amount" : 42.16,
       "date" : new Date(2011,10,7),
       "category" : "Grocery",
-      "location" : { "_id": 1, "city": "Quebec", "loc": { "x": -73.974, "y": 40.764 }}
+      "location" : { "_id": 1, "city": "Quebec", "loc": { "x": -73.974, "y": 40.764 }},
+      "tags" : [],
     },
     {
       "id" : 8,
@@ -76,7 +83,8 @@ const Transactions = () => {
       "amount" : 112.96,
       "date" : new Date(2011,10,8),
       "category" : "Food and Drink",
-      "location" : { "_id": 1, "city": "Des Moines", "loc": { "x": -73.974, "y": 40.764 }}
+      "location" : { "_id": 1, "city": "Des Moines", "loc": { "x": -73.974, "y": 40.764 }},
+      "tags" : [],
     },
     {
       "id" : 9,
@@ -84,7 +92,8 @@ const Transactions = () => {
       "amount" : 83.14,
       "date" : new Date(2011,10,9),
       "category" : "Gas",
-      "location" : { "_id": 1, "city": "St. Louis", "loc": { "x": -73.974, "y": 40.764 }}
+      "location" : { "_id": 1, "city": "St. Louis", "loc": { "x": -73.974, "y": 40.764 }},
+      "tags" : [],
     },
     {
       "id" : 10,
@@ -92,7 +101,8 @@ const Transactions = () => {
       "amount" : 6.45,
       "date" : new Date(2011,10,10),
       "category" : "Food and Drink",
-      "location" : { "_id": 1, "city": "Sparta", "loc": { "x": -73.974, "y": 40.764 }}
+      "location" : { "_id": 1, "city": "Sparta", "loc": { "x": -73.974, "y": 40.764 }},
+      "tags" : [],
     }
   ])
 
@@ -225,7 +235,7 @@ const Transactions = () => {
   }
 
   return ( 
-    <div className="py-32 bg-slate-100">
+    <div className="py-32 bg-slate-100 min-h-full">
       <div className = 'flex flex-col w-2/3 mx-auto'>
         <div className = 'flex justify-between'>
           <Title>Transactions</Title>
