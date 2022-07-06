@@ -113,7 +113,7 @@ const Transactions = () => {
           <td>{transaction.title}</td>
           <td>{transaction.location.city}</td>
           <td>
-            <select id={transaction.id} defaultValue={transaction.category} onChange={handleCategoryChange} 
+            <select id={transaction.id} key={transaction.category} defaultValue={transaction.category} onChange={handleCategoryChange} 
             className='bg-slate-50 text-center'>
               {
                 globalState.transactionCategories.map(category => {
