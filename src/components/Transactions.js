@@ -99,10 +99,10 @@ const Transactions = () => {
   useEffect(() => {
     sortArray('date', false)
   }, [])
+  
+  let transactionChart = mapChart(search(transactionData))
 
-  const transactionChart = mapTransactionChart(search(transactionData))
-
-  function mapTransactionChart(transactionData) {
+  function mapChart(transactionData) {
     return transactionData.map((transaction) => {
       return (<tr className='p-4 border-b border-slate-200 grid grid-cols-5 items-center'>
           <td>{
@@ -114,7 +114,7 @@ const Transactions = () => {
           <td>{transaction.location.city}</td>
           <td>
             <select id={transaction.id} defaultValue={transaction.category} onChange={handleCategoryChange} 
-            className='bg-slate-50'>
+            className='bg-slate-50 text-center'>
               {
                 globalState.transactionCategories.map(category => {
                   return (
