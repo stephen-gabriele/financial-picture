@@ -3,26 +3,34 @@ import TagCard from './TagCard';
 
 const TagContainer = ({transactionIndex, tags, deleteTag, addTag}) => {
   const [input, setInput] = useState(
-    {value: "", valid: true}
+    {value: "",}
   )
 
   function handleInputChange(event) {
     setInput(prevInput => {
       return {
           ...prevInput,
-          [event.target.name]: event.target.value
+          [event.target.name]: event.target.value,
         }
     })
   }
 
+  function inputIsValid() {
+    return (input.value.match(/^[A-Za-z]+$/i) 
+      && input.value.length < 11 
+      && input.value.length > 0)
+  }
+
   function submit() {
-    setInput(prevInput => {
+    if (inputIsValid()){
       addTag(transactionIndex, input.value)
-      return {
-        ...prevInput,
-        value: ""
-      }
-    })
+      setInput(prevInput => {
+        return {
+          ...prevInput,
+          value: ""
+        }
+      })
+    }
   }
 
   return ( 
@@ -30,7 +38,7 @@ const TagContainer = ({transactionIndex, tags, deleteTag, addTag}) => {
     {tags.map((tag, tagIndex) => <TagCard transactionIndex={transactionIndex} deleteTag={deleteTag} tagIndex={tagIndex} tag={tag}/>)}
     <div className='flex'>
       <input
-        className={`w-2/3 rounded-md outline-0 ${input.valid ? 'border-white' : 'border-rose-600'}`}
+        className={`w-2/3 rounded-md outline-0 border ${(input.value.length===0 || inputIsValid()) ? 'border-white' : 'border-rose-600'}`}
         type="text"
         placeholder="Add Tag"
         onChange={handleInputChange}
