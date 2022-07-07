@@ -1,6 +1,7 @@
 import React, {useEffect, useState, useContext} from 'react'
 import Title from './Title'
 import { AppContext } from '../Contexts/AppContext'
+import TagContainer from './TagContainer'
 // import {transactionData} from '../transactions.json'
 
 const Transactions = () => {
@@ -21,7 +22,7 @@ const Transactions = () => {
       "date" : new Date(2011,10,1),
       "category" : "Rent",
       "location" : { "_id": 1, "city": "San Francisco", "loc": { "x": -73.974, "y": 40.764 } },
-      "tags" : [],
+      "tags" : ['Personal', 'Business', 'Pets'],
     },
     {
       "id" : 2,
@@ -30,7 +31,7 @@ const Transactions = () => {
       "date" : new Date(2011,10,2),
       "category" : "Grocery",
       "location" : { "_id": 1, "city": "Nevada", "loc": { "x": -73.974, "y": 40.764 }},
-      "tags" : [],
+      "tags" : ['Personal', 'Business', 'Pets'],
     },
     {
       "id" : 3,
@@ -39,7 +40,7 @@ const Transactions = () => {
       "date" : new Date(2011,10,3),
       "category" : "Food and Drink",
       "location" : { "_id": 1, "city": "Albuquerque", "loc": { "x": -73.974, "y": 40.764 }},
-      "tags" : [],
+      "tags" : ['Personal', 'Business', 'Pets'],
     },
     {
       "id" : 4,
@@ -48,7 +49,7 @@ const Transactions = () => {
       "date" : new Date(2011,10,4),
       "category" : "Gas",
       "location" : { "_id": 1, "city": "New York", "loc": { "x": -73.974, "y": 40.764 }},
-      "tags" : [],
+      "tags" : ['Personal', 'Business', 'Pets'],
     },
     {
       "id" : 5,
@@ -57,7 +58,7 @@ const Transactions = () => {
       "date" : new Date(2011,10,5),
       "category" : "Food and Drink",
       "location" : { "_id": 1, "city": "San Diego", "loc": { "x": -73.974, "y": 40.764 }},
-      "tags" : [],
+      "tags" : ['Personal', 'Business', 'Pets'],
     },
     {
       "id" : 6,
@@ -66,7 +67,7 @@ const Transactions = () => {
       "date" : new Date(2011,10,6),
       "category" : "Rent",
       "location" : { "_id": 1, "city": "Austin", "loc": { "x": -73.974, "y": 40.764 } },
-      "tags" : [],
+      "tags" : ['Personal', 'Business', 'Pets'],
     },
     {
       "id" : 7,
@@ -75,7 +76,7 @@ const Transactions = () => {
       "date" : new Date(2011,10,7),
       "category" : "Grocery",
       "location" : { "_id": 1, "city": "Quebec", "loc": { "x": -73.974, "y": 40.764 }},
-      "tags" : [],
+      "tags" : ['Personal', 'Business', 'Pets'],
     },
     {
       "id" : 8,
@@ -84,7 +85,7 @@ const Transactions = () => {
       "date" : new Date(2011,10,8),
       "category" : "Food and Drink",
       "location" : { "_id": 1, "city": "Des Moines", "loc": { "x": -73.974, "y": 40.764 }},
-      "tags" : [],
+      "tags" : ['Personal', 'Business', 'Pets'],
     },
     {
       "id" : 9,
@@ -93,7 +94,7 @@ const Transactions = () => {
       "date" : new Date(2011,10,9),
       "category" : "Gas",
       "location" : { "_id": 1, "city": "St. Louis", "loc": { "x": -73.974, "y": 40.764 }},
-      "tags" : [],
+      "tags" : ['Personal', 'Business', 'Pets'],
     },
     {
       "id" : 10,
@@ -102,7 +103,7 @@ const Transactions = () => {
       "date" : new Date(2011,10,10),
       "category" : "Food and Drink",
       "location" : { "_id": 1, "city": "Sparta", "loc": { "x": -73.974, "y": 40.764 }},
-      "tags" : [],
+      "tags" : ['Personal', 'Business', 'Pets'],
     }
   ])
 
@@ -113,8 +114,8 @@ const Transactions = () => {
   let transactionChart = mapChart(search(transactionData))
 
   function mapChart(transactionData) {
-    return transactionData.map((transaction) => {
-      return (<tr className='p-4 border-b border-slate-200 grid grid-cols-5 items-center'>
+    return transactionData.map((transaction, transactionIndex) => {
+      return (<tr className='p-4 border-b border-slate-200 grid grid-cols-6 items-center'>
           <td>{
             `${transaction.date.getMonth()
             }/${transaction.date.getDate()
@@ -123,7 +124,7 @@ const Transactions = () => {
           <td>{transaction.title}</td>
           <td>{transaction.location.city}</td>
           <td>
-            <select id={transaction.id} key={transaction.category} defaultValue={transaction.category} onChange={handleCategoryChange} 
+            <select id={transaction.id} value={transaction.category} onChange={handleCategoryChange} 
             className='bg-slate-50 text-center'>
               {
                 globalState.transactionCategories.map(category => {
@@ -133,8 +134,11 @@ const Transactions = () => {
                 })
               }
             </select>
-            </td>
+          </td>
           <td>${transaction.amount}</td>
+          <td>
+            <TagContainer transactionIndex={transactionIndex} deleteTag={deleteTag} tags={transaction.tags} addTag={addTag}/>
+          </td>
         </tr>)
     })
   }
@@ -148,6 +152,23 @@ const Transactions = () => {
         (formData.query.length > 2 && 
           transaction.title.toLowerCase().includes(formData.query)))
         )
+    })
+  }
+
+  function deleteTag(transactionIndex, tagIndex) {
+    console.log('deleted', transactionIndex, tagIndex)
+    setTransactionData(prevTransactionData => {
+      let newTransactionData=[...prevTransactionData]
+      newTransactionData[transactionIndex].tags.splice(tagIndex, 1)
+      return newTransactionData
+    })
+  }
+
+  function addTag(transactionIndex, tag) {
+    setTransactionData(prevTransactionData => {
+      let newTransactionData=[...prevTransactionData]
+      newTransactionData[transactionIndex].tags.push(tag)
+      return newTransactionData
     })
   }
 
@@ -250,7 +271,7 @@ const Transactions = () => {
           </div>
         <table className='table-auto border border-slate-400 bg-slate-50 mt-4 text-center'>
           <thead>
-            <tr className='py-2 px-4 bg-white border-b border-slate-300 grid grid-cols-5 items-center'>
+            <tr className='py-2 px-4 bg-white border-b border-slate-300 grid grid-cols-6 items-center'>
               <th className='cursor-pointer' onClick={() => sortArray('date')}>
                 Date
                 <span className={`${(activeSort.sortBy !== 'date') && 'hidden'}`}>{!activeSort.inverse ? '▼' : '▲'}</span> 
@@ -270,6 +291,9 @@ const Transactions = () => {
               <th className='cursor-pointer' onClick={() => sortArray('amount')}>
                 Amount
                 <span className={`${(activeSort.sortBy !== 'amount') && 'hidden'}`}>{!activeSort.inverse ? '▼' : '▲'}</span> 
+              </th>
+              <th>
+                Tags
               </th>
             </tr>
           </thead>

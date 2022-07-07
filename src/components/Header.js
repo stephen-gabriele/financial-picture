@@ -30,11 +30,8 @@ const Header = ({ toggleMenu }) => {
           <h2 className='font-logo text-3xl text-blue-900'>Monarch</h2>
         </div>
         <ul className='hidden md:flex'>
-          <HeaderMenuItem onClick={() => navigate('/features')}>Features</HeaderMenuItem>
-          <HeaderMenuItem onClick={() => navigate('/features')}>Download</HeaderMenuItem>
-          <HeaderMenuItem onClick={() => navigate('/features')}>Pricing</HeaderMenuItem>
-          <HeaderMenuItem onClick={() => navigate('/features')}>Resources</HeaderMenuItem>
-          <HeaderMenuItem onClick={() => navigate('/features')}>Company</HeaderMenuItem>
+          <HeaderMenuItem onClick={() => navigate('/dashboard')}>Dashboard</HeaderMenuItem>
+          <HeaderMenuItem onClick={() => navigate('/transactions')}>Transactions</HeaderMenuItem>
         </ul>
         <div className='flex justify-between items-center'>
           {!globalState.isLoggedIn && <Button size='sm' text='Log in' theme='secondary' className='hidden lg:block mr-2' onClick={openLogInModal}/>}

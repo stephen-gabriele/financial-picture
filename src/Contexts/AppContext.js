@@ -37,6 +37,12 @@ export const AppProvider = props => {
           'Rent',
           'Grocery',
           'Food and Drink',
+        ],
+
+      transactionTags:
+        [
+          'Business',
+          'Personal'
         ]
     }
   )
