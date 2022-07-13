@@ -12,6 +12,21 @@ export const AppProvider = props => {
         case 'setIsLoggedIn':
           return {...state,
             isLoggedIn: action.isLoggedIn}
+        case 'addTransactionTag' :
+          return {...state,
+          transactionTags: [...state.transactionTags, action.tag]} 
+        case 'removeTransactionTag' :
+          {
+            let newTags = [...state.transactionTags]
+            if (newTags.includes(action.tag)) {
+              newTags.splice(newTags.indexOf(action.tag), 1)
+            }
+            return {...state,
+            transactionTags: newTags}
+          }
+          
+        default:
+          return state
       }
   }
 
@@ -42,7 +57,8 @@ export const AppProvider = props => {
       transactionTags:
         [
           'Business',
-          'Personal'
+          'Personal',
+          'Pets'
         ]
     }
   )

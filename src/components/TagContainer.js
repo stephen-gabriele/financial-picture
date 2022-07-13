@@ -18,7 +18,9 @@ const TagContainer = ({transactionIndex, tags, deleteTag, addTag}) => {
   function inputIsValid() {
     return (input.value.match(/^[A-Za-z]+$/i) 
       && input.value.length < 11 
-      && input.value.length > 0)
+      && input.value.length > 0
+      && !tags.includes(input.value)
+      )
   }
 
   function submit() {
@@ -34,18 +36,18 @@ const TagContainer = ({transactionIndex, tags, deleteTag, addTag}) => {
   }
 
   return ( 
-  <div className='grid gap-1 grid-cols-2 auto-cols-fr'>
+  <div className='grid gap-1 grid-cols-2'>
     {tags.map((tag, tagIndex) => <TagCard transactionIndex={transactionIndex} deleteTag={deleteTag} tagIndex={tagIndex} tag={tag}/>)}
     <div className='flex'>
       <input
-        className={`w-2/3 rounded-md outline-0 border ${(input.value.length===0 || inputIsValid()) ? 'border-white' : 'border-rose-600'}`}
+        className={`w-2/3 text-xs rounded-md outline-0 border ${(input.value.length===0 || inputIsValid()) ? 'border-white' : 'border-rose-600'}`}
         type="text"
         placeholder="Add Tag"
         onChange={handleInputChange}
         name="value"
         value={input.value}
       />
-      <button onClick={submit}className={'w-1/3 bg-slate-200 rounded-md text-sm'}>Add</button>
+      <button onClick={submit}className={'hover:scale-105 transition ease-in-out delay-100 w-1/3 bg-slate-200 rounded-md text-sm'}>Add</button>
     </div>
   </div> );
 }

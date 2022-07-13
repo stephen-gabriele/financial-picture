@@ -6,7 +6,7 @@ import TagContainer from './TagContainer'
 
 const Transactions = () => {
 
-  const {globalState} = useContext(AppContext)
+  const {globalState, dispatch} = useContext(AppContext)
 
   const [formData, setFormData] = useState(
     {query: "", queryValid: true}
@@ -21,7 +21,7 @@ const Transactions = () => {
       "amount" : 1000,
       "date" : new Date(2011,10,1),
       "category" : "Rent",
-      "location" : { "_id": 1, "city": "San Francisco", "loc": { "x": -73.974, "y": 40.764 } },
+      "location" : { "_id": 1, "city": "San Francisco", "coordinates": { "x": -73.974, "y": 40.764 } },
       "tags" : ['Personal', 'Business', 'Pets'],
     },
     {
@@ -30,7 +30,7 @@ const Transactions = () => {
       "amount" : 42.16,
       "date" : new Date(2011,10,2),
       "category" : "Grocery",
-      "location" : { "_id": 1, "city": "Nevada", "loc": { "x": -73.974, "y": 40.764 }},
+      "location" : { "_id": 1, "city": "Nevada", "coordinates": { "x": -73.974, "y": 40.764 }},
       "tags" : ['Personal', 'Business', 'Pets'],
     },
     {
@@ -39,7 +39,7 @@ const Transactions = () => {
       "amount" : 112.96,
       "date" : new Date(2011,10,3),
       "category" : "Food and Drink",
-      "location" : { "_id": 1, "city": "Albuquerque", "loc": { "x": -73.974, "y": 40.764 }},
+      "location" : { "_id": 1, "city": "Albuquerque", "coordinates": { "x": -73.974, "y": 40.764 }},
       "tags" : ['Personal', 'Business', 'Pets'],
     },
     {
@@ -48,7 +48,7 @@ const Transactions = () => {
       "amount" : 83.14,
       "date" : new Date(2011,10,4),
       "category" : "Gas",
-      "location" : { "_id": 1, "city": "New York", "loc": { "x": -73.974, "y": 40.764 }},
+      "location" : { "_id": 1, "city": "New York", "coordinates": { "x": -73.974, "y": 40.764 }},
       "tags" : ['Personal', 'Business', 'Pets'],
     },
     {
@@ -57,7 +57,7 @@ const Transactions = () => {
       "amount" : 6.45,
       "date" : new Date(2011,10,5),
       "category" : "Food and Drink",
-      "location" : { "_id": 1, "city": "San Diego", "loc": { "x": -73.974, "y": 40.764 }},
+      "location" : { "_id": 1, "city": "San Diego", "coordinates": { "x": -73.974, "y": 40.764 }},
       "tags" : ['Personal', 'Business', 'Pets'],
     },
     {
@@ -66,7 +66,7 @@ const Transactions = () => {
       "amount" : 1000,
       "date" : new Date(2011,10,6),
       "category" : "Rent",
-      "location" : { "_id": 1, "city": "Austin", "loc": { "x": -73.974, "y": 40.764 } },
+      "location" : { "_id": 1, "city": "Austin", "coordinates": { "x": -73.974, "y": 40.764 } },
       "tags" : ['Personal', 'Business', 'Pets'],
     },
     {
@@ -75,7 +75,7 @@ const Transactions = () => {
       "amount" : 42.16,
       "date" : new Date(2011,10,7),
       "category" : "Grocery",
-      "location" : { "_id": 1, "city": "Quebec", "loc": { "x": -73.974, "y": 40.764 }},
+      "location" : { "_id": 1, "city": "Quebec", "coordinates": { "x": -73.974, "y": 40.764 }},
       "tags" : ['Personal', 'Business', 'Pets'],
     },
     {
@@ -84,7 +84,7 @@ const Transactions = () => {
       "amount" : 112.96,
       "date" : new Date(2011,10,8),
       "category" : "Food and Drink",
-      "location" : { "_id": 1, "city": "Des Moines", "loc": { "x": -73.974, "y": 40.764 }},
+      "location" : { "_id": 1, "city": "Des Moines", "coordinates": { "x": -73.974, "y": 40.764 }},
       "tags" : ['Personal', 'Business', 'Pets'],
     },
     {
@@ -93,7 +93,7 @@ const Transactions = () => {
       "amount" : 83.14,
       "date" : new Date(2011,10,9),
       "category" : "Gas",
-      "location" : { "_id": 1, "city": "St. Louis", "loc": { "x": -73.974, "y": 40.764 }},
+      "location" : { "_id": 1, "city": "St. Louis", "coordinates": { "x": -73.974, "y": 40.764 }},
       "tags" : ['Personal', 'Business', 'Pets'],
     },
     {
@@ -102,7 +102,7 @@ const Transactions = () => {
       "amount" : 6.45,
       "date" : new Date(2011,10,10),
       "category" : "Food and Drink",
-      "location" : { "_id": 1, "city": "Sparta", "loc": { "x": -73.974, "y": 40.764 }},
+      "location" : { "_id": 1, "city": "Sparta", "coordinates": { "x": -73.974, "y": 40.764 }},
       "tags" : ['Personal', 'Business', 'Pets'],
     }
   ])
@@ -156,7 +156,12 @@ const Transactions = () => {
   }
 
   function deleteTag(transactionIndex, tagIndex) {
-    console.log('deleted', transactionIndex, tagIndex)
+    let tag = transactionData[transactionIndex].tags[tagIndex]
+    // if (/* tag isn't included in any other transactions */) {
+    //   if (globalState.transactionTags.includes(tag)) {
+    //     dispatch({type: 'removeTransactionTag', tag: tag})
+    //   }}
+    console.log(globalState.transactionTags)
     setTransactionData(prevTransactionData => {
       let newTransactionData=[...prevTransactionData]
       newTransactionData[transactionIndex].tags.splice(tagIndex, 1)
@@ -165,6 +170,9 @@ const Transactions = () => {
   }
 
   function addTag(transactionIndex, tag) {
+    if (!globalState.transactionTags.includes(tag)) {
+      dispatch({type: 'addTransactionTag', tag: tag})
+    }
     setTransactionData(prevTransactionData => {
       let newTransactionData=[...prevTransactionData]
       newTransactionData[transactionIndex].tags.push(tag)
