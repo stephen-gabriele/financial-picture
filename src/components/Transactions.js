@@ -2,7 +2,6 @@ import React, {useEffect, useState, useContext} from 'react'
 import Title from './Title'
 import { AppContext } from '../Contexts/AppContext'
 import TagContainer from './TagContainer'
-// import {transactionData} from '../transactions.json'
 
 const Transactions = () => {
 
@@ -14,98 +13,13 @@ const Transactions = () => {
   
   const [activeSort, setActiveSort] = useState({sortBy: '', inverse: false})
 
-  const [transactionData, setTransactionData] = useState([
-    {
-      "id" : 1,
-      "title" : "LNO MANGMT COMPANY",
-      "amount" : 1000,
-      "date" : new Date(2011,10,1),
-      "category" : "Rent",
-      "location" : { "_id": 1, "city": "San Francisco", "coordinates": { "x": -73.974, "y": 40.764 } },
-      "tags" : ['Personal', 'Business', 'Pets'],
-    },
-    {
-      "id" : 2,
-      "title" : "Joe's Grocery",
-      "amount" : 42.16,
-      "date" : new Date(2011,10,2),
-      "category" : "Grocery",
-      "location" : { "_id": 1, "city": "Nevada", "coordinates": { "x": -73.974, "y": 40.764 }},
-      "tags" : ['Personal', 'Business', 'Pets'],
-    },
-    {
-      "id" : 3,
-      "title" : "Alley Cat Bar and Tavern",
-      "amount" : 112.96,
-      "date" : new Date(2011,10,3),
-      "category" : "Food and Drink",
-      "location" : { "_id": 1, "city": "Albuquerque", "coordinates": { "x": -73.974, "y": 40.764 }},
-      "tags" : ['Personal', 'Business', 'Pets'],
-    },
-    {
-      "id" : 4,
-      "title" : "Marathon",
-      "amount" : 83.14,
-      "date" : new Date(2011,10,4),
-      "category" : "Gas",
-      "location" : { "_id": 1, "city": "New York", "coordinates": { "x": -73.974, "y": 40.764 }},
-      "tags" : ['Personal', 'Business', 'Pets'],
-    },
-    {
-      "id" : 5,
-      "title" : "Blue Bean",
-      "amount" : 6.45,
-      "date" : new Date(2011,10,5),
-      "category" : "Food and Drink",
-      "location" : { "_id": 1, "city": "San Diego", "coordinates": { "x": -73.974, "y": 40.764 }},
-      "tags" : ['Personal', 'Business', 'Pets'],
-    },
-    {
-      "id" : 6,
-      "title" : "LNO MANGMT COMPANY",
-      "amount" : 1000,
-      "date" : new Date(2011,10,6),
-      "category" : "Rent",
-      "location" : { "_id": 1, "city": "Austin", "coordinates": { "x": -73.974, "y": 40.764 } },
-      "tags" : ['Personal', 'Business', 'Pets'],
-    },
-    {
-      "id" : 7,
-      "title" : "Joe's Grocery",
-      "amount" : 42.16,
-      "date" : new Date(2011,10,7),
-      "category" : "Grocery",
-      "location" : { "_id": 1, "city": "Quebec", "coordinates": { "x": -73.974, "y": 40.764 }},
-      "tags" : ['Personal', 'Business', 'Pets'],
-    },
-    {
-      "id" : 8,
-      "title" : "Alley Cat Bar and Tavern",
-      "amount" : 112.96,
-      "date" : new Date(2011,10,8),
-      "category" : "Food and Drink",
-      "location" : { "_id": 1, "city": "Des Moines", "coordinates": { "x": -73.974, "y": 40.764 }},
-      "tags" : ['Personal', 'Business', 'Pets'],
-    },
-    {
-      "id" : 9,
-      "title" : "Marathon",
-      "amount" : 83.14,
-      "date" : new Date(2011,10,9),
-      "category" : "Gas",
-      "location" : { "_id": 1, "city": "St. Louis", "coordinates": { "x": -73.974, "y": 40.764 }},
-      "tags" : ['Personal', 'Business', 'Pets'],
-    },
-    {
-      "id" : 10,
-      "title" : "Blue Bean",
-      "amount" : 6.45,
-      "date" : new Date(2011,10,10),
-      "category" : "Food and Drink",
-      "location" : { "_id": 1, "city": "Sparta", "coordinates": { "x": -73.974, "y": 40.764 }},
-      "tags" : ['Personal', 'Business', 'Pets'],
-    }
-  ])
+  const [transactionData, setTransactionData] = useState([])
+
+  useEffect(() => {
+    fetch('http://localhost:3000/api/transactions')
+      .then(data => data.json())
+      .then(data => setTransactionData(data))
+  }, [])
 
   useEffect(() => {
     sortArray('date', false)
@@ -116,11 +30,13 @@ const Transactions = () => {
   function mapChart(transactionData) {
     return transactionData.map((transaction, transactionIndex) => {
       return (<tr className='p-4 border-b border-slate-200 grid grid-cols-6 items-center'>
-          <td>{
-            `${transaction.date.getMonth()
-            }/${transaction.date.getDate()
-            }/${transaction.date.getFullYear()
-            }`}</td>
+          <td>
+            {
+            `${new Date(transaction.date).getMonth()
+            }/${new Date(transaction.date).getDate()
+            }/${new Date(transaction.date).getFullYear()
+            }`}
+            </td>
           <td>{transaction.title}</td>
           <td>{transaction.location.city}</td>
           <td>
