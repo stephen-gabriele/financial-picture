@@ -1,5 +1,6 @@
 import React, { createContext, useReducer } from "react"
 export const AppContext = createContext()
+import api from '../api/backend'
 
 export const AppProvider = props => {
   const reducer = (state, action) => {
@@ -18,29 +19,37 @@ export const AppProvider = props => {
     const removeTransactionTag = () => {
       let newTags = [...state.transactionTags]
       if (newTags.includes(action.tag)) {
-        newTags.splice(newTags.indexOf(action.tag), 1)
+        news.splice(newTags.indexOf(action.tag), 1)
       }
       return {...state,
       transactionTags: newTags}
     }
     const getTransactions = async () => {
-      let transactionData = await fetch('http://localhost:3000/api/transactions')
-      transactionData = await transactionData.json()
-      return {...state,
-        transactionData}
+      try {
+        let transactionData = await fetch(api.transactions)
+        transactionData = await transactionData.json()
+        dispatch({type: 'GET_TRANSACTIONS_SUCCESS', transactionData})
+      } catch (e){
+        console.log('Could not get transactions: ', e)
+      }
     }
 
     switch (action.type) {
       case 'setUserInfo':
-        setUserInfo()
+        return setUserInfo()
       case 'setIsLoggedIn':
-        setIsLoggedIn()
+        return setIsLoggedIn()
       case 'addTransactionTag' :
-        addTransactionTag()
+        return addTransactionTag()
       case 'removeTransactionTag' :
-        removeTransactionTag()
-      case 'getTransactions' :
+        return removeTransactionTag()
+      case 'GET_TRANSACTIONS' :
         getTransactions()
+        return {...state, isLoading: true}
+      case 'GET_TRANSACTIONS_SUCCESS' :
+        return {...state, 
+          isLoading: false, 
+          transactionData: action.transactionData}
       default:
         return state
     }
@@ -78,7 +87,8 @@ export const AppProvider = props => {
           'Business',
           'Personal',
           'Pets'
-        ]
+        ],
+      isLoading: false
     }
   )
 

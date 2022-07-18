@@ -14,11 +14,16 @@ const Transactions = () => {
   const [transactionData, setTransactionData] = useState([])
 
   useEffect(() => {
-    dispatch({type: 'getTransactions'})
+    dispatch({type: 'GET_TRANSACTIONS'})
   }, [])
   useEffect(() => {
+    if(globalState.transactionData) 
+      setTransactionData(globalState.transactionData)
+    console.log(globalState.transactionData)
+  }, [globalState.transactionData])
+  useEffect(() => {
     sortChart('date', false)
-  }, [])
+  }, [transactionChart])
 
 
   let transactionChart = mapChart(search(transactionData))
@@ -27,7 +32,7 @@ const Transactions = () => {
     return transactionData.map((transaction, transactionIndex) => {
       return (<tr className='p-4 border-b border-slate-200 grid grid-cols-6 items-center'>
           <td>
-            {
+            { 
             `${new Date(transaction.date).getMonth()
             }/${new Date(transaction.date).getDate()
             }/${new Date(transaction.date).getFullYear()
@@ -136,10 +141,9 @@ const Transactions = () => {
         }
         break
         case 'date' : {
-          console.log(sortedChart)
           sortedChart.sort((a, b) => {
-            if (a.date < b.date) return -1
-            if (a.date > b.date) return 1
+            if (new Date(a.date).getTime() < new Date(b.date).getTime()) return -1
+            if (new Date(a.date).getTime() > new Date(b.date).getTime()) return 1
             return 0
           })
         }

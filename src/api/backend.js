@@ -1,7 +1,5 @@
-export default function () {
-  return {transactions: 'http://localhost:3000/api/transactions',
+export default {transactions: 'http://localhost:3000/api/transactions',
           auth: 'http://localhost:3000/api/auth'}
-}
 
 // const authentication = async (email, password) => {
 //   fetch('http://localhost:3000/api/auth', {
