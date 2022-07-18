@@ -2,29 +2,25 @@ import React, {useEffect, useState, useContext} from 'react'
 import Title from './Title'
 import { AppContext } from '../Contexts/AppContext'
 import TagContainer from './TagContainer'
+import backend from '../api/backend'
 
 const Transactions = () => {
-
   const {globalState, dispatch} = useContext(AppContext)
 
   const [formData, setFormData] = useState(
     {query: "", queryValid: true}
   )
-  
   const [activeSort, setActiveSort] = useState({sortBy: '', inverse: false})
-
   const [transactionData, setTransactionData] = useState([])
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/transactions')
-      .then(data => data.json())
-      .then(data => setTransactionData(data))
+    dispatch({type: 'getTransactions'})
+  }, [])
+  useEffect(() => {
+    sortChart('date', false)
   }, [])
 
-  useEffect(() => {
-    sortArray('date', false)
-  }, [])
-  
+
   let transactionChart = mapChart(search(transactionData))
 
   function mapChart(transactionData) {
@@ -40,7 +36,9 @@ const Transactions = () => {
           <td>{transaction.title}</td>
           <td>{transaction.location.city}</td>
           <td>
-            <select id={transaction.id} value={transaction.category} onChange={handleCategoryChange} 
+            <select id={transaction._id} 
+            value={transaction.category} 
+            onChange={handleCategoryChange} 
             className='bg-slate-50 text-center'>
               {
                 globalState.transactionCategories.map(category => {
@@ -53,7 +51,11 @@ const Transactions = () => {
           </td>
           <td>${transaction.amount}</td>
           <td>
-            <TagContainer transactionIndex={transactionIndex} deleteTag={deleteTag} tags={transaction.tags} addTag={addTag}/>
+            <TagContainer 
+            transactionIndex={transactionIndex} 
+            deleteTag={deleteTag} 
+            tags={transaction.tags} 
+            addTag={addTag}/>
           </td>
         </tr>)
     })
@@ -63,21 +65,16 @@ const Transactions = () => {
     return arr.filter(transaction => {
       return (formData.query.length === 0 || 
         ((formData.query.length <= 2 && 
-          transaction.title.toLowerCase().startsWith(formData.query)) 
+          transaction.title.toLowerCase().startsWith(formData.query.toLowerCase())) 
           || 
         (formData.query.length > 2 && 
-          transaction.title.toLowerCase().includes(formData.query)))
+          transaction.title.toLowerCase().includes(formData.query.toLowerCase())))
         )
     })
   }
 
   function deleteTag(transactionIndex, tagIndex) {
     let tag = transactionData[transactionIndex].tags[tagIndex]
-    // if (/* tag isn't included in any other transactions */) {
-    //   if (globalState.transactionTags.includes(tag)) {
-    //     dispatch({type: 'removeTransactionTag', tag: tag})
-    //   }}
-    console.log(globalState.transactionTags)
     setTransactionData(prevTransactionData => {
       let newTransactionData=[...prevTransactionData]
       newTransactionData[transactionIndex].tags.splice(tagIndex, 1)
@@ -99,7 +96,7 @@ const Transactions = () => {
   function handleCategoryChange(event) {
     setTransactionData(prevTransactionData => {
       return prevTransactionData.map(transaction => {
-        if (transaction.id == event.target.id) {
+        if (transaction._id == event.target.id) {
           return {
             ...transaction,
             category: event.target.value
@@ -119,10 +116,10 @@ const Transactions = () => {
     })
   }
 
-  function sortArray(sortBy) {
-    const sortedArray = [...transactionData]
+  function sortChart(sortBy) {
+    const sortedChart = [...transactionData]
     if (sortBy === activeSort.sortBy) {
-      sortedArray.reverse()
+      sortedChart.reverse()
       setActiveSort((prevActiveSort) => {
         return {...prevActiveSort,
         inverse: !prevActiveSort.inverse}
@@ -131,7 +128,7 @@ const Transactions = () => {
     else {
       switch (sortBy) {
         case 'title' : {
-          sortedArray.sort((a, b) => {
+          sortedChart.sort((a, b) => {
             if (a.title < b.title) return -1
             if (a.title > b.title) return 1
             return 0
@@ -139,7 +136,8 @@ const Transactions = () => {
         }
         break
         case 'date' : {
-          sortedArray.sort((a, b) => {
+          console.log(sortedChart)
+          sortedChart.sort((a, b) => {
             if (a.date < b.date) return -1
             if (a.date > b.date) return 1
             return 0
@@ -147,7 +145,7 @@ const Transactions = () => {
         }
         break
         case 'location' : {
-          sortedArray.sort((a, b) => {
+          sortedChart.sort((a, b) => {
             if (a.location.city < b.location.city) return -1
             if (a.location.city > b.location.city) return 1
             return 0
@@ -155,7 +153,7 @@ const Transactions = () => {
         }
         break
         case 'category' : {
-          sortedArray.sort((a, b) => {
+          sortedChart.sort((a, b) => {
             if (a.category < b.category) return -1
             if (a.category > b.category) return 1
             return 0
@@ -163,7 +161,7 @@ const Transactions = () => {
         }
         break
         case 'amount' : {
-          sortedArray.sort((a, b) => {
+          sortedChart.sort((a, b) => {
             if (a.amount < b.amount) return -1
             if (a.amount > b.amount) return 1
             return 0
@@ -176,7 +174,7 @@ const Transactions = () => {
         inverse: false}
       })
     }
-    setTransactionData(sortedArray)
+    setTransactionData(sortedChart)
   }
 
   return ( 
@@ -185,7 +183,8 @@ const Transactions = () => {
         <div className = 'flex justify-between'>
           <Title>Transactions</Title>
           <input
-              className={`text-right w-1/5 px-1 py-2 rounded-md border-2 outline-0 ${formData.queryValid ? 'border-white' : 'border-rose-600'}`}
+              className={`text-right w-1/5 px-1 py-2 rounded-md border-2 outline-0 
+              ${formData.queryValid ? 'border-white' : 'border-rose-600'}`}
               type="search"
               placeholder="Search"
               onChange={handleFormChange}
@@ -196,25 +195,35 @@ const Transactions = () => {
         <table className='table-auto border border-slate-400 bg-slate-50 mt-4 text-center'>
           <thead>
             <tr className='py-2 px-4 bg-white border-b border-slate-300 grid grid-cols-6 items-center'>
-              <th className='cursor-pointer' onClick={() => sortArray('date')}>
+              <th className='cursor-pointer' onClick={() => sortChart('date')}>
                 Date
-                <span className={`${(activeSort.sortBy !== 'date') && 'hidden'}`}>{!activeSort.inverse ? '▼' : '▲'}</span> 
+                <span className={`${(activeSort.sortBy !== 'date') && 'hidden'}`}>
+                  {!activeSort.inverse ? '▼' : '▲'}
+                </span> 
               </th>
-              <th className='cursor-pointer' onClick={() => sortArray('title')}>
+              <th className='cursor-pointer' onClick={() => sortChart('title')}>
                 Title
-                <span className={`${(activeSort.sortBy !== 'title') && 'hidden'}`}>{!activeSort.inverse ? '▼' : '▲'}</span> 
+                <span className={`${(activeSort.sortBy !== 'title') && 'hidden'}`}>
+                  {!activeSort.inverse ? '▼' : '▲'}
+                  </span> 
               </th>
-              <th className='cursor-pointer' onClick={() => sortArray('location')}>
+              <th className='cursor-pointer' onClick={() => sortChart('location')}>
                 Location
-                <span className={`${(activeSort.sortBy !== 'location') && 'hidden'}`}>{!activeSort.inverse ? '▼' : '▲'}</span> 
+                <span className={`${(activeSort.sortBy !== 'location') && 'hidden'}`}>
+                  {!activeSort.inverse ? '▼' : '▲'}
+                  </span> 
               </th>
-              <th className='cursor-pointer' onClick={() => sortArray('category')}>
+              <th className='cursor-pointer' onClick={() => sortChart('category')}>
                 Category
-                <span className={`${(activeSort.sortBy !== 'category') && 'hidden'}`}>{!activeSort.inverse ? '▼' : '▲'}</span> 
+                <span className={`${(activeSort.sortBy !== 'category') && 'hidden'}`}>
+                  {!activeSort.inverse ? '▼' : '▲'}
+                  </span> 
               </th>
-              <th className='cursor-pointer' onClick={() => sortArray('amount')}>
+              <th className='cursor-pointer' onClick={() => sortChart('amount')}>
                 Amount
-                <span className={`${(activeSort.sortBy !== 'amount') && 'hidden'}`}>{!activeSort.inverse ? '▼' : '▲'}</span> 
+                <span className={`${(activeSort.sortBy !== 'amount') && 'hidden'}`}>
+                  {!activeSort.inverse ? '▼' : '▲'}
+                  </span> 
               </th>
               <th>
                 Tags

@@ -1,33 +1,49 @@
 import React, { createContext, useReducer } from "react"
-
 export const AppContext = createContext()
 
 export const AppProvider = props => {
-
   const reducer = (state, action) => {
-      switch (action.type) {
-        case 'setUserInfo':
-          return {...state, 
-            userInfo: action.userInfo}
-        case 'setIsLoggedIn':
-          return {...state,
-            isLoggedIn: action.isLoggedIn}
-        case 'addTransactionTag' :
-          return {...state,
-          transactionTags: [...state.transactionTags, action.tag]} 
-        case 'removeTransactionTag' :
-          {
-            let newTags = [...state.transactionTags]
-            if (newTags.includes(action.tag)) {
-              newTags.splice(newTags.indexOf(action.tag), 1)
-            }
-            return {...state,
-            transactionTags: newTags}
-          }
-          
-        default:
-          return state
+    const setUserInfo = () => {
+      return {...state, 
+        userInfo: action.userInfo}
+    }
+    const setIsLoggedIn = () => {
+      return {...state,
+        isLoggedIn: action.isLoggedIn}
+    }
+    const addTransactionTag = () => {
+      return {...state,
+        transactionTags: [...state.transactionTags, action.tag]} 
+    }
+    const removeTransactionTag = () => {
+      let newTags = [...state.transactionTags]
+      if (newTags.includes(action.tag)) {
+        newTags.splice(newTags.indexOf(action.tag), 1)
       }
+      return {...state,
+      transactionTags: newTags}
+    }
+    const getTransactions = async () => {
+      let transactionData = await fetch('http://localhost:3000/api/transactions')
+      transactionData = await transactionData.json()
+      return {...state,
+        transactionData}
+    }
+
+    switch (action.type) {
+      case 'setUserInfo':
+        setUserInfo()
+      case 'setIsLoggedIn':
+        setIsLoggedIn()
+      case 'addTransactionTag' :
+        addTransactionTag()
+      case 'removeTransactionTag' :
+        removeTransactionTag()
+      case 'getTransactions' :
+        getTransactions()
+      default:
+        return state
+    }
   }
 
   const [globalState, dispatch] = useReducer(reducer,
@@ -45,6 +61,8 @@ export const AppProvider = props => {
         password: 'testpass'},
 
       isLoggedIn: true,
+      
+      transactionData: [],
 
       transactionCategories:
         [
@@ -52,6 +70,7 @@ export const AppProvider = props => {
           'Rent',
           'Grocery',
           'Food and Drink',
+          'Shopping'
         ],
 
       transactionTags:
