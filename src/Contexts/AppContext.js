@@ -35,13 +35,13 @@ export const AppProvider = props => {
     }
 
     switch (action.type) {
-      case 'setUserInfo':
+      case 'SET_USER_INFO':
         return setUserInfo()
-      case 'setIsLoggedIn':
+      case 'SET_IS_LOGGED_IN':
         return setIsLoggedIn()
-      case 'addTransactionTag' :
+      case 'ADD_TRANSACTION_TAG' :
         return addTransactionTag()
-      case 'removeTransactionTag' :
+      case 'REMOVE_TRANSACTION_TAG' :
         return removeTransactionTag()
       case 'GET_TRANSACTIONS' :
         getTransactions()

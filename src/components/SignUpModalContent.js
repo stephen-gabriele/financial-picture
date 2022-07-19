@@ -70,8 +70,8 @@ const SignUpModalContent = () => {
           isSubmitted:true
         }
       })
-      dispatch({type: 'setIsLoggedIn', isLoggedIn: true})
-      dispatch({type: 'setUserInfo', userInfo: {
+      dispatch({type: 'SET_IS_LOGGED_IN', isLoggedIn: true})
+      dispatch({type: 'SET_USER_INFO', userInfo: {
         firstName: formData.firstName,
         lastName: formData.lastName,
         email: formData.email,

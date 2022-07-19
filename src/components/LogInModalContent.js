@@ -36,8 +36,8 @@ const LogInModalContent = () => {
         isSubmitted:true
       }
       })
-      dispatch({type: 'setIsLoggedIn', isLoggedIn: true})
-      dispatch({type: 'setUserInfo', userInfo: globalState.expectedLogin})
+      dispatch({type: 'SET_IS_LOGGED_IN', isLoggedIn: true})
+      dispatch({type: 'SET_USER_INFO', userInfo: globalState.expectedLogin})
       console.log(globalState)
       navigate('/dashboard')
       closeModal()

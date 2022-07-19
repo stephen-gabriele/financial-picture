@@ -46,7 +46,7 @@ const TagContainer = ({transactionIndex, tags, setTransactionData}) => {
 
   function addTag(transactionIndex, tag) {
     if (!globalState.transactionTags.includes(tag)) {
-      dispatch({type: 'addTransactionTag', tag: tag})
+      dispatch({type: 'ADD_TRANSACTION_TAG', tag: tag})
     }
     setTransactionData(prevTransactionData => {
       let newTransactionData=[...prevTransactionData]
