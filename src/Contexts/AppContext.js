@@ -1,6 +1,6 @@
 import React, { createContext, useReducer } from "react"
 export const AppContext = createContext()
-import api from '../api/backend'
+import api from '../api/api'
 
 export const AppProvider = props => {
   const reducer = (state, action) => {

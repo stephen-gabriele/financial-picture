@@ -1,11 +1,12 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
+import { AppContext } from '../Contexts/AppContext'
 import TagCard from './TagCard';
 
-const TagContainer = ({transactionIndex, tags, deleteTag, addTag}) => {
+const TagContainer = ({transactionIndex, tags, setTransactionData}) => {
   const [input, setInput] = useState(
     {value: "",}
   )
-
+  const {globalState, dispatch} = useContext(AppContext)
   function handleInputChange(event) {
     setInput(prevInput => {
       return {
@@ -35,9 +36,28 @@ const TagContainer = ({transactionIndex, tags, deleteTag, addTag}) => {
     }
   }
 
+  function deleteTag(transactionIndex, tagIndex) {
+    setTransactionData(prevTransactionData => {
+      let newTransactionData=[...prevTransactionData]
+      newTransactionData[transactionIndex].tags.splice(tagIndex, 1)
+      return newTransactionData
+    })
+  }
+
+  function addTag(transactionIndex, tag) {
+    if (!globalState.transactionTags.includes(tag)) {
+      dispatch({type: 'addTransactionTag', tag: tag})
+    }
+    setTransactionData(prevTransactionData => {
+      let newTransactionData=[...prevTransactionData]
+      newTransactionData[transactionIndex].tags.push(tag)
+      return newTransactionData
+    })
+  }
+
   return ( 
   <div className='grid gap-1 grid-cols-2'>
-    {tags.map((tag, tagIndex) => <TagCard transactionIndex={transactionIndex} deleteTag={deleteTag} tagIndex={tagIndex} tag={tag}/>)}
+    {tags.map((tag, tagIndex) => <TagCard key={tag} transactionIndex={transactionIndex} deleteTag={deleteTag} tagIndex={tagIndex} tag={tag}/>)}
     <div className='flex'>
       <input
         className={`w-2/3 text-xs rounded-md outline-0 border ${(input.value.length===0 || inputIsValid()) ? 'border-white' : 'border-rose-600'}`}
