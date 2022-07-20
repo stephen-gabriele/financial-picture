@@ -5,7 +5,6 @@ import TransactionHeader from './TransactionHeader'
 
 
 const TransactionChart = () => {
-
   const [transactionData, setTransactionData] = useState([])
   const {globalState, dispatch} = useContext(AppContext)
   const [formData, setFormData] = useState(
@@ -20,19 +19,15 @@ const TransactionChart = () => {
     if(globalState.transactionData) 
       setTransactionData(globalState.transactionData)
   }, [globalState.transactionData])
-  useEffect(() => {
-    // sortChart('date', false)
-  }, [])
 
   function search(arr) {
+    if (formData.query.length === 0) return arr
     return arr.filter(transaction => {
-      return (formData.query.length === 0 || 
-        ((formData.query.length <= 2 && 
+      return ((formData.query.length <= 2 && 
           transaction.title.toLowerCase().startsWith(formData.query.toLowerCase())) 
           || 
         (formData.query.length > 2 && 
           transaction.title.toLowerCase().includes(formData.query.toLowerCase())))
-        )
     })
   }
 
@@ -45,60 +40,27 @@ const TransactionChart = () => {
     })
   }
 
-  function sortData(sortBy) {
+  function sortData(sortBy, adapter) {
     const sortedData = [...transactionData]
-    switch (sortBy) {
-      case 'title' : {
-        sortedData.sort((a, b) => {
-          if (a.title < b.title) return -1
-          if (a.title > b.title) return 1
-          return 0
-        })
-      }
-      break
-      case 'date' : {
-        sortedData.sort((a, b) => {
-          if (new Date(a.date).getTime() < new Date(b.date).getTime()) return -1
-          if (new Date(a.date).getTime() > new Date(b.date).getTime()) return 1
-          return 0
-        })
-      }
-      break
-      case 'location' : {
-        sortedData.sort((a, b) => {
-          if (a.location.city < b.location.city) return -1
-          if (a.location.city > b.location.city) return 1
-          return 0
-        })
-      }
-      break
-      case 'category' : {
-        sortedData.sort((a, b) => {
-          if (a.category < b.category) return -1
-          if (a.category > b.category) return 1
-          return 0
-        })
-      }
-      break
-      case 'amount' : {
-        sortedData.sort((a, b) => {
-          if (a.amount < b.amount) return -1
-          if (a.amount > b.amount) return 1
-          return 0
-        })
-      }
+    if (adapter) {
+      sortedData.sort((a, b) => {
+        if (adapter(a[sortBy]) < adapter(b[sortBy])) return -1
+        if (adapter(a[sortBy]) > adapter(b[sortBy])) return 1
+        return 0
+      })
+    } else {
+      sortedData.sort((a, b) => {
+        if (a[sortBy] < b[sortBy]) return -1
+        if (a[sortBy] > b[sortBy]) return 1
+        return 0
+      })
     }
     if (sortBy === activeSort.sortBy && !activeSort.inverse) {
       sortedData.reverse()
-      setActiveSort((prevActiveSort) => {
-        return {...prevActiveSort,
-        inverse: true}
-      })
-    } else setActiveSort((prevActiveSort) => {
-      return {...prevActiveSort,
-      sortBy,
-      inverse: false}
-    })
+      setActiveSort(prevActiveSort => ({ ...prevActiveSort, inverse: true }))
+    } else {
+      setActiveSort(prevActiveSort => ({ ...prevActiveSort, sortBy, inverse: false }))
+    }
     setTransactionData(sortedData)
   }
     
