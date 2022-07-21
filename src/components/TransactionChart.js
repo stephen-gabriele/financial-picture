@@ -13,7 +13,7 @@ const TransactionChart = () => {
   const [activeSort, setActiveSort] = useState({sortBy: '', inverse: false})
 
   useEffect(() => {
-    dispatch({type: 'GET_TRANSACTIONS'})
+    dispatch({type: 'GET_TRANSACTIONS', token: globalState.loginToken})
   }, [])
   useEffect(() => {
     if(globalState.transactionData) 

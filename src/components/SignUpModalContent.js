@@ -70,19 +70,19 @@ const SignUpModalContent = () => {
           isSubmitted:true
         }
       })
-      dispatch({type: 'SET_IS_LOGGED_IN', isLoggedIn: true})
-      dispatch({type: 'SET_USER_INFO', userInfo: {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        password: formData.password
-      }})
+      // dispatch({type: 'SET_IS_LOGGED_IN', isLoggedIn: true})
+      // dispatch({type: 'SET_USER_INFO', userInfo: {
+      //   firstName: formData.firstName,
+      //   lastName: formData.lastName,
+      //   email: formData.email,
+      //   password: formData.password
+      // }})
       navigate('dashboard')
       closeModal()
     }
   }
 
-  if (globalState.isLoggedIn) return null
+  if (globalState.loginToken) return null
 
   return ( 
   <div className='w-72 h-fit'>

@@ -5,20 +5,22 @@ import Title from "./Title"
 import Subtitle from "./Subtitle"
 import {useNavigate} from 'react-router-dom'
 
-
-
 const Dashboard = () => {
-  const {globalState} = useContext(AppContext)
-  // const logUserInfo = () => {
-  //   console.log(globalState.userInfo)
-  // }
+  const {globalState, dispatch} = useContext(AppContext)
+  const logUserInfo = () => {
+    console.log(globalState)
+  }
   let navigate = useNavigate()
 
   return ( <div className="pt-6 pb-64 bg-slate-100 text-center">
     <Title className="mt-6">Dashboard</Title>
-    <Button size='sm' text='Transactions' onClick={()=> navigate('/transactions')}/>
-    {/* <Subtitle className="mt-6">Successfully Logged In, {globalState.userInfo.firstName}!</Subtitle>
-    <Button className="mt-12" onClick={logUserInfo} text="Log User Info"/> */}
+    <Subtitle className="mt-6">Hello, {globalState.userInfo.firstName}! Here's your account at a glance.</Subtitle>
+    <Button className="mt-12 mr-6" onClick={logUserInfo} text="Log User Info"/>
+    <Button className="mt-12 mr-6" text='Transactions' onClick={()=> navigate('/transactions')}/>
+    <Button text='Log Out' onClick={()=> {
+      dispatch({type: 'LOG_OUT'})
+      navigate('/')
+      }}/>
   </div> );
 }
  

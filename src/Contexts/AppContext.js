@@ -1,16 +1,13 @@
 import React, { createContext, useReducer } from "react"
 export const AppContext = createContext()
 import api from '../api/api'
+import {useNavigate} from 'react-router-dom'
 
 export const AppProvider = props => {
   const reducer = (state, action) => {
     const setUserInfo = () => {
       return {...state, 
         userInfo: action.userInfo}
-    }
-    const setIsLoggedIn = () => {
-      return {...state,
-        isLoggedIn: action.isLoggedIn}
     }
     const addTransactionTag = () => {
       return {...state,
@@ -25,20 +22,99 @@ export const AppProvider = props => {
       transactionTags: newTags}
     }
     const getTransactions = async () => {
+      const request = new Request(api.transactions, {
+        method: 'GET',
+        headers: {
+          'Content-Type' : 'application/json',
+          'x-auth-token' : action.token
+        },
+        mode: 'cors'
+      })
       try {
-        let transactionData = await fetch(api.transactions)
+        let transactionData = await fetch(request)
         transactionData = await transactionData.json()
         dispatch({type: 'GET_TRANSACTIONS_SUCCESS', transactionData})
       } catch (e){
         console.log('Could not get transactions: ', e)
       }
     }
+    const authenticate = async() => {
+      const credentials = {
+        email: action.email,
+        password: action.password
+      }
+      const request = new Request(api.auth, {
+        method: 'POST',
+        headers: {
+          'Content-Type' : 'application/json',
+        },
+        mode: 'cors',
+        body: JSON.stringify(credentials)
+      })
+
+      try {
+        const response = await fetch(request)
+          if (!response.ok) throw new Error(response.status)
+        const body = await response.json()
+        dispatch({type: 'AUTHENTICATE_SUCCESS', response, body})
+      } catch (e) {
+        dispatch({type: 'AUTHENTICATE_FAILURE', e})
+      }
+    }
+
+    const authenticateSuccess = () => {
+      return {...state,
+        isLoading: false,
+        auth: {
+          failMessage: null
+        },
+        userInfo: {
+          firstName: action.body.name.split(' ')[0],
+          lastName: action.body.name.split(' ')[action.body.name.split(' ').length - 1],
+          email: action.body.email
+        },
+        transactionTags: action.body.userData.allTags,
+        transactionCategories: action.body.userData.allCategories,
+        loginToken: action.response.headers.get('x-auth-token')}
+    }
+    const authenticateFailure = () => {
+      if (action.e.message === '400') {
+        return {...state, 
+          isLoading: false,
+          auth: {
+            failMessage: 'Invalid Username or Password'
+          }
+        }
+      }
+    }
+    const logOut = () => {
+      return{
+        auth: {
+          failMessage: null
+        },
+  
+        userInfo: 
+          {firstName: '',
+          lastName: '',
+          email: ''},
+        
+        loginToken: null,
+  
+        transactionData: [],
+  
+        transactionCategories:
+          [],
+  
+        transactionTags:
+          [],
+  
+        isLoading: false
+      }
+    }
 
     switch (action.type) {
       case 'SET_USER_INFO':
         return setUserInfo()
-      case 'SET_IS_LOGGED_IN':
-        return setIsLoggedIn()
       case 'ADD_TRANSACTION_TAG' :
         return addTransactionTag()
       case 'REMOVE_TRANSACTION_TAG' :
@@ -50,6 +126,15 @@ export const AppProvider = props => {
         return {...state, 
           isLoading: false, 
           transactionData: action.transactionData}
+      case 'AUTHENTICATE' :
+        authenticate()
+        return {...state, isLoading: true}
+      case 'AUTHENTICATE_SUCCESS' :
+        return authenticateSuccess()
+      case 'AUTHENTICATE_FAILURE' :
+        return authenticateFailure()
+      case 'LOG_OUT' :
+        return logOut()
       default:
         return state
     }
@@ -57,37 +142,25 @@ export const AppProvider = props => {
 
   const [globalState, dispatch] = useReducer(reducer,
     {
+      auth: {
+        failMessage: null
+      },
+
       userInfo: 
         {firstName: '',
         lastName: '',
-        email: '',
-        password: ''},
-
-      expectedLogin: 
-        {firstName: 'Andrew',
-        lastName: 'Paynter',
-        email: 't@t.com',
-        password: 'testpass'},
-
-      isLoggedIn: true,
+        email: ''},
       
+      loginToken: null,
+
       transactionData: [],
 
       transactionCategories:
-        [
-          'Gas',
-          'Rent',
-          'Grocery',
-          'Food and Drink',
-          'Shopping'
-        ],
+        [],
 
       transactionTags:
-        [
-          'Business',
-          'Personal',
-          'Pets'
-        ],
+        [],
+
       isLoading: false
     }
   )
