@@ -10,23 +10,29 @@ const SignUpModalContent = () => {
   let navigate = useNavigate()
 
   const [formData, setFormData] = useState(
-    {firstName: '', lastName: '', email: '', password: '', confirmPassword: '', isSubmitted:false}
+    {firstName: '', lastName: '', email: '', password: '', confirmPassword: ''}
   )
   const {globalState, dispatch} = useContext(AppContext)
   const {closeModal} = useContext(ModalContext)
-
-  const [emailValid, setEmailValid] = useState(true)
-  const [firstNameValid, setFirstNameValid] = useState(true)
-  const [lastNameValid, setLastNameValid] = useState(true)
-  const [passwordValid, setPasswordValid] = useState(true)
-  const [confirmPasswordValid, setConfirmPasswordValid] = useState(true)
+  const [valid, setValid] = useState({
+    email: true,
+    firstName: true,
+    lastName: true,
+    password: true,
+    confirmPassword: true
+  })
 
   useEffect(() => {
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formData.email)) setEmailValid(true)
-    if (formData.firstName.match(/^[A-Za-z]+$/)) setFirstNameValid(true)
-    if (formData.lastName.match(/^[A-Za-z]+$/)) setLastNameValid(true)
-    if (formData.password.length > 6) setPasswordValid(true)
-    if ((formData.confirmPassword == formData.password) && formData.confirmPassword.length > 6) setConfirmPasswordValid(true)
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formData.email)) 
+      setValid(prevValid => ({...prevValid, email: true}))
+    if (formData.firstName.match(/^[A-Za-z]+$/)) 
+      setValid(prevValid => ({...prevValid, firstName: true}))
+    if (formData.lastName.match(/^[A-Za-z]+$/)) 
+      setValid(prevValid => ({...prevValid, lastName: true}))
+    if (formData.password.length > 6) 
+      setValid(prevValid => ({...prevValid, password: true}))
+    if ((formData.confirmPassword == formData.password) && formData.confirmPassword.length > 6) 
+      setValid(prevValid => ({...prevValid, confirmPassword: true}))
   }, [formData])
 
   function handleChange(event) {
@@ -38,59 +44,55 @@ const SignUpModalContent = () => {
     })
   }
 
-
   const submit = () => {
     let submitReady = true
 
     if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formData.email)) || formData.email.length == 0) {
-      setEmailValid(false)
+      setValid(prevValid => ({...prevValid, email: false}))
       submitReady=false
     }
     if (!(formData.firstName.match(/^[A-Za-z]+$/)) || formData.firstName.length == 0) {
-      setFirstNameValid(false)
+      setValid(prevValid => ({...prevValid, firstName: false}))
       submitReady=false
     }
     if (!(formData.lastName.match(/^[A-Za-z]+$/))) {
-      setLastNameValid(false)
+      setValid(prevValid => ({...prevValid, lastName: false}))
       submitReady=false
     }
     if (formData.password.length < 7) {
-      setPasswordValid(false)
+      setValid(prevValid => ({...prevValid, password: false}))
       submitReady=false
     }
     if (formData.confirmPassword !== formData.password || formData.confirmPassword.length == 0) {
-      setConfirmPasswordValid(false)
+      setValid(prevValid => ({...prevValid, confirmPassword: false}))
       submitReady=false
     }
     
     if (submitReady) {
-      setFormData(prevFormData => {
-        return {
-          ...prevFormData,
-          isSubmitted:true
-        }
-      })
-      // dispatch({type: 'SET_IS_LOGGED_IN', isLoggedIn: true})
-      // dispatch({type: 'SET_USER_INFO', userInfo: {
-      //   firstName: formData.firstName,
-      //   lastName: formData.lastName,
-      //   email: formData.email,
-      //   password: formData.password
-      // }})
-      navigate('dashboard')
-      closeModal()
+      dispatch({type: 'SIGN_UP', 
+        email: formData.email, 
+        firstName: formData.firstName, 
+        lastName: formData.lastName, 
+        password: formData.password})
     }
   }
+
+  useEffect(() => {
+    if (globalState.loginToken) {
+      closeModal()
+      navigate('/dashboard')
+    } 
+  }, [globalState.loginToken])
 
   if (globalState.loginToken) return null
 
   return ( 
-  <div className='w-72 h-fit'>
+  <div className='w-72 min-h-[32rem]'>
     <Subtitle>Sign Up</Subtitle>
-    {!formData.isSubmitted && <div className='flex flex-col mt-6'>
+    <div className='flex flex-col mt-6'>
       <form className='flex flex-col '>
         <input
-          className={`px-1 py-2 rounded-md border-2 outline-0 ${firstNameValid ? 'border-white' : 'border-rose-600'}`}
+          className={`px-1 py-2 rounded-md border-2 outline-0 ${valid.firstName ? 'border-white' : 'border-rose-600'}`}
           type="text"
           placeholder="First Name"
           onChange={handleChange}
@@ -99,7 +101,7 @@ const SignUpModalContent = () => {
         />
         {/* {!firstNameValid && <div className='text-rose-600'>Invalid entry</div>} */}
         <input
-          className={`mt-4 px-1 py-2 rounded-md border-2 outline-0 ${lastNameValid ? 'border-white' : 'border-rose-600'}`}
+          className={`mt-4 px-1 py-2 rounded-md border-2 outline-0 ${valid.lastName ? 'border-white' : 'border-rose-600'}`}
           type="text"
           placeholder="Last Name"
           onChange={handleChange}
@@ -108,7 +110,7 @@ const SignUpModalContent = () => {
         />
         {/* {!lastNameValid && <div className='text-rose-600'>Invalid entry</div>} */}
         <input
-          className={`mt-4 px-1 py-2 rounded-md border-2 outline-0 ${emailValid ? 'border-white' : 'border-rose-600'}`}
+          className={`mt-4 px-1 py-2 rounded-md border-2 outline-0 ${valid.email ? 'border-white' : 'border-rose-600'}`}
           type="email"
           placeholder="Email Address"
           onChange={handleChange}
@@ -117,7 +119,7 @@ const SignUpModalContent = () => {
         />
         {/* {!emailValid && <div className='text-rose-600'>Invalid email address</div>} */}
         <input 
-          className={`mt-4 px-1 py-2 rounded-md border-2 outline-0 ${passwordValid ? 'border-white' : 'border-2 border-rose-600'}`}
+          className={`mt-4 px-1 py-2 rounded-md border-2 outline-0 ${valid.password ? 'border-white' : 'border-2 border-rose-600'}`}
           type="password"
           placeholder="Password (at least 7 characters)"
           onChange={handleChange}
@@ -125,7 +127,7 @@ const SignUpModalContent = () => {
           value={formData.password}
         />
         <input 
-          className={`mt-4 px-1 py-2 rounded-md border-2 outline-0 ${confirmPasswordValid ? 'border-white' : 'border-2 border-rose-600'}`}
+          className={`mt-4 px-1 py-2 rounded-md border-2 outline-0 ${valid.confirmPassword ? 'border-white' : 'border-2 border-rose-600'}`}
           type="password"
           placeholder="Confirm Password"
           onChange={handleChange}
@@ -135,7 +137,10 @@ const SignUpModalContent = () => {
         {/* {!passwordValid && <div className='text-rose-600'>Password must be at least 7 characters</div>} */}
       </form>
         <Button text='Sign Up' size='sm' onClick={submit} className='mt-8'/>
-    </div> }
+        <div className='text-rose-600 mt-4'>
+          {globalState.auth.failMessage}
+        </div>
+    </div> 
   </div>
   );
 }

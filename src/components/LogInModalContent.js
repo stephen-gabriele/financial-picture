@@ -42,7 +42,8 @@ const LogInModalContent = () => {
     <div className='flex flex-col'>
       <form className='flex flex-col mt-4'>
         <input
-          className={`mt-4 px-1 py-2 rounded-md border-2 outline-0 ${!globalState.auth.failMessage ? 'border-white' : 'border-rose-600'}`}
+          className={`mt-4 px-1 py-2 rounded-md border-2 outline-0 
+          ${!globalState.auth.failMessage ? 'border-white' : 'border-rose-600'}`}
           type="email"
           placeholder="Email Address"
           onChange={handleChange}
@@ -50,7 +51,8 @@ const LogInModalContent = () => {
           value={formData.email}
         />
         <input 
-          className={`mt-4 px-1 py-2 rounded-md border-2 outline-0 ${!globalState.auth.failMessage ? 'border-white' : 'border-rose-600'}`}
+          className={`mt-4 px-1 py-2 rounded-md border-2 outline-0 
+          ${!globalState.auth.failMessage ? 'border-white' : 'border-rose-600'}`}
           type="password"
           placeholder="Password"
           onChange={handleChange}

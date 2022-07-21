@@ -85,6 +85,61 @@ export const AppProvider = props => {
             failMessage: 'Invalid Username or Password'
           }
         }
+      } else {
+        return {...state, 
+          isLoading: false,
+          auth: {
+            failMessage: 'Something went wrong...'
+          }
+        }
+      }
+    }
+    const signUp = async() => {
+      const credentials = {
+        name: `${action.firstName.trim()} ${action.lastName.trim()}`,
+        email: action.email,
+        password: action.password
+      }
+      const request = new Request(api.users, {
+        method: 'POST',
+        headers: {
+          'Content-Type' : 'application/json',
+        },
+        mode: 'cors',
+        body: JSON.stringify(credentials)
+      })
+      // figure out how to get the body of a 400 response!
+      try {
+        const response = await fetch(request)
+        console.log(response)
+          if (!response.ok) throw new Error(response)
+        const body = await response.json()
+        dispatch({type: 'SIGN_UP_SUCCESS', response, body})
+      } catch (e) {
+        console.log(e)
+        dispatch({type: 'SIGN_UP_FAILURE', e})
+      }
+    }
+
+    const signUpSuccess = () => {
+      return {...state,
+        isLoading: false,
+        auth: {
+          failMessage: null
+        },
+        userInfo: {
+          firstName: action.body.name.split(' ')[0],
+          lastName: action.body.name.split(' ')[action.body.name.split(' ').length - 1],
+          email: action.body.email
+        },
+        loginToken: action.response.headers.get('x-auth-token')}
+    }
+    const signUpFailure = () => {
+      return {...state, 
+        isLoading: false,
+        auth: {
+          failMessage: 'Something Went Wrong'
+        }
       }
     }
     const logOut = () => {
@@ -133,6 +188,13 @@ export const AppProvider = props => {
         return authenticateSuccess()
       case 'AUTHENTICATE_FAILURE' :
         return authenticateFailure()
+      case 'SIGN_UP' :
+        signUp()
+        return {...state, isLoading: true}
+      case 'SIGN_UP_SUCCESS' :
+        return signUpSuccess()
+      case 'SIGN_UP_FAILURE' :
+        return signUpFailure()
       case 'LOG_OUT' :
         return logOut()
       default:
