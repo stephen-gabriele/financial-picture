@@ -44,7 +44,7 @@ const SignUpModalContent = () => {
     })
   }
 
-  const submit = () => {
+  const validateInputs = () => {
     let submitReady = true
 
     if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formData.email)) || formData.email.length == 0) {
@@ -67,8 +67,11 @@ const SignUpModalContent = () => {
       setValid(prevValid => ({...prevValid, confirmPassword: false}))
       submitReady=false
     }
-    
-    if (submitReady) {
+    return submitReady
+  }
+
+  const submit = () => {
+    if (validateInputs()) {
       dispatch({type: 'SIGN_UP', 
         email: formData.email, 
         firstName: formData.firstName, 
@@ -87,7 +90,7 @@ const SignUpModalContent = () => {
   if (globalState.loginToken) return null
 
   return ( 
-  <div className='w-72 min-h-[32rem]'>
+  <div className='w-72 min-h-[32rem] pt-4'>
     <Subtitle>Sign Up</Subtitle>
     <div className='flex flex-col mt-6'>
       <form className='flex flex-col '>

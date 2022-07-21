@@ -1,7 +1,6 @@
 import React, { createContext, useReducer } from "react"
 export const AppContext = createContext()
 import api from '../api/api'
-import {useNavigate} from 'react-router-dom'
 
 export const AppProvider = props => {
   const reducer = (state, action) => {
@@ -38,7 +37,7 @@ export const AppProvider = props => {
         console.log('Could not get transactions: ', e)
       }
     }
-    const authenticate = async() => {
+    const logIn = async() => {
       const credentials = {
         email: action.email,
         password: action.password
@@ -56,13 +55,13 @@ export const AppProvider = props => {
         const response = await fetch(request)
           if (!response.ok) throw new Error(response.status)
         const body = await response.json()
-        dispatch({type: 'AUTHENTICATE_SUCCESS', response, body})
+        dispatch({type: 'LOG_IN_SUCCESS', response, body})
       } catch (e) {
-        dispatch({type: 'AUTHENTICATE_FAILURE', e})
+        dispatch({type: 'LOG_IN_FAILURE', e})
       }
     }
 
-    const authenticateSuccess = () => {
+    const logInSuccess = () => {
       return {...state,
         isLoading: false,
         auth: {
@@ -77,7 +76,7 @@ export const AppProvider = props => {
         transactionCategories: action.body.userData.allCategories,
         loginToken: action.response.headers.get('x-auth-token')}
     }
-    const authenticateFailure = () => {
+    const logInFailure = () => {
       if (action.e.message === '400') {
         return {...state, 
           isLoading: false,
@@ -111,12 +110,10 @@ export const AppProvider = props => {
       // figure out how to get the body of a 400 response!
       try {
         const response = await fetch(request)
-        console.log(response)
           if (!response.ok) throw new Error(response)
         const body = await response.json()
         dispatch({type: 'SIGN_UP_SUCCESS', response, body})
       } catch (e) {
-        console.log(e)
         dispatch({type: 'SIGN_UP_FAILURE', e})
       }
     }
@@ -181,13 +178,13 @@ export const AppProvider = props => {
         return {...state, 
           isLoading: false, 
           transactionData: action.transactionData}
-      case 'AUTHENTICATE' :
-        authenticate()
+      case 'LOG_IN' :
+        logIn()
         return {...state, isLoading: true}
-      case 'AUTHENTICATE_SUCCESS' :
-        return authenticateSuccess()
-      case 'AUTHENTICATE_FAILURE' :
-        return authenticateFailure()
+      case 'LOG_IN_SUCCESS' :
+        return logInSuccess()
+      case 'LOG_IN_FAILURE' :
+        return logInFailure()
       case 'SIGN_UP' :
         signUp()
         return {...state, isLoading: true}

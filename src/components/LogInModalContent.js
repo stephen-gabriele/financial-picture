@@ -25,7 +25,7 @@ const LogInModalContent = () => {
   }
 
   const submit = () => {
-    dispatch({type: 'AUTHENTICATE', email: formData.email, password: formData.password})
+    dispatch({type: 'LOG_IN', email: formData.email, password: formData.password})
   }
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const LogInModalContent = () => {
 
 
   return ( 
-  <div className='w-72 h-fit'>
+  <div className='w-72 h-80 flex flex-col pt-6'>
     <Subtitle>Log In</Subtitle>
     <div className='flex flex-col'>
       <form className='flex flex-col mt-4'>
@@ -61,6 +61,9 @@ const LogInModalContent = () => {
         />
       </form>
         <Button text='Log In' size='sm' onClick={submit} className='mt-8'/>
+        <div className='text-rose-600 mt-4'>
+          {globalState.auth.failMessage}
+        </div>
     </div>
   </div>
   );
