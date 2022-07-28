@@ -7,7 +7,6 @@ import ParagraphText from '../components/atoms/ParagraphText'
 import Section from '../components/molecules/Welcome/WelcomeSection'
 import { ModalContext } from '../Contexts/ModalContext'
 import SignUpModalContent from '../components/molecules/Modal/SignUpModalContent'
-
 import {
   AdsImg,
   AppstoreImg,
@@ -50,7 +49,7 @@ const Content = () => {
   }
 
   return (
-    <div className='flex flex-col text-center items-center mx-10 md:mx-auto pt-20 md:max-w-screen-md lg:max-w-screen-lg pb-32'>
+    <div className='flex flex-col px-2 text-center items-center mx-10 md:mx-auto pt-20 md:max-w-screen-md lg:max-w-screen-lg pb-32'>
       <Title className='mt-6'>The modern way to manage your money</Title>
       <ParagraphText className='mt-6'>
         Managing money can be complicated. Track all of your accounts in one place, collaborate with

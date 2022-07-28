@@ -36,9 +36,9 @@ const Header = () => {
           <NavLink onClick={() => navigate('/transactions')}>Transactions</NavLink>
         </ul> : null}
         <div className='flex justify-between items-center'>
-          {!globalState.loginToken && <Button size='sm' text='Log in' theme='secondary' className='hidden lg:block mr-2' onClick={openLogInModal}/>}
-          {!globalState.loginToken && <Button size='sm' text='Sign up' onClick={openSignUpModal}/>}
-          {globalState.loginToken && <Button size='sm' text='Your account' onClick={()=> navigate('/dashboard')}/>}
+          {!globalState.loginToken && <Button size='sm' text='Log in' theme='secondary'  onClick={openLogInModal}/>}
+          {!globalState.loginToken && <Button size='sm' text='Sign up' className='hidden lg:block ml-2' onClick={openSignUpModal}/>}
+          {globalState.loginToken && <Button size='sm' text='Your account' onClick={()=> navigate('/account')}/>}
           <div
             className='flex ml-3 h-1/2 flex-col hover:cursor-pointer md:hidden'
             onClick={openMenu}

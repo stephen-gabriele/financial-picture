@@ -16,30 +16,30 @@ import Welcome from './pages/Welcome'
 import Footer from './pages/Footer'
 import MobileMenu from './components/molecules/Nav/MobileMenu'
 import Subfooter from './pages/Subfooter'
+import Account from './pages/Account'
 
 const App = () => {
 
   return (
-    <div>
-      <Router>
-        <AppProvider>
-        <ModalProvider>
-        <MobileMenuProvider>
-          <Modal />
-          <MobileMenu />
-          <Header/>
-          <Routes>
-            <Route exact path='/' element={false ? <Redirect to='/dashboard'/> : <div><Welcome /><Subfooter /></div>}></Route>
-            <Route path='/dashboard' element={<Dashboard />}></Route>
-            <Route path='/transactions' element={<Transactions />}></Route>
-            <Route path='/features' element={<Features />}></Route>
-          </Routes>
-          <Footer />
-        </MobileMenuProvider>
-        </ModalProvider>
-        </AppProvider>
-      </Router>
-    </div>
+    <Router>
+      <AppProvider>
+      <ModalProvider>
+      <MobileMenuProvider>
+        <Modal />
+        <MobileMenu />
+        <Header />
+        <Routes>
+          <Route exact path='/' element={<div><Welcome /><Subfooter /></div>}/>
+          <Route path='/dashboard' element={<Dashboard />}/>
+          <Route path='/transactions' element={<Transactions />}/>
+          <Route path='/features' element={<Features />}/>
+          <Route path='/account' element={<Account />}/>
+        </Routes>
+        <Footer />
+      </MobileMenuProvider>
+      </ModalProvider>
+      </AppProvider>
+    </Router>
   )
 }
 ReactDOM.render(<App />, document.getElementById('root'))
