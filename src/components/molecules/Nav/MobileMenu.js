@@ -4,13 +4,12 @@ import MobileMenuDivider from './MobileMenuDivider'
 import MobileMenuItem from './MobileMenuItem'
 
 const MobileMenu = () => {
-  
-  const {menuIsOpen, closeMenu} = useContext(MobileMenuContext)
+  const { menuIsOpen, closeMenu } = useContext(MobileMenuContext)
 
   if (!menuIsOpen) return null
 
   React.useEffect(() => {
-    document.documentElement.style.overflow= menuIsOpen ? 'hidden' : 'visible'
+    document.documentElement.style.overflow = menuIsOpen ? 'hidden' : 'visible'
   }, [menuIsOpen])
 
   return (

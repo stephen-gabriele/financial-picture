@@ -51,7 +51,6 @@ const Footer = () => {
           <NavLink size='lg'>Other Thing</NavLink>
           <NavLink size='lg'>Thing</NavLink>
           <NavLink size='lg'>Terms of Service</NavLink>
-
         </div>
         <div className='lg:ml-16 mt-6'>
           <ParagraphText className='font-bold'>Category 1</ParagraphText>

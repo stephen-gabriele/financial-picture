@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import Button from '../components/atoms/Button'
 import ReviewCard from '../components/molecules/Welcome/ReviewCard'
 import Subtitle from '../components/atoms/Subtitle'
@@ -28,19 +28,21 @@ import {
 } from '../images'
 
 const Content = () => {
+  const { setModal, openModal } = useContext(ModalContext)
 
-  const {setModal, openModal} = useContext(ModalContext)
-  
   const openSignUpModal = () => {
     setModal(<SignUpModalContent />)
     openModal()
   }
 
   const reviews = {
-    'Andy P' : 'This is the best app i have ever used and I want to marry the devs',
-    'Joshua W.' : 'I tried YNAB, I tried Mint, I use Monarch. Soooo much more intuitive and the UI/UX is delightful.',
-    'Stephen C.' : 'Its beautifully designed and it just works, as advertised; Significantly fewer syncing issues than its competitors.',
-    'Aaron V.' : 'Makes it easy to see all my spending across accounts, with no ads and no unwanted advisors calling me.'
+    'Andy P': 'This is the best app i have ever used and I want to marry the devs',
+    'Joshua W.':
+      'I tried YNAB, I tried Mint, I use Monarch. Soooo much more intuitive and the UI/UX is delightful.',
+    'Stephen C.':
+      'Its beautifully designed and it just works, as advertised; Significantly fewer syncing issues than its competitors.',
+    'Aaron V.':
+      'Makes it easy to see all my spending across accounts, with no ads and no unwanted advisors calling me.'
   }
 
   const reviewCards = []
@@ -56,7 +58,7 @@ const Content = () => {
         a partner, and create a long term plan to achieve your goals. Get personalized advice along
         the way.
       </ParagraphText>
-      <Button text='Sign up now' className='mt-6' onClick={openSignUpModal}/>
+      <Button text='Sign up now' className='mt-6' onClick={openSignUpModal} />
 
       <img src={LaptopImg} className='mt-6' />
 
@@ -70,9 +72,7 @@ const Content = () => {
         <div>ON GOOGLE PLAY</div>
       </div>
 
-      <div className='grid md:grid-cols-2 grid-flow-row gap-6 mt-16'>
-        {reviewCards}
-      </div>
+      <div className='grid md:grid-cols-2 grid-flow-row gap-6 mt-16'>{reviewCards}</div>
 
       <div className='mt-16 grid grid-rows-3 md:grid-rows-2 lg:grid-rows-1 grid-cols-2 lg:grid-cols-4 gap-y-5 gap-x-2 grid-flow-row items-center justify-items-center w-96 md:w-auto'>
         <img

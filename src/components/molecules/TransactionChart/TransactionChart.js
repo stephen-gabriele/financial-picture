@@ -1,42 +1,39 @@
-import React, {useEffect, useState, useContext} from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { AppContext } from '../../../Contexts/AppContext'
 import TransactionRow from './TransactionRow'
 import TransactionHeader from './TransactionHeader'
 
-
 const TransactionChart = () => {
   const [transactionData, setTransactionData] = useState([])
-  const {globalState, dispatch} = useContext(AppContext)
-  const [formData, setFormData] = useState(
-    {query: "", queryValid: true}
-  )
-  const [activeSort, setActiveSort] = useState({sortBy: '', inverse: false})
+  const { globalState, dispatch } = useContext(AppContext)
+  const [formData, setFormData] = useState({ query: '', queryValid: true })
+  const [activeSort, setActiveSort] = useState({ sortBy: '', inverse: false })
 
   useEffect(() => {
-    dispatch({type: 'GET_TRANSACTIONS', token: globalState.loginToken})
+    dispatch({ type: 'GET_TRANSACTIONS', token: globalState.loginToken })
   }, [])
   useEffect(() => {
-    if(globalState.transactionData) 
-      setTransactionData(globalState.transactionData)
+    if (globalState.transactionData) setTransactionData(globalState.transactionData)
   }, [globalState.transactionData])
 
   function search(arr) {
     if (formData.query.length === 0) return arr
-    return arr.filter(transaction => {
-      return ((formData.query.length <= 2 && 
-          transaction.title.toLowerCase().startsWith(formData.query.toLowerCase())) 
-          || 
-        (formData.query.length > 2 && 
-          transaction.title.toLowerCase().includes(formData.query.toLowerCase())))
+    return arr.filter((transaction) => {
+      return (
+        (formData.query.length <= 2 &&
+          transaction.title.toLowerCase().startsWith(formData.query.toLowerCase())) ||
+        (formData.query.length > 2 &&
+          transaction.title.toLowerCase().includes(formData.query.toLowerCase()))
+      )
     })
   }
 
   function handleFormChange(event) {
-    setFormData(prevFormData => {
+    setFormData((prevFormData) => {
       return {
-          ...prevFormData,
-          [event.target.name]: event.target.value
-        }
+        ...prevFormData,
+        [event.target.name]: event.target.value
+      }
     })
   }
 
@@ -57,41 +54,41 @@ const TransactionChart = () => {
     }
     if (sortBy === activeSort.sortBy && !activeSort.inverse) {
       sortedData.reverse()
-      setActiveSort(prevActiveSort => ({ ...prevActiveSort, inverse: true }))
+      setActiveSort((prevActiveSort) => ({ ...prevActiveSort, inverse: true }))
     } else {
-      setActiveSort(prevActiveSort => ({ ...prevActiveSort, sortBy, inverse: false }))
+      setActiveSort((prevActiveSort) => ({ ...prevActiveSort, sortBy, inverse: false }))
     }
     setTransactionData(sortedData)
   }
-    
 
-  return ( 
+  return (
     <div className='flex flex-col items-end'>
       <input
         className={`text-right w-1/5 px-1 py-2 rounded-md border-2 outline-0
         ${formData.queryValid ? 'border-white' : 'border-rose-600'}`}
-        type="search"
-        placeholder="Search"
+        type='search'
+        placeholder='Search'
         onChange={handleFormChange}
-        name="query"
+        name='query'
         value={formData.query}
       />
       <table className='table-auto border border-slate-400 bg-slate-50 mt-4 text-center'>
         <TransactionHeader activeSort={activeSort} sortData={sortData} />
         <tbody className='flex flex-col'>
-          {
-          search(transactionData).map((transaction, transactionIndex) => {
-            return (<TransactionRow 
-              key={transactionIndex}
-              transaction={transaction} 
-              transactionIndex={transactionIndex} 
-              setTransactionData={setTransactionData}
-              />)
-            })
-          }
+          {search(transactionData).map((transaction, transactionIndex) => {
+            return (
+              <TransactionRow
+                key={transactionIndex}
+                transaction={transaction}
+                transactionIndex={transactionIndex}
+                setTransactionData={setTransactionData}
+              />
+            )
+          })}
         </tbody>
-      </table> 
-    </div>);
+      </table>
+    </div>
+  )
 }
- 
-export default TransactionChart;
+
+export default TransactionChart

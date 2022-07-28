@@ -1,37 +1,38 @@
-import React, {useContext} from "react"
+import React, { useContext } from 'react'
 import { AppContext } from '../../../Contexts/AppContext'
 
-const TransactionCategorySelector = ({transaction, setTransactionData}) => {
-  const {globalState} = useContext(AppContext)
+const TransactionCategorySelector = ({ transaction, setTransactionData }) => {
+  const { globalState } = useContext(AppContext)
 
   function handleCategoryChange(event) {
-    setTransactionData(prevTransactionData => {
-      return prevTransactionData.map(transaction => {
+    setTransactionData((prevTransactionData) => {
+      return prevTransactionData.map((transaction) => {
         if (transaction._id == event.target.id) {
           return {
             ...transaction,
             category: event.target.value
           }
-        }
-        else return transaction
+        } else return transaction
       })
     })
   }
 
-  return ( 
-  <select id={transaction._id} 
-    value={transaction.category} 
-    onChange={handleCategoryChange} 
-    className='bg-slate-50 text-center'>
-      {
-        globalState.transactionCategories.map(category => {
-          return (
-            <option key={category} value={category}>{category}</option>
-          )
-        })
-      }
-    </select> 
-    );
+  return (
+    <select
+      id={transaction._id}
+      value={transaction.category}
+      onChange={handleCategoryChange}
+      className='bg-slate-50 text-center'
+    >
+      {globalState.transactionCategories.map((category) => {
+        return (
+          <option key={category} value={category}>
+            {category}
+          </option>
+        )
+      })}
+    </select>
+  )
 }
- 
-export default TransactionCategorySelector;
+
+export default TransactionCategorySelector
