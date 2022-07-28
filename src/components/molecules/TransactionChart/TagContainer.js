@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react'
-import { AppContext } from '../Contexts/AppContext'
+import { AppContext } from '../../../Contexts/AppContext'
 import TagCard from './TagCard';
 
 const TagContainer = ({transactionIndex, tags, setTransactionData}) => {

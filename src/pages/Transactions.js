@@ -1,6 +1,6 @@
 import React from 'react'
 import Title from '../components/atoms/Title'
-import TransactionChart from '../components/TransactionChart'
+import TransactionChart from '../components/molecules/TransactionChart/TransactionChart'
 
 const Transactions = () => {
 

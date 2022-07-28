@@ -1,5 +1,5 @@
 import React, {useContext} from "react"
-import { AppContext } from '../Contexts/AppContext'
+import { AppContext } from '../../../Contexts/AppContext'
 
 const TransactionCategorySelector = ({transaction, setTransactionData}) => {
   const {globalState} = useContext(AppContext)

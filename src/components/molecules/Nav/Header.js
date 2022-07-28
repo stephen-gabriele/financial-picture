@@ -1,15 +1,17 @@
 import React, {useContext} from 'react'
-import Button from './atoms/Button'
-import NavLink from './atoms/NavLink'
-import { ModalContext } from '../Contexts/ModalContext'
-import { AppContext } from '../Contexts/AppContext'
-import SignUpModalContent from './SignUpModalContent'
-import LogInModalContent from './LogInModalContent'
+import Button from '../../atoms/Button'
+import NavLink from '../../atoms/NavLink'
+import { ModalContext } from '../../../Contexts/ModalContext'
+import { AppContext } from '../../../Contexts/AppContext'
+import { MobileMenuContext } from '../../../Contexts/MobileMenuContext'
+import SignUpModalContent from '../Modal/SignUpModalContent'
+import LogInModalContent from '../Modal/LogInModalContent'
 import { useNavigate } from 'react-router-dom'
 
-const Header = ({ toggleMenu }) => {
+const Header = () => {
   const {setModal, openModal} = useContext(ModalContext)
   const {globalState} = useContext(AppContext)
+  const {openMenu} = useContext(MobileMenuContext)
   let navigate = useNavigate()
   
   const openSignUpModal = () => {
@@ -39,7 +41,7 @@ const Header = ({ toggleMenu }) => {
           {globalState.loginToken && <Button size='sm' text='Your account' onClick={()=> navigate('/dashboard')}/>}
           <div
             className='flex ml-3 h-1/2 flex-col hover:cursor-pointer md:hidden'
-            onClick={toggleMenu}
+            onClick={openMenu}
           >
             <div className='w-5 h-0.5 bg-blue-900'></div>
             <div className='w-5 h-0.5 bg-blue-900 my-1'></div>

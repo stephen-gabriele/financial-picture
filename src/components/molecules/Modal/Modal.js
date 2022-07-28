@@ -1,6 +1,6 @@
 import React, { useRef, useContext, useState } from 'react'
 import ReactDOM from 'react-dom'
-import { ModalContext } from '../Contexts/ModalContext'
+import { ModalContext } from '../../../Contexts/ModalContext'
 
 const Modal = () => {
   const {modalContent, modalIsOpen, closeModal} = useContext(ModalContext)

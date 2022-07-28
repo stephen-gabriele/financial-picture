@@ -1,9 +1,9 @@
 import React, {useState, useContext, useEffect} from 'react'
-import Button from './atoms/Button'
-import Subtitle from './atoms/Subtitle'
-import { AppContext } from '../Contexts/AppContext'
+import Button from '../../atoms/Button'
+import Subtitle from '../../atoms/Subtitle'
+import { AppContext } from '../../../Contexts/AppContext'
 import { useNavigate } from 'react-router-dom'
-import { ModalContext } from '../Contexts/ModalContext'
+import { ModalContext } from '../../../Contexts/ModalContext'
 
 const LogInModalContent = () => {
 

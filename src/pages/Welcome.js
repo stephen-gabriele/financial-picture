@@ -1,12 +1,12 @@
 import React, {useContext} from 'react'
 import Button from '../components/atoms/Button'
-import ReviewCard from '../components/ReviewCard'
+import ReviewCard from '../components/molecules/Welcome/ReviewCard'
 import Subtitle from '../components/atoms/Subtitle'
 import Title from '../components/atoms/Title'
 import ParagraphText from '../components/atoms/ParagraphText'
-import Section from '../components/Section'
+import Section from '../components/molecules/Welcome/WelcomeSection'
 import { ModalContext } from '../Contexts/ModalContext'
-import SignUpModalContent from '../components/SignUpModalContent'
+import SignUpModalContent from '../components/molecules/Modal/SignUpModalContent'
 
 import {
   AdsImg,
