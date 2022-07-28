@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from "react"
+import React, { createContext, useReducer, useEffect } from "react"
 export const AppContext = createContext()
 import api from '../api/api'
 
@@ -6,6 +6,11 @@ export const AppProvider = props => {
 
   const reducer = (state, action) => {
     
+    const tryLocalStorage = () => {
+      const savedState = localStorage.getItem('savedState')
+      if (savedState) return savedState
+      return {...state}
+    }
     const setUserInfo = () => {
       return {...state, 
         userInfo: action.userInfo}
@@ -159,6 +164,8 @@ export const AppProvider = props => {
     }
 
     switch (action.type) {
+      case 'TRY_LOCAL_STORAGE' :
+        return tryLocalStorage()
       case 'SET_USER_INFO':
         return setUserInfo()
       case 'ADD_TRANSACTION_TAG' :

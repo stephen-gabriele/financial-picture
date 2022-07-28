@@ -1,7 +1,7 @@
 import React from 'react'
-import { AppstoreImg, GooglePlayImg } from '../images'
-import ParagraphText from '../components/atoms/ParagraphText'
-import NavLink from '../components/atoms/NavLink'
+import { AppstoreImg, GooglePlayImg } from '../../../images'
+import ParagraphText from '../../atoms/ParagraphText'
+import NavLink from '../../atoms/NavLink'
 
 const Footer = () => {
   return (
