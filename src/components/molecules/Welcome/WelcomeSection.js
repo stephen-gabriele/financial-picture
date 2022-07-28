@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import Title from '../../atoms/Title'
 import ParagraphText from '../../atoms/ParagraphText'
 import Button from '../../atoms/Button'
-import { ModalContext } from '../../../Contexts/ModalContext'
+import { ModalContext } from '../../../contexts/ModalContext'
 import SignUpModalContent from '../Modal/SignUpModalContent'
 import { useNavigate } from 'react-router-dom'
 

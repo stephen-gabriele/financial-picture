@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom'
 import './styles/main.css'
 
 import { BrowserRouter as Router } from 'react-router-dom'
-import { ModalProvider } from './Contexts/ModalContext'
-import { AppProvider } from './Contexts/AppContext'
-import { MobileMenuProvider } from './Contexts/MobileMenuContext'
+import { ModalProvider } from './contexts/ModalContext'
+import { AppProvider } from './contexts/AppContext'
+import { MobileMenuProvider } from './contexts/MobileMenuContext'
 import Modal from './components/molecules/Modal/Modal'
 import MobileMenu from './components/molecules/Nav/MobileMenu'
 

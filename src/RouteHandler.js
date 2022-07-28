@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { AppContext } from './Contexts/AppContext'
+import { AppContext } from './contexts/AppContext'
 
 import Dashboard from './pages/Dashboard'
 import Features from './pages/Features'

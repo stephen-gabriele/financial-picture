@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { MobileMenuContext } from '../../../Contexts/MobileMenuContext'
+import { MobileMenuContext } from '../../../contexts/MobileMenuContext'
 import MobileMenuDivider from './MobileMenuDivider'
 import MobileMenuItem from './MobileMenuItem'
 

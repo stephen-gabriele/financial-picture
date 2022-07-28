@@ -2,8 +2,8 @@ import React, { useEffect, useState, useContext } from 'react'
 import Button from '../../atoms/Button'
 import Subtitle from '../../atoms/Subtitle'
 import { useNavigate } from 'react-router-dom'
-import { ModalContext } from '../../../Contexts/ModalContext'
-import { AppContext } from '../../../Contexts/AppContext'
+import { ModalContext } from '../../../contexts/ModalContext'
+import { AppContext } from '../../../contexts/AppContext'
 
 const SignUpModalContent = () => {
   let navigate = useNavigate()

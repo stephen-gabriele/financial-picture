@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { AppContext } from '../../../Contexts/AppContext'
+import { AppContext } from '../../../contexts/AppContext'
 import TransactionRow from './TransactionRow'
 import TransactionHeader from './TransactionHeader'
 

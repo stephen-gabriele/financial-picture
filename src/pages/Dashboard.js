@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { AppContext } from '../Contexts/AppContext'
+import { AppContext } from '../contexts/AppContext'
 import Button from '../components/atoms/Button'
 import Title from '../components/atoms/Title'
 import Subtitle from '../components/atoms/Subtitle'
