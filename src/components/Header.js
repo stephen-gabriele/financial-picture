@@ -1,6 +1,6 @@
-import React, {useContext, useEffect} from 'react'
-import Button from './Button'
-import HeaderMenuItem from './HeaderMenuItem'
+import React, {useContext} from 'react'
+import Button from './atoms/Button'
+import NavLink from './atoms/NavLink'
 import { ModalContext } from '../Contexts/ModalContext'
 import { AppContext } from '../Contexts/AppContext'
 import SignUpModalContent from './SignUpModalContent'
@@ -30,8 +30,8 @@ const Header = ({ toggleMenu }) => {
           <h2 className='font-logo text-3xl text-blue-900'>Monarch</h2>
         </div>
         {globalState.loginToken ? <ul className='hidden md:flex'>
-          <HeaderMenuItem onClick={() => navigate('/dashboard')}>Dashboard</HeaderMenuItem>
-          <HeaderMenuItem onClick={() => navigate('/transactions')}>Transactions</HeaderMenuItem>
+          <NavLink onClick={() => navigate('/dashboard')}>Dashboard</NavLink>
+          <NavLink onClick={() => navigate('/transactions')}>Transactions</NavLink>
         </ul> : null}
         <div className='flex justify-between items-center'>
           {!globalState.loginToken && <Button size='sm' text='Log in' theme='secondary' className='hidden lg:block mr-2' onClick={openLogInModal}/>}

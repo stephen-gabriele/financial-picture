@@ -1,6 +1,6 @@
 import React from "react"
-import ParagraphText from "../components/ParagraphText";
-import Title from "../components/Title";
+import ParagraphText from "../components/atoms/ParagraphText";
+import Title from "../components/atoms/Title";
 
 const Features = () => {
   return ( <div className="flex flex-col content-center text-center px-12">

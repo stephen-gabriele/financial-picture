@@ -1,5 +1,5 @@
 import React from 'react'
-import Title from '../components/Title'
+import Title from '../components/atoms/Title'
 import TransactionChart from '../components/TransactionChart'
 
 const Transactions = () => {

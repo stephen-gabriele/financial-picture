@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { ModalContext } from '../Contexts/ModalContext'
 
 const Modal = () => {
-  const {modalContent, modalIsOpen, setModal, openModal, closeModal} = useContext(ModalContext)
+  const {modalContent, modalIsOpen, closeModal} = useContext(ModalContext)
   
   let menuRef = useRef()
 

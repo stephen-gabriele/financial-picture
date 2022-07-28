@@ -14,7 +14,7 @@ import Header from './components/Header'
 import Content from './pages/Content'
 import Footer from './pages/Footer'
 import MobileMenu from './components/MobileMenu'
-import Subfooter from './components/Subfooter'
+import Subfooter from './pages/Subfooter'
 
 const App = () => {
   const [menuIsOpen, setMenuIsOpen] = React.useState(false)

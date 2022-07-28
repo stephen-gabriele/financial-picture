@@ -1,6 +1,6 @@
 import React, {useState, useContext, useEffect} from 'react'
-import Button from './Button'
-import Subtitle from './Subtitle'
+import Button from './atoms/Button'
+import Subtitle from './atoms/Subtitle'
 import { AppContext } from '../Contexts/AppContext'
 import { useNavigate } from 'react-router-dom'
 import { ModalContext } from '../Contexts/ModalContext'

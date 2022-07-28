@@ -1,8 +1,8 @@
 import React, {useContext} from 'react'
-import Title from './Title'
-import ParagraphText from './ParagraphText'
-import Button from './Button'
-import SignUpModalContent from './SignUpModalContent'
+import Title from '../components/atoms/Title'
+import ParagraphText from '../components/atoms/ParagraphText'
+import Button from '../components/atoms/Button'
+import SignUpModalContent from '../components/SignUpModalContent'
 import { ModalContext } from '../Contexts/ModalContext'
 
 const Subfooter = () => {

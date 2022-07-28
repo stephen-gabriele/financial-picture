@@ -1,7 +1,7 @@
 import React from 'react'
 import { AppstoreImg, GooglePlayImg } from '../images'
-import ParagraphText from '../components/ParagraphText'
-import FooterElement from '../components/FooterElement'
+import ParagraphText from '../components/atoms/ParagraphText'
+import NavLink from '../components/atoms/NavLink'
 
 const Footer = () => {
   return (
@@ -47,27 +47,27 @@ const Footer = () => {
       <div className='mt-4 lg:mt-8 flex flex-col lg:flex-row text-center lg:text-left'>
         <div className='lg:ml-16 mt-6'>
           <ParagraphText className='font-bold'>Category 1</ParagraphText>
-          <FooterElement>Thing</FooterElement>
-          <FooterElement>Other Thing</FooterElement>
-          <FooterElement>Thing</FooterElement>
-          <FooterElement>Terms of Service</FooterElement>
+          <NavLink size='lg'>Thing</NavLink>
+          <NavLink size='lg'>Other Thing</NavLink>
+          <NavLink size='lg'>Thing</NavLink>
+          <NavLink size='lg'>Terms of Service</NavLink>
 
         </div>
         <div className='lg:ml-16 mt-6'>
           <ParagraphText className='font-bold'>Category 1</ParagraphText>
-          <FooterElement>What's New</FooterElement>
-          <FooterElement>Dwonload</FooterElement>
-          <FooterElement>Pricing</FooterElement>
-          <FooterElement>Thing</FooterElement>
-          <FooterElement>Help</FooterElement>
+          <NavLink size='lg'>What's New</NavLink>
+          <NavLink size='lg'>Dwonload</NavLink>
+          <NavLink size='lg'>Pricing</NavLink>
+          <NavLink size='lg'>Thing</NavLink>
+          <NavLink size='lg'>Help</NavLink>
         </div>
         <div className='lg:ml-16 mt-6'>
           <ParagraphText className='font-bold'>Category 1</ParagraphText>
-          <FooterElement>About</FooterElement>
-          <FooterElement>Contact Us</FooterElement>
+          <NavLink size='lg'>About</NavLink>
+          <NavLink size='lg'>Contact Us</NavLink>
           <ParagraphText className='font-bold mt-4'>Category 1</ParagraphText>
-          <FooterElement>Thing</FooterElement>
-          <FooterElement>Terms of Service</FooterElement>
+          <NavLink size='lg'>Thing</NavLink>
+          <NavLink size='lg'>Terms of Service</NavLink>
         </div>
       </div>
     </footer>
