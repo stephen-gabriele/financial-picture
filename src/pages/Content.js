@@ -1,12 +1,12 @@
 import React, {useContext} from 'react'
-import Button from './Button'
-import ReviewCard from './ReviewCard'
-import Subtitle from './Subtitle'
-import Title from './Title'
-import ParagraphText from './ParagraphText'
-import Section from './Section'
+import Button from '../components/Button'
+import ReviewCard from '../components/ReviewCard'
+import Subtitle from '../components/Subtitle'
+import Title from '../components/Title'
+import ParagraphText from '../components/ParagraphText'
+import Section from '../components/Section'
 import { ModalContext } from '../Contexts/ModalContext'
-import SignUpModalContent from './SignUpModalContent'
+import SignUpModalContent from '../components/SignUpModalContent'
 
 import {
   AdsImg,
@@ -73,23 +73,6 @@ const Content = () => {
 
       <div className='grid md:grid-cols-2 grid-flow-row gap-6 mt-16'>
         {reviewCards}
-        
-        {/* <ReviewCard
-          name='Andy P.'
-          review='This is the best app i have ever used and I want to marry the devs'
-        />
-        <ReviewCard
-          name='Joshua W.'
-          review='I tried YNAB, I tried Mint, I use Monarch. Soooo much more intuitive and the UI/UX is delightful.'
-        />
-        <ReviewCard
-          name='Stephen C.'
-          review='Its beautifully designed and it just works, as advertised; Significantly fewer syncing issues than its competitors.'
-        />
-        <ReviewCard
-          name='Aaron V.'
-          review='Makes it easy to see all my spending across accounts, with no ads and no unwanted advisors calling me.'
-        /> */}
       </div>
 
       <div className='mt-16 grid grid-rows-3 md:grid-rows-2 lg:grid-rows-1 grid-cols-2 lg:grid-cols-4 gap-y-5 gap-x-2 grid-flow-row items-center justify-items-center w-96 md:w-auto'>

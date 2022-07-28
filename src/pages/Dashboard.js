@@ -1,8 +1,8 @@
 import React, {useContext} from "react"
 import { AppContext } from "../Contexts/AppContext"
-import Button from "./Button"
-import Title from "./Title"
-import Subtitle from "./Subtitle"
+import Button from "../components/Button"
+import Title from "../components/Title"
+import Subtitle from "../components/Subtitle"
 import {useNavigate} from 'react-router-dom'
 
 const Dashboard = () => {

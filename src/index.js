@@ -1,18 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './styles/main.css'
-import Header from './components/Header'
-import Content from './components/Content'
-import Footer from './components/Footer'
-import MobileMenu from './components/MobileMenu'
-import Subfooter from './components/Subfooter'
-import Modal from './components/Modal'
+
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import { ModalProvider } from './Contexts/ModalContext'
 import { AppProvider } from './Contexts/AppContext'
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'
-import Dashboard from './components/Dashboard'
-import Features from './components/Features'
-import Transactions from './components/Transactions'
+import Modal from './components/Modal'
+
+import Dashboard from './pages/Dashboard'
+import Features from './pages/Features'
+import Transactions from './pages/Transactions'
+import Header from './components/Header'
+import Content from './pages/Content'
+import Footer from './pages/Footer'
+import MobileMenu from './components/MobileMenu'
+import Subfooter from './components/Subfooter'
 
 const App = () => {
   const [menuIsOpen, setMenuIsOpen] = React.useState(false)
@@ -34,7 +36,7 @@ const App = () => {
           {menuIsOpen ? <MobileMenu toggleMenu={toggleMenu} /> : ''}
           <Header toggleMenu={toggleMenu} />
           <Routes>
-            <Route exact path='/' element={<div><Content /><Subfooter /></div>}></Route>
+            <Route exact path='/' element={false ? <Redirect to='/dashboard'/> : <div><Content /><Subfooter /></div>}></Route>
             <Route path='/dashboard' element={<Dashboard />}></Route>
             <Route path='/transactions' element={<Transactions />}></Route>
             <Route path='/features' element={<Features />}></Route>

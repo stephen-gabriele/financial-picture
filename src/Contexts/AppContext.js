@@ -3,7 +3,9 @@ export const AppContext = createContext()
 import api from '../api/api'
 
 export const AppProvider = props => {
+
   const reducer = (state, action) => {
+    
     const setUserInfo = () => {
       return {...state, 
         userInfo: action.userInfo}
@@ -37,6 +39,11 @@ export const AppProvider = props => {
         console.log('Could not get transactions: ', e)
       }
     }
+    const getTransactionSuccess = () => {
+      return {...state, 
+        isLoading: false, 
+        transactionData: action.transactionData}
+    }
     const logIn = async() => {
       const credentials = {
         email: action.email,
@@ -50,7 +57,6 @@ export const AppProvider = props => {
         mode: 'cors',
         body: JSON.stringify(credentials)
       })
-
       try {
         const response = await fetch(request)
           if (!response.ok) throw new Error(response.status)
@@ -60,7 +66,6 @@ export const AppProvider = props => {
         dispatch({type: 'LOG_IN_FAILURE', e})
       }
     }
-
     const logInSuccess = () => {
       return {...state,
         isLoading: false,
@@ -110,14 +115,13 @@ export const AppProvider = props => {
       // figure out how to get the body of a 400 response!
       try {
         const response = await fetch(request)
-          if (!response.ok) throw new Error(response)
         const body = await response.json()
-        dispatch({type: 'SIGN_UP_SUCCESS', response, body})
+        if (response.ok) dispatch({type: 'SIGN_UP_SUCCESS', response, body})
+        else dispatch({type:'SIGN_UP_FAILURE', body})
       } catch (e) {
-        dispatch({type: 'SIGN_UP_FAILURE', e})
+        dispatch({type: 'SIGN_UP_FAILURE', body: e})
       }
     }
-
     const signUpSuccess = () => {
       return {...state,
         isLoading: false,
@@ -135,31 +139,21 @@ export const AppProvider = props => {
       return {...state, 
         isLoading: false,
         auth: {
-          failMessage: 'Something Went Wrong'
+          failMessage: `Something Went Wrong: ${action.body}`
         }
       }
     }
     const logOut = () => {
       return{
-        auth: {
-          failMessage: null
-        },
-  
+        auth: {failMessage: null},
         userInfo: 
           {firstName: '',
           lastName: '',
           email: ''},
-        
         loginToken: null,
-  
         transactionData: [],
-  
-        transactionCategories:
-          [],
-  
-        transactionTags:
-          [],
-  
+        transactionCategories: [],
+        transactionTags: [],
         isLoading: false
       }
     }
@@ -175,9 +169,7 @@ export const AppProvider = props => {
         getTransactions()
         return {...state, isLoading: true}
       case 'GET_TRANSACTIONS_SUCCESS' :
-        return {...state, 
-          isLoading: false, 
-          transactionData: action.transactionData}
+        return getTransactionSuccess()
       case 'LOG_IN' :
         logIn()
         return {...state, isLoading: true}
@@ -204,22 +196,14 @@ export const AppProvider = props => {
       auth: {
         failMessage: null
       },
-
       userInfo: 
         {firstName: '',
         lastName: '',
         email: ''},
-      
       loginToken: null,
-
       transactionData: [],
-
-      transactionCategories:
-        [],
-
-      transactionTags:
-        [],
-
+      transactionCategories: [],
+      transactionTags: [],
       isLoading: false
     }
   )

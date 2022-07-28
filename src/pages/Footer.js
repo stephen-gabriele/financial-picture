@@ -1,7 +1,7 @@
 import React from 'react'
 import { AppstoreImg, GooglePlayImg } from '../images'
-import ParagraphText from './ParagraphText'
-import FooterElement from './FooterElement'
+import ParagraphText from '../components/ParagraphText'
+import FooterElement from '../components/FooterElement'
 
 const Footer = () => {
   return (
