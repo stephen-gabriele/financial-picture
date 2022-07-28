@@ -5,7 +5,7 @@ import NavLink from '../../atoms/NavLink'
 
 const Footer = () => {
   return (
-    <footer className='mb-32 flex flex-col lg:flex-row lg:max-w-screen-lg lg:mx-auto'>
+    <footer className='mb-32 flex flex-col lg:flex-row lg:max-w-screen-lg lg:mx-auto mt-auto'>
       <div className='flex flex-col items-center lg:items-start lg:ml-20'>
         <div className='flex mt-16 hover:cursor-pointer'>
           <i className='fa-solid fa-user-astronaut text-4xl text-rose-400 mr-4'></i>

@@ -24,6 +24,13 @@ const LogInModalContent = () => {
     })
   }
 
+  function handleKeyDown(event) {
+    if (event.code === "Enter" || event.code === "NumpadEnter") {
+      event.preventDefault()
+      submit()
+    }
+  }
+
   const submit = () => {
     dispatch({type: 'LOG_IN', email: formData.email, password: formData.password})
   }
@@ -39,8 +46,7 @@ const LogInModalContent = () => {
   return ( 
   <div className='w-72 h-80 flex flex-col pt-6'>
     <Subtitle>Log In</Subtitle>
-    <div className='flex flex-col'>
-      <form className='flex flex-col mt-4'>
+      <form onKeyDown={handleKeyDown} className='flex flex-col mt-4'>
         <input
           className={`mt-4 px-1 py-2 rounded-md border-2 outline-0 
           ${!globalState.auth.failMessage ? 'border-white' : 'border-rose-600'}`}
@@ -60,11 +66,10 @@ const LogInModalContent = () => {
           value={formData.password}
         />
       </form>
-        <Button text='Log In' size='sm' onClick={submit} className='mt-8'/>
+        <Button text='Log In' onClick={submit} size='sm' className='mt-8'/>
         <div className='text-rose-600 mt-4'>
           {globalState.auth.failMessage}
         </div>
-    </div>
   </div>
   );
 }

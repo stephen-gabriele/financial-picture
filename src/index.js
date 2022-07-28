@@ -24,9 +24,11 @@ const App = () => {
       <Router>
         <Modal />
         <MobileMenu />
-        <Header />
-        <RouteHandler />
-        <Footer />
+        <div className='flex flex-col min-h-screen'>
+          <Header />
+          <RouteHandler />
+          <Footer />
+        </div>
       </Router>
   </MobileMenuProvider>
   </ModalProvider>

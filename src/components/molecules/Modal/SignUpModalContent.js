@@ -44,6 +44,13 @@ const SignUpModalContent = () => {
     })
   }
 
+  function handleKeyDown(event) {
+    if (event.code === "Enter" || event.code === "NumpadEnter") {
+      event.preventDefault()
+      submit()
+    }
+  }
+
   const validateInputs = () => {
     let submitReady = true
 
@@ -93,7 +100,7 @@ const SignUpModalContent = () => {
   <div className='w-72 min-h-[32rem] pt-4'>
     <Subtitle>Sign Up</Subtitle>
     <div className='flex flex-col mt-6'>
-      <form className='flex flex-col '>
+      <form onKeyDown={handleKeyDown} className='flex flex-col '>
         <input
           className={`px-1 py-2 rounded-md border-2 outline-0 ${valid.firstName ? 'border-white' : 'border-rose-600'}`}
           type="text"
