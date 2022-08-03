@@ -13,7 +13,7 @@ const Dashboard = () => {
   let navigate = useNavigate()
 
   return (
-    <div className='pt-6 pb-64 bg-slate-100 text-center'>
+    <div className='pt-6 pb-64 bg-slate-100 text-center min-h-screen'>
       <Title className='mt-6'>Dashboard</Title>
       <Subtitle className='mt-6'>
         Hello, {globalState.userInfo.firstName}! Here's your account at a glance.

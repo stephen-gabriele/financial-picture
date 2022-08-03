@@ -6,6 +6,8 @@ import Title from '../components/atoms/Title'
 import ParagraphText from '../components/atoms/ParagraphText'
 import Section from '../components/molecules/Welcome/WelcomeSection'
 import { ModalContext } from '../contexts/ModalContext'
+import { AppContext } from '../contexts/AppContext'
+import { useNavigate } from 'react-router-dom'
 import SignUpModalContent from '../components/molecules/Modal/SignUpModalContent'
 import {
   AdsImg,
@@ -29,6 +31,12 @@ import {
 
 const Content = () => {
   const { setModal, openModal } = useContext(ModalContext)
+  const { globalState } = useContext(AppContext)
+  let navigate = useNavigate()
+  if (globalState.loginToken) {
+    navigate('/dashboard')
+  }
+
 
   const openSignUpModal = () => {
     setModal(<SignUpModalContent />)
