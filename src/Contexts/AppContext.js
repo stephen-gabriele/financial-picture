@@ -25,9 +25,9 @@ export const AppProvider = (props) => {
     const getTransactions = async () => {
       const request = new Request(api.transactions, {
         method: 'GET',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
-          'x-auth-token': action.token
         },
         mode: 'cors'
       })
@@ -57,11 +57,11 @@ export const AppProvider = (props) => {
       })
       try {
         const response = await fetch(request)
-        if (!response.ok) throw new Error(response.status)
+        if (!response.ok) dispatch({ type: 'LOG_IN_FAILURE', e })
         const body = await response.json()
         dispatch({ type: 'LOG_IN_SUCCESS', response, body })
       } catch (e) {
-        dispatch({ type: 'LOG_IN_FAILURE', e })
+          dispatch({ type: 'LOG_IN_FAILURE', e })
       }
     }
     const logInSuccess = () => {
@@ -78,7 +78,7 @@ export const AppProvider = (props) => {
         },
         transactionTags: action.body.userData.allTags,
         transactionCategories: action.body.userData.allCategories,
-        loginToken: action.response.headers.get('x-auth-token')
+        loginToken: true
       }
     }
     const logInFailure = () => {
@@ -136,7 +136,7 @@ export const AppProvider = (props) => {
           lastName: action.body.name.split(' ')[action.body.name.split(' ').length - 1],
           email: action.body.email
         },
-        loginToken: action.response.headers.get('x-auth-token')
+        loginToken: true
       }
     }
     const signUpFailure = () => {
@@ -152,7 +152,7 @@ export const AppProvider = (props) => {
       return {
         auth: { failMessage: null },
         userInfo: { firstName: '', lastName: '', email: '' },
-        loginToken: null,
+        loginToken: false,
         transactionData: [],
         transactionCategories: [],
         transactionTags: [],
@@ -200,7 +200,7 @@ export const AppProvider = (props) => {
       failMessage: null
     },
     userInfo: { firstName: '', lastName: '', email: '' },
-    loginToken: null,
+    loginToken: false,
     transactionData: [],
     transactionCategories: [],
     transactionTags: [],

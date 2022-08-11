@@ -27,8 +27,7 @@ const RouteHandler = () => {
                 <StandardPageLayout>
                   <Welcome />
                   <Subfooter />
-                </StandardPageLayout>
-            }
+                </StandardPageLayout>}
           />
           <Route
             path='/dashboard'
@@ -55,15 +54,16 @@ const RouteHandler = () => {
                 <StandardPageLayout>
                   <Features />
                 </StandardPageLayout>
-              </AuthRoute>} />
+              </AuthRoute>} 
+          />
           <Route
             path='/account'
             element={
-            <AuthRoute>
-              <StandardPageLayout>
-                <Account />
-              </StandardPageLayout>
-            </AuthRoute>}
+              <AuthRoute>
+                <StandardPageLayout>
+                  <Account />
+                </StandardPageLayout>
+              </AuthRoute>}
           />
         </Routes>
   </Router>
