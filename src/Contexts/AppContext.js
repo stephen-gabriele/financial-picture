@@ -4,11 +4,6 @@ import api from '../api/api'
 
 export const AppProvider = (props) => {
   const reducer = (state, action) => {
-    const tryLocalStorage = () => {
-      const savedState = localStorage.getItem('savedState')
-      if (savedState) return savedState
-      return { ...state }
-    }
     const setUserInfo = () => {
       return { ...state, userInfo: action.userInfo }
     }
@@ -49,6 +44,7 @@ export const AppProvider = (props) => {
       }
       const request = new Request(api.auth, {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -57,9 +53,12 @@ export const AppProvider = (props) => {
       })
       try {
         const response = await fetch(request)
-        if (!response.ok) dispatch({ type: 'LOG_IN_FAILURE', e })
         const body = await response.json()
-        dispatch({ type: 'LOG_IN_SUCCESS', response, body })
+        if (!response.ok) {
+          dispatch({ type: 'LOG_IN_FAILURE', body })
+        } else {
+          dispatch({ type: 'LOG_IN_SUCCESS', response, body })
+        }
       } catch (e) {
           dispatch({ type: 'LOG_IN_FAILURE', e })
       }
@@ -82,22 +81,13 @@ export const AppProvider = (props) => {
       }
     }
     const logInFailure = () => {
-      if (action.e.message === '400') {
+      console.log(action.body.message)
         return {
           ...state,
           isLoading: false,
           auth: {
-            failMessage: 'Invalid Username or Password'
+            failMessage: action.body.message
           }
-        }
-      } else {
-        return {
-          ...state,
-          isLoading: false,
-          auth: {
-            failMessage: 'Something went wrong...'
-          }
-        }
       }
     }
     const signUp = async () => {
@@ -108,13 +98,13 @@ export const AppProvider = (props) => {
       }
       const request = new Request(api.users, {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json'
         },
         mode: 'cors',
         body: JSON.stringify(credentials)
       })
-      // figure out how to get the body of a 400 response!
       try {
         const response = await fetch(request)
         const body = await response.json()
@@ -144,12 +134,78 @@ export const AppProvider = (props) => {
         ...state,
         isLoading: false,
         auth: {
-          failMessage: `Something Went Wrong: ${action.body}`
+          failMessage: `${action.body.message}`
         }
       }
     }
-    const logOut = () => {
+    const logOut = async () => {
+      const request = new Request(api.auth, {
+        method: 'DELETE',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        mode: 'cors',
+      })
+      try {
+        const response = await fetch(request)
+        if (!response.ok) dispatch({ type: 'LOG_OUT_FAILURE', message: response.message })
+        const body = await response.json()
+        dispatch({ type: 'LOG_OUT_SUCCESS', response, body })
+      } catch (e) {
+          dispatch({ type: 'LOG_OUT_FAILURE', e })
+      }
+
+    }
+    const logOutSuccess = () => {
       return {
+        auth: { failMessage: null },
+        userInfo: { firstName: '', lastName: '', email: '' },
+        loginToken: false,
+        transactionData: [],
+        transactionCategories: [],
+        transactionTags: [],
+        isLoading: false
+      }
+    }
+    const logOutFailure = () => {
+        return {
+          ...state,
+          isLoading: false,
+          auth: {
+            failMessage: action.message
+          }
+      }
+    }
+    const checkAuth = async () => {
+      const request = new Request(api.auth, {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        mode: 'cors'
+      })
+      try {
+        const response = await fetch(request)
+        const body = await response.json()
+        if (!response.ok) {
+          dispatch({ type: 'CHECK_AUTH_FAILURE', body })
+        } else {
+          dispatch({ type: 'CHECK_AUTH_SUCCESS', body })
+        }
+      } catch (e) {
+          dispatch({ type: 'CHECK_AUTH_FAILURE', e })
+      }
+    }
+    const checkAuthSuccess = () => {
+       return {...state,
+        isLoading: false,
+        loginToken: true
+      }
+    }
+    const checkAuthFailure = () => {
+      return {...state,
         auth: { failMessage: null },
         userInfo: { firstName: '', lastName: '', email: '' },
         loginToken: false,
@@ -161,8 +217,6 @@ export const AppProvider = (props) => {
     }
 
     switch (action.type) {
-      case 'TRY_LOCAL_STORAGE':
-        return tryLocalStorage()
       case 'SET_USER_INFO':
         return setUserInfo()
       case 'ADD_TRANSACTION_TAG':
@@ -189,7 +243,20 @@ export const AppProvider = (props) => {
       case 'SIGN_UP_FAILURE':
         return signUpFailure()
       case 'LOG_OUT':
-        return logOut()
+        logOut()
+        return {...state, isLoading: true}
+      case 'LOG_OUT_SUCCESS':
+        return logOutSuccess()
+      case 'LOG_OUT_FAILURE':
+        return logOutFailure()
+      case 'CHECK_AUTH' :
+        checkAuth()
+        return {...state, isLoading: true}
+      case 'CHECK_AUTH_SUCCESS' :
+        return checkAuthSuccess()
+      case 'CHECK_AUTH_FAILURE' :
+        return checkAuthFailure()
+        
       default:
         return state
     }

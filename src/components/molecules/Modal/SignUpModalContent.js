@@ -118,7 +118,6 @@ const SignUpModalContent = () => {
             name='firstName'
             value={formData.firstName}
           />
-          {/* {!firstNameValid && <div className='text-rose-600'>Invalid entry</div>} */}
           <input
             className={`mt-4 px-1 py-2 rounded-md border-2 outline-0 ${
               valid.lastName ? 'border-white' : 'border-rose-600'
@@ -129,7 +128,6 @@ const SignUpModalContent = () => {
             name='lastName'
             value={formData.lastName}
           />
-          {/* {!lastNameValid && <div className='text-rose-600'>Invalid entry</div>} */}
           <input
             className={`mt-4 px-1 py-2 rounded-md border-2 outline-0 ${
               valid.email ? 'border-white' : 'border-rose-600'
@@ -140,7 +138,6 @@ const SignUpModalContent = () => {
             name='email'
             value={formData.email}
           />
-          {/* {!emailValid && <div className='text-rose-600'>Invalid email address</div>} */}
           <input
             className={`mt-4 px-1 py-2 rounded-md border-2 outline-0 ${
               valid.password ? 'border-white' : 'border-2 border-rose-600'
@@ -161,7 +158,6 @@ const SignUpModalContent = () => {
             name='confirmPassword'
             value={formData.confirmPassword}
           />
-          {/* {!passwordValid && <div className='text-rose-600'>Password must be at least 7 characters</div>} */}
         </form>
         <Button text='Sign Up' size='sm' onClick={submit} className='mt-8' />
         <div className='text-rose-600 mt-4'>{globalState.auth.failMessage}</div>
