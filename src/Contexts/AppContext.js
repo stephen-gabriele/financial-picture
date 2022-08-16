@@ -3,6 +3,7 @@ export const AppContext = createContext()
 import api from '../api/api'
 
 export const AppProvider = (props) => {
+  
   const reducer = (state, action) => {
     const setUserInfo = () => {
       return { ...state, userInfo: action.userInfo }
@@ -199,8 +200,20 @@ export const AppProvider = (props) => {
       }
     }
     const checkAuthSuccess = () => {
-       return {...state,
+      return {
+        ...state,
         isLoading: false,
+        auth: {
+          failMessage: null
+        },
+        userInfo: {
+          firstName: action.body.name.split(' ')[0],
+          lastName: action.body.name.split(' ')[action.body.name.split(' ').length - 1],
+          email: action.body.email
+        },
+        firstRender: false,
+        transactionTags: action.body.userData.allTags,
+        transactionCategories: action.body.userData.allCategories,
         loginToken: true
       }
     }
@@ -208,6 +221,7 @@ export const AppProvider = (props) => {
       return {...state,
         auth: { failMessage: null },
         userInfo: { firstName: '', lastName: '', email: '' },
+        firstRender: false,
         loginToken: false,
         transactionData: [],
         transactionCategories: [],
@@ -266,6 +280,7 @@ export const AppProvider = (props) => {
     auth: {
       failMessage: null
     },
+    firstRender: true,
     userInfo: { firstName: '', lastName: '', email: '' },
     loginToken: false,
     transactionData: [],
@@ -273,6 +288,10 @@ export const AppProvider = (props) => {
     transactionTags: [],
     isLoading: false
   })
+
+  useEffect( () => {
+    dispatch({type: 'CHECK_AUTH'})
+  }, [globalState.firstRender])
 
   return (
     <AppContext.Provider value={{ globalState, dispatch }}>{props.children}</AppContext.Provider>
