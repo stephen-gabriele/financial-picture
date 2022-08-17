@@ -64,7 +64,7 @@ const TransactionChart = () => {
   return (
     <div className='flex flex-col items-end'>
       <input
-        className={`text-right w-1/5 px-1 py-2 rounded-md border-2 outline-0
+        className={`text-right lg:w-1/4 px-1 py-2 rounded-md border-2 outline-0
         ${formData.queryValid ? 'border-white' : 'border-rose-600'}`}
         type='search'
         placeholder='Search'

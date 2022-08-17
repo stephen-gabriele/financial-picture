@@ -4,7 +4,7 @@ import TransactionChart from '../components/molecules/TransactionChart/Transacti
 
 const Transactions = () => {
   return (
-    <div className='py-32 bg-slate-100'>
+    <div className='pb-32 pt-16 bg-slate-100'>
       <div className='flex flex-col w-2/3 mx-auto'>
         <Title>Transactions</Title>
         <TransactionChart />

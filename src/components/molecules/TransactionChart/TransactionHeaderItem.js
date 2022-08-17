@@ -1,9 +1,9 @@
 import React from 'react'
 
-const TransactionHeaderItem = ({ children, onChange, activeSort }) => {
+const TransactionHeaderItem = ({ children, onChange, activeSort, className }) => {
   return (
     <th
-      className='hover:scale-105 hover:cursor-pointer transition ease-in-out delay-100'
+      className={`hover:scale-105 hover:cursor-pointer transition ease-in-out delay-100 ${className}`}
       onClick={() => onChange(children.toLowerCase())}
     >
       {children}
