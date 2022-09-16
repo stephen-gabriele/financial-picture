@@ -1,9 +1,10 @@
-import React, {useContext} from 'react'
-import Title from './Title'
-import ParagraphText from './ParagraphText'
-import Button from './Button'
-import { ModalContext } from '../Contexts/ModalContext'
-import SignUpModalContent from './SignUpModalContent'
+import React, { useContext } from 'react'
+import Title from '../../atoms/Title'
+import ParagraphText from '../../atoms/ParagraphText'
+import Button from '../../atoms/Button'
+import { ModalContext } from '../../../contexts/ModalContext'
+import SignUpModalContent from '../Modal/SignUpModalContent'
+import { useNavigate } from 'react-router-dom'
 
 const Section = ({
   title = 'Section Title',
@@ -12,8 +13,9 @@ const Section = ({
   svg = <i className='fa-solid fa-layer-group'></i>,
   children
 }) => {
-  const {setModal, openModal} = useContext(ModalContext)
-  
+  const { setModal, openModal } = useContext(ModalContext)
+  let navigate = useNavigate()
+
   const openSignUpModal = () => {
     setModal(<SignUpModalContent />)
     openModal()
@@ -40,8 +42,8 @@ const Section = ({
           {children}
         </ParagraphText>
         <div className='flex space-x-5 justify-center lg:justify-start mt-6'>
-          <Button text='Sign up now' onClick={openSignUpModal}/>
-          <Button theme='secondary' text='Learn more' />
+          <Button text='Sign up now' onClick={openSignUpModal} />
+          <Button theme='secondary' text='Learn more' onClick={() => navigate('/features')} />
         </div>
       </div>
     </div>

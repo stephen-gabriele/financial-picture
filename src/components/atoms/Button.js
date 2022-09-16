@@ -7,11 +7,12 @@ const Button = ({
   size = 'md',
   onClick
 }) => {
-  const defaults = 'rounded-full transition ease-in-out delay-50 font-bold hover:scale-105 hover:drop-shadow-md'
+  const defaults =
+    'rounded-full transition ease-in-out delay-50 font-bold hover:scale-105 hover:drop-shadow-md'
 
   const themes = {
-    primary:`${defaults} bg-rose-400 text-white hover:bg-rose-500`,
-    secondary:`${defaults} bg-slate-50 text-black drop-shadow hover:bg-white`
+    primary: `${defaults} bg-rose-400 text-white hover:bg-rose-500`,
+    secondary: `${defaults} bg-slate-50 text-black drop-shadow hover:bg-white`
   }
 
   const sizes = {

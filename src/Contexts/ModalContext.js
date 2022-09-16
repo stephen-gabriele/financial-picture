@@ -1,8 +1,8 @@
-import React, { useState, createContext } from "react"
+import React, { useState, createContext } from 'react'
 
 export const ModalContext = createContext()
 
-export const ModalProvider = props => {
+export const ModalProvider = (props) => {
   const [modalContent, setModalContent] = useState(<></>)
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
@@ -16,12 +16,9 @@ export const ModalProvider = props => {
     setModalIsOpen(false)
   }
 
-  return <ModalContext.Provider 
-    value={{modalContent, 
-      modalIsOpen, 
-      setModal, 
-      openModal, 
-      closeModal
-    }}>{props.children}
+  return (
+    <ModalContext.Provider value={{ modalContent, modalIsOpen, setModal, openModal, closeModal }}>
+      {props.children}
     </ModalContext.Provider>
+  )
 }

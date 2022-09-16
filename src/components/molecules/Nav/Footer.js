@@ -1,11 +1,11 @@
 import React from 'react'
-import { AppstoreImg, GooglePlayImg } from '../images'
-import ParagraphText from './ParagraphText'
-import FooterElement from './FooterElement'
+import { AppstoreImg, GooglePlayImg } from '../../../images'
+import ParagraphText from '../../atoms/ParagraphText'
+import NavLink from '../../atoms/NavLink'
 
 const Footer = () => {
   return (
-    <footer className='mb-32 flex flex-col lg:flex-row lg:max-w-screen-lg lg:mx-auto'>
+    <footer className='mb-32 flex flex-col lg:flex-row lg:max-w-screen-lg lg:mx-auto mt-auto'>
       <div className='flex flex-col items-center lg:items-start lg:ml-20'>
         <div className='flex mt-16 hover:cursor-pointer'>
           <i className='fa-solid fa-user-astronaut text-4xl text-rose-400 mr-4'></i>
@@ -47,39 +47,26 @@ const Footer = () => {
       <div className='mt-4 lg:mt-8 flex flex-col lg:flex-row text-center lg:text-left'>
         <div className='lg:ml-16 mt-6'>
           <ParagraphText className='font-bold'>Category 1</ParagraphText>
-          <FooterElement>Thing</FooterElement>
-          <FooterElement>Other Thing</FooterElement>
-          <FooterElement>Thing</FooterElement>
-          <FooterElement>French Fry</FooterElement>
-          <FooterElement>Thing</FooterElement>
-          <FooterElement>Quadruple</FooterElement>
-          <FooterElement>Thing</FooterElement>
+          <NavLink size='lg'>Thing</NavLink>
+          <NavLink size='lg'>Other Thing</NavLink>
+          <NavLink size='lg'>Thing</NavLink>
+          <NavLink size='lg'>Terms of Service</NavLink>
         </div>
         <div className='lg:ml-16 mt-6'>
           <ParagraphText className='font-bold'>Category 1</ParagraphText>
-          <FooterElement>What's New</FooterElement>
-          <FooterElement>Dwonload</FooterElement>
-          <FooterElement>Pricing</FooterElement>
-          <FooterElement>Thing</FooterElement>
-          <FooterElement>Help</FooterElement>
-          <ParagraphText className='font-bold mt-4'>Category 1</ParagraphText>
-          <FooterElement>Someone Please Help</FooterElement>
-          <FooterElement>Thing</FooterElement>
-          <ParagraphText className='font-bold mt-4'>Category 1</ParagraphText>
-          <FooterElement>Thing</FooterElement>
-          <FooterElement>About</FooterElement>
-          <FooterElement>Help Me God</FooterElement>
-          <FooterElement>Thing</FooterElement>
+          <NavLink size='lg'>What's New</NavLink>
+          <NavLink size='lg'>Dwonload</NavLink>
+          <NavLink size='lg'>Pricing</NavLink>
+          <NavLink size='lg'>Thing</NavLink>
+          <NavLink size='lg'>Help</NavLink>
         </div>
         <div className='lg:ml-16 mt-6'>
           <ParagraphText className='font-bold'>Category 1</ParagraphText>
-          <FooterElement>About</FooterElement>
-          <FooterElement>Thing</FooterElement>
-          <FooterElement>Blog</FooterElement>
-          <FooterElement>Contact Us</FooterElement>
+          <NavLink size='lg'>About</NavLink>
+          <NavLink size='lg'>Contact Us</NavLink>
           <ParagraphText className='font-bold mt-4'>Category 1</ParagraphText>
-          <FooterElement>Thing</FooterElement>
-          <FooterElement>Terms of Service</FooterElement>
+          <NavLink size='lg'>Thing</NavLink>
+          <NavLink size='lg'>Terms of Service</NavLink>
         </div>
       </div>
     </footer>
