@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.cacb4eb4.css",
+    "main.js": "/static/js/main.e45c597b.js",
+    "static/media/unknown.png": "/static/media/unknown.7149dfc40a53ce59f4f0.png",
+    "static/media/investments.png": "/static/media/investments.fb4ee4c7c6b91059c890.png",
+    "static/media/personalized.png": "/static/media/personalized.f6e5f157b48f9cdeaf47.png",
+    "static/media/customize.png": "/static/media/customize.4615409348c06da823b3.png",
+    "static/media/understandandgrow.png": "/static/media/understandandgrow.f9c61d037cc8f69f3970.png",
+    "static/media/budget.png": "/static/media/budget.9853e21c2eb279cea604.png",
+    "static/media/spending.png": "/static/media/spending.af70a0db04b318021531.png",
+    "static/media/collaborate.png": "/static/media/collaborate.4becc6551420d7f60c87.png",
+    "static/media/plan.png": "/static/media/plan.4232bb5064e60f26916b.png",
+    "static/media/security.png": "/static/media/security.0f9b03acfd129afddce8.png",
+    "static/media/ads.png": "/static/media/ads.7fade2d2b57f5cac2450.png",
+    "static/media/fintech.png": "/static/media/fintech.f3742f2c745ed50454f8.png",
+    "static/media/fastcompany.png": "/static/media/fastcompany.6716c29e64590bb06396.png",
+    "static/media/businessinsider.png": "/static/media/businessinsider.d77a329675572efe2be4.png",
+    "static/media/techcrunch.png": "/static/media/techcrunch.a03bda6110e4eb1e98dc.png",
+    "index.html": "/index.html",
+    "main.cacb4eb4.css.map": "/static/css/main.cacb4eb4.css.map",
+    "main.e45c597b.js.map": "/static/js/main.e45c597b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cacb4eb4.css",
+    "static/js/main.e45c597b.js"
+  ]
+}
